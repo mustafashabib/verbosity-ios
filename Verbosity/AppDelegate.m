@@ -3,13 +3,13 @@
 //  Verbosity
 //
 //  Created by Mustafa Shabib on 6/20/12.
-//  Copyright We Are Mammoth 2012. All rights reserved.
+//  Copyright Betel Nut Games 2012. All rights reserved.
 //
 
 #import "cocos2d.h"
 
 #import "AppDelegate.h"
-#import "HelloWorldLayer.h"
+#import "VerbosityGameLayer.h"
 
 @implementation AppController
 
@@ -84,7 +84,7 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene: [HelloWorldLayer scene]]; 
+	[director_ pushScene: [VerbosityGameLayer scene]]; 
 
 	return YES;
 }
@@ -140,11 +140,4 @@
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
 
-- (void) dealloc
-{
-	[window_ release];
-	[navController_ release];
-
-	[super dealloc];
-}
 @end

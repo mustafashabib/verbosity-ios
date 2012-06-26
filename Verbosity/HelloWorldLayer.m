@@ -3,7 +3,7 @@
 //  Verbosity
 //
 //  Created by Mustafa Shabib on 6/20/12.
-//  Copyright We Are Mammoth 2012. All rights reserved.
+//  Copyright Betel Nut Games 2012. All rights reserved.
 //
 
 
@@ -73,7 +73,6 @@
 			
 			[[app navController] presentModalViewController:achivementViewController animated:YES];
 			
-			[achivementViewController release];
 		}
 									   ];
 
@@ -88,7 +87,6 @@
 			
 			[[app navController] presentModalViewController:leaderboardViewController animated:YES];
 			
-			[leaderboardViewController release];
 		}
 									   ];
 		
@@ -105,15 +103,6 @@
 }
 
 // on "dealloc" you need to release all your retained objects
-- (void) dealloc
-{
-	// in case you have something to dealloc, do it in this method
-	// in this particular example nothing needs to be released.
-	// cocos2d will automatically release all the children (Label)
-	
-	// don't forget to call "super dealloc"
-	[super dealloc];
-}
 
 #pragma mark GameKit delegate
 

@@ -3,7 +3,7 @@
 //  Verbosity
 //
 //  Created by Mustafa Shabib on 6/20/12.
-//  Copyright We Are Mammoth 2012. All rights reserved.
+//  Copyright Betel Nut Games 2012. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -14,11 +14,11 @@
 	UIWindow *window_;
 	UINavigationController *navController_;
 
-	CCDirectorIOS	*director_;							// weak ref
+	CCDirectorIOS	*__unsafe_unretained director_;							// weak ref
 }
 
-@property (nonatomic, retain) UIWindow *window;
+@property (nonatomic) UIWindow *window;
 @property (readonly) UINavigationController *navController;
-@property (readonly) CCDirectorIOS *director;
+@property (unsafe_unretained, readonly) CCDirectorIOS *director;
 
 @end
