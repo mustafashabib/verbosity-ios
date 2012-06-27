@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import <sqlite3.h>
 
 @interface VerbosityRepository : NSObject{
@@ -15,8 +16,9 @@
 
 + (VerbosityRepository*)context;
 
--(NSArray*) getWordsForLetters:(NSArray*) letters andLanguage:(int)language_id;
+-(NSArray*) getWordsForLetters:(NSString*) letters andLanguage:(int)language_id;
 -(NSArray*) getLettersForLanguage:(int) language_id;
+-(NSArray*) getLetterKeysForLanguage:(int) language_id;
 -(NSArray*) getLanguages;
 
 //local high scores?

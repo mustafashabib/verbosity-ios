@@ -13,13 +13,15 @@
 int ID;
 char Value;
 int Key; //prime number value in this alphabet
-    Language* RelatedLanguage;
+    int RelatedLanguageID;
 }
 
 @property(nonatomic) int ID;
 @property(nonatomic) char Value;
 @property(nonatomic) int Key;
-@property(nonatomic,strong) Language* RelatedLanguage;
+@property(nonatomic) int RelatedLanguageID;
 
--(id) initWithID:(int)uniqueID andValue:(char)value andKey:(int)key andLanguage:(Language*)related_language;
+-(id) initWithID:(int)uniqueID andValue:(char)value andKey:(int)key andLanguage:(int)related_language_id;
++(long) makeKeyForLetters:(NSString*)letters andLanguage:(int)related_language_id;
+
 @end

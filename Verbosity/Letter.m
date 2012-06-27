@@ -7,22 +7,38 @@
 //
 
 #import "Letter.h"
-
+#import "VerbosityRepository.h"
 
 @implementation Letter
 @synthesize ID;
 @synthesize Value;
-@synthesize RelatedLanguage;
+@synthesize RelatedLanguageID;
+@synthesize Key;
 
 
--(id) initWithID:(int)uniqueID andValue:(char)value andKey:(int)key andLanguage:(Language*)related_language{
+-(id) initWithID:(int)uniqueID andValue:(char)value andKey:(int)key andLanguage:(int)related_language_id{
     if(self = [super init]){
         self.ID = uniqueID;
         self.Value = value;
         self.Key = key;
-        self.RelatedLanguage = related_language;
+        self.RelatedLanguageID = related_language_id;
     }
     return self;
+}
+
++ (long) makeKeyForLetters:(NSString *)letters andLanguage:(int)related_language_id
+{
+    //get the letters for this language from database
+    //calculate key for the letters passed into this method
+    NSArray* letterValues = [[VerbosityRepository context] getLettersForLanguage:related_language_id];
+    long key = 1;
+    const int start = 97;//Convert.ToInt32('a');
+    for (int i = 0; i < [letters length]; i++) {
+        char c = [letters characterAtIndex:i];
+        
+        key *= letterValues[(c) - start];
+    }
+    return key;
 }
 @end
 

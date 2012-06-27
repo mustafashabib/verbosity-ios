@@ -14,10 +14,10 @@
 @synthesize Value;
 @synthesize Key;
 @synthesize Popularity;
-@synthesize RelatedLanguage;
+@synthesize RelatedLanguageID;
 
 - (id)initWithUniqueId:(int)uniqueID value:(NSString *)value key:(long)key 
-            popularity:(int)popularity language:(Language*)language
+            popularity:(int)popularity language:(int)language
 {   
     if (self = [super init])
     {
@@ -26,20 +26,12 @@
         self.Value = value;
         self.Key = key;
         self.Popularity = popularity;
-        self.RelatedLanguage = language;
+        self.RelatedLanguageID = language;
     }
     return self;
 }
 
-+ (long) makeKeyForWord:(NSString *)word{
-    long key = 1;
-    const int start = 97;//Convert.ToInt32('a');
-    for (int i = 0; i < [word length]; i++) {
-        char c = [word characterAtIndex:i];
-        key *= primeNumbers[(c) - start];
-    }
-    return key;
-}
+
 
 @end
 

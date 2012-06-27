@@ -7,14 +7,20 @@
 //
 
 #import "VerbosityRepository.h"
+#import "Word.h"
+#import "Letter.h"
 
 @implementation VerbosityRepository
 
 static VerbosityRepository *_context;
+static NSCache *_cache;
 
 + (VerbosityRepository*)context{
     if(_context == nil){
         _context = [[VerbosityRepository alloc] init];
+    }
+    if(_cache == nil){
+        _cache = [[NSCache alloc] init];
     }
     return _context;
 }
@@ -37,19 +43,25 @@ static VerbosityRepository *_context;
 
 
 
--(NSArray*) wordsForLetters:(NSArray*) letters andLanguage:(int)language_id{
+-(NSArray*) wordsForLetters:(NSString*) letters andLanguage:(int)language_id{
     
     NSMutableArray *retval = [[NSMutableArray alloc] init] ;
-    NSString *query = @"SELECT * FROM failed_banks ORDER BY close_date DESC";
+    Language* lang = [[Language alloc] init];
+    lang.ID = language_id;
+    
+    long key = [Letter makeKeyForLetters:letters andLanguage:lang];
+    
+    NSString *query = @"select * from words where key < 70467397 and 70467397%key = 0 order by length(word) asc;";
+    
     sqlite3_stmt *statement;
-    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) 
+    if (sqlite3_prepare_v2(_context, [query UTF8String], -1, &statement, nil) 
         == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
             int uniqueId = sqlite3_column_int(statement, 0);
-            char *nameChars = (char *) sqlite3_column_text(statement, 1);
-            char *cityChars = (char *) sqlite3_column_text(statement, 2);
-            char *stateChars = (char *) sqlite3_column_text(statement, 3);
-            NSString *name = [[NSString alloc] initWithUTF8String:nameChars];
+            char *wordChars = (char *) sqlite3_column_text(statement, 1);
+            int popularity = sqlite3_column_int(statement, 2);
+            sqlite3_int64 key = sqlite3_column_int64(statement, 3);
+            int relatedLanguage = [[NSString alloc] initWithUTF8String:nameChars];
             NSString *city = [[NSString alloc] initWithUTF8String:cityChars];
             NSString *state = [[NSString alloc] initWithUTF8String:stateChars];
             FailedBankInfo *info = [[FailedBankInfo alloc] 
