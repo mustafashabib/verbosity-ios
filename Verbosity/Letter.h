@@ -2,29 +2,24 @@
 //  Letter.h
 //  Verbosity
 //
-//  Created by Mustafa Shabib on 4/18/12.
-//  Copyright 2012 We Are Mammoth. All rights reserved.
+//  Created by Mustafa Shabib on 6/27/12.
+//  Copyright (c) 2012 We Are Mammoth. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "cocos2d.h"
-#define kLettersInLevel 6
+#import <UIKit/UIKit.h>
+#import "Language.h"
 
-typedef enum {
-    kLetterStateTouched,
-    kLetterStateUntouched,
-    kLetterStateUsed
-} LetterState;
-
-@interface Letter : CCNode <CCTargetedTouchDelegate>{
-@private 
-    LetterState _state;
-    char _letter;
-    int _letterID;
+@interface Letter : NSObject{
+int ID;
+char Value;
+int Key; //prime number value in this alphabet
+    Language* RelatedLanguage;
 }
--(CGSize) getSize;
 
-+(id)letterWithLetter:(char)letter;
--(id)initWithLetter:(char)letter;
+@property(nonatomic) int ID;
+@property(nonatomic) char Value;
+@property(nonatomic) int Key;
+@property(nonatomic,strong) Language* RelatedLanguage;
 
+-(id) initWithID:(int)uniqueID andValue:(char)value andKey:(int)key andLanguage:(Language*)related_language;
 @end

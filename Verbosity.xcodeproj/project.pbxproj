@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71444E43159AC7390045EC44 /* Code Pro Light Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 71444E42159AC7390045EC44 /* Code Pro Light Demo.otf */; };
+		71444E46159ACE9F0045EC44 /* Code Pro Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 71444E45159ACE9F0045EC44 /* Code Pro Demo.otf */; };
+		71444E48159ADF510045EC44 /* verbosity.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 71444E47159ADF510045EC44 /* verbosity.sqlite3 */; };
+		71444E4A159ADFAE0045EC44 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 71444E49159ADFAE0045EC44 /* libsqlite3.dylib */; };
+		71444E4D159AE00C0045EC44 /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 71444E4C159AE00C0045EC44 /* Language.m */; };
+		71444E52159AE2870045EC44 /* VerbosityRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 71444E51159AE2870045EC44 /* VerbosityRepository.m */; };
+		71444E55159AE6760045EC44 /* Letter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71444E54159AE6760045EC44 /* Letter.m */; };
 		71921EE015929D5000CD3A77 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EDF15929D5000CD3A77 /* QuartzCore.framework */; };
 		71921EE215929D5000CD3A77 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EE115929D5000CD3A77 /* OpenGLES.framework */; };
 		71921EE415929D5000CD3A77 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EE315929D5000CD3A77 /* OpenAL.framework */; };
@@ -258,7 +265,7 @@
 		71AECCCC15929E2300D65EA3 /* vec2.c in Sources */ = {isa = PBXBuildFile; fileRef = 71AECBE715929E2300D65EA3 /* vec2.c */; };
 		71AECCCD15929E2300D65EA3 /* vec3.c in Sources */ = {isa = PBXBuildFile; fileRef = 71AECBE815929E2300D65EA3 /* vec3.c */; };
 		71AECCCE15929E2300D65EA3 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 71AECBE915929E2300D65EA3 /* vec4.c */; };
-		71AECCD11596729300D65EA3 /* Letter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AECCD01596729300D65EA3 /* Letter.m */; };
+		71AECCD11596729300D65EA3 /* LetterTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AECCD01596729300D65EA3 /* LetterTile.m */; };
 		71E937AD1597FC34003D60EA /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E937AC1597FC34003D60EA /* Word.m */; };
 		71E937B015994463003D60EA /* tile-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E937AE15994463003D60EA /* tile-hd.png */; };
 		71E937B115994463003D60EA /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E937AF15994463003D60EA /* tile.png */; };
@@ -266,6 +273,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		71444E42159AC7390045EC44 /* Code Pro Light Demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Code Pro Light Demo.otf"; sourceTree = "<group>"; };
+		71444E45159ACE9F0045EC44 /* Code Pro Demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Code Pro Demo.otf"; sourceTree = "<group>"; };
+		71444E47159ADF510045EC44 /* verbosity.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = verbosity.sqlite3; path = Resources/verbosity.sqlite3; sourceTree = "<group>"; };
+		71444E49159ADFAE0045EC44 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		71444E4B159AE00B0045EC44 /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
+		71444E4C159AE00C0045EC44 /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Language.m; sourceTree = "<group>"; };
+		71444E50159AE2870045EC44 /* VerbosityRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityRepository.h; sourceTree = "<group>"; };
+		71444E51159AE2870045EC44 /* VerbosityRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityRepository.m; sourceTree = "<group>"; };
+		71444E53159AE6760045EC44 /* Letter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Letter.h; sourceTree = "<group>"; };
+		71444E54159AE6760045EC44 /* Letter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Letter.m; sourceTree = "<group>"; };
 		71921EDB15929D5000CD3A77 /* Verbosity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Verbosity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71921EDF15929D5000CD3A77 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		71921EE115929D5000CD3A77 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -527,8 +544,8 @@
 		71AECBEA15929E2300D65EA3 /* LICENSE_cocos2d.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_cocos2d.txt; sourceTree = "<group>"; };
 		71AECBEB15929E2300D65EA3 /* LICENSE_CocosDenshion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_CocosDenshion.txt; sourceTree = "<group>"; };
 		71AECBEC15929E2300D65EA3 /* LICENSE_Kazmath.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_Kazmath.txt; sourceTree = "<group>"; };
-		71AECCCF1596729300D65EA3 /* Letter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Letter.h; path = Verbosity/Letter.h; sourceTree = SOURCE_ROOT; };
-		71AECCD01596729300D65EA3 /* Letter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Letter.m; path = Verbosity/Letter.m; sourceTree = SOURCE_ROOT; };
+		71AECCCF1596729300D65EA3 /* LetterTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LetterTile.h; path = Verbosity/LetterTile.h; sourceTree = SOURCE_ROOT; };
+		71AECCD01596729300D65EA3 /* LetterTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LetterTile.m; path = Verbosity/LetterTile.m; sourceTree = SOURCE_ROOT; };
 		71E937AB1597FC34003D60EA /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
 		71E937AC1597FC34003D60EA /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		71E937AE15994463003D60EA /* tile-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tile-hd.png"; path = "Resources/tile-hd.png"; sourceTree = "<group>"; };
@@ -542,6 +559,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71444E4A159ADFAE0045EC44 /* libsqlite3.dylib in Frameworks */,
 				71AECAF815929DE900D65EA3 /* libcocos2d-library.a in Frameworks */,
 				71921EE015929D5000CD3A77 /* QuartzCore.framework in Frameworks */,
 				71921EE215929D5000CD3A77 /* OpenGLES.framework in Frameworks */,
@@ -566,9 +584,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		71444E4E159AE2400045EC44 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				71444E50159AE2870045EC44 /* VerbosityRepository.h */,
+				71444E51159AE2870045EC44 /* VerbosityRepository.m */,
+			);
+			name = Repository;
+			sourceTree = "<group>";
+		};
+		71444E4F159AE2530045EC44 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				71E937AB1597FC34003D60EA /* Word.h */,
+				71E937AC1597FC34003D60EA /* Word.m */,
+				71444E4B159AE00B0045EC44 /* Language.h */,
+				71444E4C159AE00C0045EC44 /* Language.m */,
+				71444E53159AE6760045EC44 /* Letter.h */,
+				71444E54159AE6760045EC44 /* Letter.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		71444E56159AE7980045EC44 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				7192206A15929D5300CD3A77 /* HelloWorldLayer.h */,
+				7192206B15929D5300CD3A77 /* HelloWorldLayer.m */,
+				71AECCCF1596729300D65EA3 /* LetterTile.h */,
+				71AECCD01596729300D65EA3 /* LetterTile.m */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
 		71921ED015929D5000CD3A77 = {
 			isa = PBXGroup;
 			children = (
+				71444E49159ADFAE0045EC44 /* libsqlite3.dylib */,
 				71921EF115929D5000CD3A77 /* Verbosity */,
 				71AECAEF15929DAB00D65EA3 /* cocos2d-library */,
 				71921EDE15929D5000CD3A77 /* Frameworks */,
@@ -604,17 +656,14 @@
 		71921EF115929D5000CD3A77 /* Verbosity */ = {
 			isa = PBXGroup;
 			children = (
-				71AECCCF1596729300D65EA3 /* Letter.h */,
-				71AECCD01596729300D65EA3 /* Letter.m */,
+				71444E56159AE7980045EC44 /* Game */,
+				71444E4F159AE2530045EC44 /* Models */,
+				71444E4E159AE2400045EC44 /* Repository */,
 				71AECAF915929E2300D65EA3 /* libs */,
 				7192206715929D5300CD3A77 /* AppDelegate.h */,
 				7192206815929D5300CD3A77 /* AppDelegate.m */,
-				7192206A15929D5300CD3A77 /* HelloWorldLayer.h */,
-				7192206B15929D5300CD3A77 /* HelloWorldLayer.m */,
 				71921EF215929D5000CD3A77 /* Resources */,
 				7192206315929D5300CD3A77 /* Supporting Files */,
-				71E937AB1597FC34003D60EA /* Word.h */,
-				71E937AC1597FC34003D60EA /* Word.m */,
 				71E937B215994909003D60EA /* VerbosityGameLayer.h */,
 				71E937B31599490A003D60EA /* VerbosityGameLayer.m */,
 			);
@@ -624,6 +673,9 @@
 		71921EF215929D5000CD3A77 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				71444E47159ADF510045EC44 /* verbosity.sqlite3 */,
+				71444E45159ACE9F0045EC44 /* Code Pro Demo.otf */,
+				71444E42159AC7390045EC44 /* Code Pro Light Demo.otf */,
 				71E937AE15994463003D60EA /* tile-hd.png */,
 				71E937AF15994463003D60EA /* tile.png */,
 				71921EF315929D5000CD3A77 /* Default.png */,
@@ -1219,6 +1271,9 @@
 				71921F0915929D5000CD3A77 /* iTunesArtwork in Resources */,
 				71E937B015994463003D60EA /* tile-hd.png in Resources */,
 				71E937B115994463003D60EA /* tile.png in Resources */,
+				71444E43159AC7390045EC44 /* Code Pro Light Demo.otf in Resources */,
+				71444E46159ACE9F0045EC44 /* Code Pro Demo.otf in Resources */,
+				71444E48159ADF510045EC44 /* verbosity.sqlite3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1232,9 +1287,12 @@
 				7192206615929D5300CD3A77 /* main.m in Sources */,
 				7192206915929D5300CD3A77 /* AppDelegate.m in Sources */,
 				7192206C15929D5300CD3A77 /* HelloWorldLayer.m in Sources */,
-				71AECCD11596729300D65EA3 /* Letter.m in Sources */,
+				71AECCD11596729300D65EA3 /* LetterTile.m in Sources */,
 				71E937AD1597FC34003D60EA /* Word.m in Sources */,
 				71E937B41599490A003D60EA /* VerbosityGameLayer.m in Sources */,
+				71444E4D159AE00C0045EC44 /* Language.m in Sources */,
+				71444E52159AE2870045EC44 /* VerbosityRepository.m in Sources */,
+				71444E55159AE6760045EC44 /* Letter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

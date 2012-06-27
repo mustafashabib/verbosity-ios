@@ -7,7 +7,7 @@
 //
 
 #import "VerbosityGameLayer.h"
-#import "Letter.h"
+#import "LetterTile.h"
 
 
 @implementation VerbosityGameLayer
@@ -96,7 +96,7 @@
         }
         int asciiCode = (int)(CCRANDOM_0_1()*26) + 65;        
         NSString* currentLetterString = [NSString stringWithFormat:@"%c", asciiCode]; // letter A-Z;
-        Letter* letter = [[Letter alloc] initWithLetter:asciiCode];
+        LetterTile* letter = [[Letter alloc] initWithLetter:asciiCode];
         if(useSpacing){
             letter.position = ccp((i*letterSize.width + letterSize.width *.5f)+widthSpacing*i, winSize.height/2);
         }else{
