@@ -10,12 +10,16 @@
 
 @implementation Language
 @synthesize ID;
+@synthesize Font;
 @synthesize Name;
+@synthesize MaximumWordLength;
 
--(id) initWithUniqueID:(int)uniqueID name:(NSString *)name{
+-(id) initWithUniqueID:(int)uniqueID andName:(NSString *)name andFont:(NSString *)font andMaximumWordLength:(int)maxLength{
     if(self = [super init]){
         self.ID = uniqueID;
         self.Name = name;
+        self.Font = font;
+        self.MaximumWordLength = maxLength;
     }
     return self;
 }

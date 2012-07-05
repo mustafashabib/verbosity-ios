@@ -8,72 +8,101 @@
 
 #import "VerbosityRepository.h"
 #import "Word.h"
-#import "Letter.h"
+#import "Language.h"
+#import "GameCache.h"
+
+static VerbosityRepository *_context;
 
 @implementation VerbosityRepository
 
-static VerbosityRepository *_context;
-static NSCache *_cache;
++ (VerbosityRepository *)context {
+	if(_context == nil) {
+		_context = [[VerbosityRepository alloc] init];
+	}
 
-+ (VerbosityRepository*)context{
-    if(_context == nil){
-        _context = [[VerbosityRepository alloc] init];
-    }
-    if(_cache == nil){
-        _cache = [[NSCache alloc] init];
-    }
-    return _context;
+	return _context;
 }
 
 - (id)init {
-    if ((self = [super init])) {
-        NSString *sqLiteDb = [[NSBundle mainBundle] pathForResource:@"verbosity" 
-                                                             ofType:@"sqlite3"];
-        
-        if (sqlite3_open([sqLiteDb UTF8String], &_context) != SQLITE_OK) {
+	if((self = [super init])) {
+		NSString *sqLiteDb = [[NSBundle mainBundle] pathForResource:@"verbosity"
+															 ofType:@"sqlite3"];
+
+		if(sqlite3_open([sqLiteDb UTF8String], &_context) != SQLITE_OK) {          
             NSLog(@"Failed to open database!");
-        }
-    }
-    return self;
+		}
+	}
+	return self;
 }
 
 - (void)dealloc {
-    sqlite3_close(_context);
+	sqlite3_close(_context);
 }
 
 
-
--(NSArray*) wordsForLetters:(NSString*) letters andLanguage:(int)language_id{
+- (NSArray *)getLanguages {
+    NSMutableArray *languages = [[NSMutableArray alloc] init];
+    NSString *query = @"select id,name,case font when null then 'Code Pro Demo' else font end as font from Languages;";
+	sqlite3_stmt *statement;
     
-    NSMutableArray *retval = [[NSMutableArray alloc] init] ;
-    Language* lang = [[Language alloc] init];
-    lang.ID = language_id;
-    
-    long key = [Letter makeKeyForLetters:letters andLanguage:lang];
-    
-    NSString *query = @"select * from words where key < 70467397 and 70467397%key = 0 order by length(word) asc;";
-    
-    sqlite3_stmt *statement;
-    if (sqlite3_prepare_v2(_context, [query UTF8String], -1, &statement, nil) 
-        == SQLITE_OK) {
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            int uniqueId = sqlite3_column_int(statement, 0);
-            char *wordChars = (char *) sqlite3_column_text(statement, 1);
-            int popularity = sqlite3_column_int(statement, 2);
-            sqlite3_int64 key = sqlite3_column_int64(statement, 3);
-            int relatedLanguage = [[NSString alloc] initWithUTF8String:nameChars];
-            NSString *city = [[NSString alloc] initWithUTF8String:cityChars];
-            NSString *state = [[NSString alloc] initWithUTF8String:stateChars];
-            FailedBankInfo *info = [[FailedBankInfo alloc] 
-                                    initWithUniqueId:uniqueId name:name city:city state:state];                        
-            [retval addObject:info];
-            [name release];
-            [city release];
-            [state release];
-            [info release];
-        }
-        sqlite3_finalize(statement);
-    }
-    return retval;
+	if(sqlite3_prepare_v2(_context, [query UTF8String], -1, &statement, nil)
+	   == SQLITE_OK)
+	{
+    	while(sqlite3_step(statement) == SQLITE_ROW) {
+           
+			int uniqueID = sqlite3_column_int(statement, 0);
+			char *nameChars = (char *)sqlite3_column_text(statement, 1);
+			char *fontChars = (char *)sqlite3_column_text(statement, 2);
+            int maxLen = sqlite3_column_int(statement, 3);
+            NSString *name = [[NSString alloc] initWithUTF8String:nameChars];
+            NSString *font = [[NSString alloc] initWithUTF8String:fontChars];
+			Language* lang = [[Language alloc] initWithUniqueID:uniqueID andName:name andFont:font andMaximumWordLength:maxLen];
+            [languages addObject:lang];
+		}
+		sqlite3_finalize(statement);
+	}
+	
+   	return languages;
 }
+
+/* 
+ * get random letters where at least one word of length len can be made of those letters for a specific language and get all the words that can
+ * be made of those letters.
+ * select letters.random,letters.key letters_key,words.id,words.word,words.popularity,words.key,words.relatedlanguageid from words, 
+ * (select word as random, key from words where relatedlanguageid==%d and 
+ * length(word) == %d order by random() limit 1) as letters where words.relatedlanguageid == %d and words.key <= letters.key and letters.key%%words.key == 0;
+ */
+- (WordsAndLetters *)getWordsForLanguage:(int)language_id withAtLeastOneWordOfLength:(int)length {
+	NSMutableDictionary *words =  [[NSMutableDictionary alloc] init];
+    NSMutableArray *letters = [[NSMutableArray alloc] init];
+    NSString *query = [NSString stringWithFormat:@"select letters.random,letters.key letters_key,words.id,words.word,words.popularity,words.key,words.relatedlanguageid from words,                        (select word as random, key from words where relatedlanguageid==%d and length(word) == %d order by random() limit 1) as letters where words.relatedlanguageid == %d and words.key <= letters.key and letters.key%%words.key == 0;", language_id, length,language_id];
+	sqlite3_stmt *statement;
+    
+	if(sqlite3_prepare_v2(_context, [query UTF8String], -1, &statement, nil)
+	   == SQLITE_OK)
+	{
+        BOOL got_letters = NO;
+		while(sqlite3_step(statement) == SQLITE_ROW) {
+            if(!got_letters){
+                char *randomChars = (char *)sqlite3_column_text(statement,0);//must always be six letters long
+                for(int i = 0; i < 6;i++){
+                    NSString* current_letter = [NSString stringWithFormat:@"%c", randomChars[i]];
+                    [letters addObject:current_letter];
+                }
+                got_letters = YES;
+            }
+			int uniqueID = sqlite3_column_int(statement, 2);
+			char *valueChars = (char *)sqlite3_column_text(statement, 3);
+            long popularity = sqlite3_column_int64(statement, 4);
+			long key = sqlite3_column_int64(statement, 5);
+			NSString *value = [[NSString alloc] initWithUTF8String:valueChars];
+			Word *current_word = [[Word alloc]initWithUniqueId:uniqueID value:value key:key popularity:popularity language:language_id];
+			[words setObject:current_word forKey:value];
+		}
+		sqlite3_finalize(statement);
+	}
+	
+    return [[WordsAndLetters alloc] initWithWords:words andLetters:letters];	
+}
+
 @end

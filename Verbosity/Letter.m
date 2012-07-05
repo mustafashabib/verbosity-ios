@@ -8,6 +8,7 @@
 
 #import "Letter.h"
 #import "VerbosityRepository.h"
+#import "cocos2d.h"
 
 @implementation Letter
 @synthesize ID;
@@ -16,7 +17,7 @@
 @synthesize Key;
 
 
--(id) initWithID:(int)uniqueID andValue:(char)value andKey:(int)key andLanguage:(int)related_language_id{
+-(id) initWithID:(int)uniqueID andValue:(NSString*)value andKey:(long)key andLanguage:(int)related_language_id{
     if(self = [super init]){
         self.ID = uniqueID;
         self.Value = value;
@@ -30,13 +31,13 @@
 {
     //get the letters for this language from database
     //calculate key for the letters passed into this method
-    NSArray* letterValues = [[VerbosityRepository context] getLettersForLanguage:related_language_id];
+    NSDictionary* letterValues = [[VerbosityRepository context] getLettersForLanguage:related_language_id];
+    
     long key = 1;
-    const int start = 97;//Convert.ToInt32('a');
-    for (int i = 0; i < [letters length]; i++) {
-        char c = [letters characterAtIndex:i];
-        
-        key *= letterValues[(c) - start];
+    for (int i=0; i < [letters length]; i++) {
+       Letter* currentLetter = [letterValues objectForKey:[NSString stringWithFormat:@"%c", [letters characterAtIndex:i]]];
+        CCLOG(@"Found letter %@ with value %ld", currentLetter.Value, currentLetter.Key);
+        key *= currentLetter.Key;
     }
     return key;
 }

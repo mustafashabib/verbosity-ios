@@ -7,6 +7,7 @@
 //
 
 #import "VerbosityGameLayer.h"
+#import "VerbosityGameState.h"
 #import "LetterTile.h"
 
 
@@ -36,84 +37,36 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init])) {
-        
+        VerbosityGameState* current_state = [VerbosityGameState sharedState];
+        [current_state setupGame];
         CGSize winSize = [CCDirector sharedDirector].winSize;
-        _time = 120.0f;
-        _timeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%f", _time] fontName:@"ArialRoundedMTBold" fontSize:20];
+        
+        _timeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%f", current_state.TimeLeft] fontName:@"ArialRoundedMTBold" fontSize:20];
         _timeLabel.position = CGPointMake(winSize.width/2, winSize.height);
         _timeLabel.anchorPoint = CGPointMake(.5f, 1.0f);
         
         [self addChild:_timeLabel z:-1];
-        [self initWords];
-        [self initLettersNew];
+        [self addLetters];
         [self scheduleUpdate];
     }
     return self;
     
 }
 
--(void) update:(ccTime)delta{
-    _time -= delta;
-    [_timeLabel setString:[NSString stringWithFormat:@"%f", _time]];
-}
--(void) initLettersNew
-{ 
-    char alphabet[26] = "abcdefghijklmnopqrstuvwxyz";
-    srandom(time(NULL));
-    BOOL useSpacing = NO;
-    CGSize winSize = [CCDirector sharedDirector].winSize;
+-(void) addLetters
+{
+    VerbosityGameState* current_state = [VerbosityGameState sharedState];
+    for(int i = 0; i < current_state.CurrentLanguage.MaximumWordLength; i++){
+        Letter* current_letter = (Letter*)[current_state.CurrentWordsAndLetters.Letters objectAtIndex:i];
+        LetterTile* lt = [[LetterTile alloc] initWithLetter:current_letter];
+        [self addChild:lt];
+    }
     
-    float widthSpacing = (winSize.width/kLettersInLevel+1.0f)/(kLettersInLevel+1.0f);
-    for(int i = 0; i < kLettersInLevel; i++){
-        if(i>0){
-            useSpacing = YES;
-        }
-        char letterGenerated = alphabet[arc4random()%26];
-        
-        CCLOG(@"letter generated is %c", letterGenerated);
-        Letter* letter = [Letter letterWithLetter:letterGenerated];
-        CGSize letterSize = [letter getSize];
-        if(useSpacing){
-            letter.position =  ccp((i*letterSize.width + letterSize.width *.5f)+widthSpacing*i, winSize.height/2);
-        }else{
-            letter.position = ccp(i*letterSize.width + letterSize.width *.5f, winSize.height/2);   
-        }
-        
-        [self addChild:letter];
-    }
 }
 
--(void) initLetters{
-    srandom(time(NULL));
-    _letters = @"";
-    CGSize winSize = [CCDirector sharedDirector].winSize;
-    float widthSpacing = (winSize.width/6+1.0f)/(6+1.0f);
-    BOOL useSpacing = NO;
-    CGSize letterSize = CGSizeMake(winSize.width/(6+1), winSize.height/5.0f);
-    for(int i = 0; i< 6; i++){
-        if(i >0){
-            useSpacing = YES;
-        }
-        int asciiCode = (int)(CCRANDOM_0_1()*26) + 65;        
-        NSString* currentLetterString = [NSString stringWithFormat:@"%c", asciiCode]; // letter A-Z;
-        LetterTile* letter = [[Letter alloc] initWithLetter:asciiCode];
-        if(useSpacing){
-            letter.position = ccp((i*letterSize.width + letterSize.width *.5f)+widthSpacing*i, winSize.height/2);
-        }else{
-            letter.position = ccp(i*letterSize.width + letterSize.width *.5f, winSize.height/2);   
-        }
-        
-       
-        [self addChild:letter];
-        NSString* tempString = [NSString stringWithFormat:@"%s%s", _letters, currentLetterString];
-        _letters = [NSString stringWithString:tempString];
-    }
+-(void) update:(ccTime)delta{
+    [VerbosityGameState sharedState].TimeLeft -= delta;
+    [_timeLabel setString:[NSString stringWithFormat:@"%f", [VerbosityGameState sharedState].TimeLeft]];
 }
 
--(void) initWords{
-    _words = [[CCArray alloc] initWithCapacity:10];
-    for(int i =0; i < 10; i++){
-        [_words addObject:[NSString stringWithFormat:@"word%d", i]];
-    }
-}
 @end

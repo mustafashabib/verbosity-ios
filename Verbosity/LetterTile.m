@@ -7,19 +7,18 @@
 //
 
 #import "LetterTile.h"
+#import "VerbosityGameState.h"
 
 
 static int letterID = 0;
 @implementation LetterTile
 
--(id) initWithLetter:(char)letter{
+-(id) initWithLetter:(Letter*)letter{
 if((self = [super init]) == nil) return nil;
 srandom(time(NULL));
 _letter = letter;
-NSString* currentLetterString = [[NSString stringWithFormat:@"%c", letter] uppercaseString]; // letter A-Z;
     CCSprite* sprite = [CCSprite spriteWithFile:@"tile.png"];
-                        
-    CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:currentLetterString dimensions:sprite.contentSize hAlignment:kCCTextAlignmentRight fontName:@"Code Pro Demo" fontSize:40];
+    CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:[letter Value] dimensions:sprite.contentSize hAlignment:kCCTextAlignmentRight fontName:[VerbosityGameState sharedState].CurrentLanguage.Font fontSize:40];
     currentLetter.color = ccc3(0, 0, 0);
     currentLetter.anchorPoint = ccp(.3,.3);
     currentLetter.position = ccp(sprite.position.x, sprite.position.y);
@@ -37,7 +36,7 @@ return self;
     return sprite.boundingBox.size;
 }
 
-+(id) letterWithLetter:(char)letter
++(id) letterWithLetter:(Letter*)letter
 {
     return [[self alloc] initWithLetter:letter];    
 }
@@ -61,7 +60,7 @@ return self;
     _state = kLetterStateTouched;
     
     
-    NSLog(@"touch began for %c.", _letter);
+    NSLog(@"touch began for %@.", _letter.Value);
     id scaleUpAction =  [CCScaleTo actionWithDuration:.35 scaleX:1.25 scaleY:1.25];
     id scaleDownAction = [CCScaleTo actionWithDuration:0.35 scaleX:1.0 scaleY:1.0];
     id seq = [CCSequence actions:scaleUpAction,scaleDownAction, nil];

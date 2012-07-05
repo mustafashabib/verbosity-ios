@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#define kLettersInLevel 6
+#import "Letter.h"
+
 
 typedef enum {
     kLetterStateTouched,
@@ -19,12 +20,11 @@ typedef enum {
 @interface LetterTile : CCNode <CCTargetedTouchDelegate>{
 @private 
     LetterState _state;
-    char _letter;
+    Letter* _letter;
     int _letterID;
 }
 -(CGSize) getSize;
 
-+(id)letterWithLetter:(char)letter;
--(id)initWithLetter:(char)letter;
+-(id)initWithLetter:(Letter*)letter;
 
 @end

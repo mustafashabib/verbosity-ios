@@ -13,7 +13,9 @@
 		71444E4A159ADFAE0045EC44 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 71444E49159ADFAE0045EC44 /* libsqlite3.dylib */; };
 		71444E4D159AE00C0045EC44 /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 71444E4C159AE00C0045EC44 /* Language.m */; };
 		71444E52159AE2870045EC44 /* VerbosityRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 71444E51159AE2870045EC44 /* VerbosityRepository.m */; };
-		71444E55159AE6760045EC44 /* Letter.m in Sources */ = {isa = PBXBuildFile; fileRef = 71444E54159AE6760045EC44 /* Letter.m */; };
+		714D2F1A15A60BFA005042C5 /* WordsAndLetters.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F1915A60BFA005042C5 /* WordsAndLetters.m */; };
+		714D2F1E15A622C1005042C5 /* VerbosityGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F1D15A622C1005042C5 /* VerbosityGameState.m */; };
+		716E289C15A4AD560013648B /* GameCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 716E289B15A4AD560013648B /* GameCache.m */; };
 		71921EE015929D5000CD3A77 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EDF15929D5000CD3A77 /* QuartzCore.framework */; };
 		71921EE215929D5000CD3A77 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EE115929D5000CD3A77 /* OpenGLES.framework */; };
 		71921EE415929D5000CD3A77 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EE315929D5000CD3A77 /* OpenAL.framework */; };
@@ -36,7 +38,6 @@
 		71921F0915929D5000CD3A77 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 71921F0815929D5000CD3A77 /* iTunesArtwork */; };
 		7192206615929D5300CD3A77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7192206515929D5300CD3A77 /* main.m */; };
 		7192206915929D5300CD3A77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7192206815929D5300CD3A77 /* AppDelegate.m */; };
-		7192206C15929D5300CD3A77 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7192206B15929D5300CD3A77 /* HelloWorldLayer.m */; };
 		71AECAEE15929DAB00D65EA3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EEB15929D5000CD3A77 /* Foundation.framework */; };
 		71AECAF815929DE900D65EA3 /* libcocos2d-library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71AECAED15929DAB00D65EA3 /* libcocos2d-library.a */; };
 		71AECBED15929E2300D65EA3 /* CCAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 71AECAFB15929E2300D65EA3 /* CCAction.h */; };
@@ -281,8 +282,12 @@
 		71444E4C159AE00C0045EC44 /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Language.m; sourceTree = "<group>"; };
 		71444E50159AE2870045EC44 /* VerbosityRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityRepository.h; sourceTree = "<group>"; };
 		71444E51159AE2870045EC44 /* VerbosityRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityRepository.m; sourceTree = "<group>"; };
-		71444E53159AE6760045EC44 /* Letter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Letter.h; sourceTree = "<group>"; };
-		71444E54159AE6760045EC44 /* Letter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Letter.m; sourceTree = "<group>"; };
+		714D2F1815A60BFA005042C5 /* WordsAndLetters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordsAndLetters.h; sourceTree = "<group>"; };
+		714D2F1915A60BFA005042C5 /* WordsAndLetters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordsAndLetters.m; sourceTree = "<group>"; };
+		714D2F1C15A622C1005042C5 /* VerbosityGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityGameState.h; sourceTree = "<group>"; };
+		714D2F1D15A622C1005042C5 /* VerbosityGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityGameState.m; sourceTree = "<group>"; };
+		716E289A15A4AD560013648B /* GameCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCache.h; sourceTree = "<group>"; };
+		716E289B15A4AD560013648B /* GameCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCache.m; sourceTree = "<group>"; };
 		71921EDB15929D5000CD3A77 /* Verbosity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Verbosity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71921EDF15929D5000CD3A77 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		71921EE115929D5000CD3A77 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -309,8 +314,6 @@
 		7192206515929D5300CD3A77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7192206715929D5300CD3A77 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7192206815929D5300CD3A77 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7192206A15929D5300CD3A77 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		7192206B15929D5300CD3A77 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		71AECAED15929DAB00D65EA3 /* libcocos2d-library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcocos2d-library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71AECAF115929DAB00D65EA3 /* cocos2d-library-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "cocos2d-library-Prefix.pch"; sourceTree = "<group>"; };
 		71AECAFB15929E2300D65EA3 /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
@@ -600,8 +603,8 @@
 				71E937AC1597FC34003D60EA /* Word.m */,
 				71444E4B159AE00B0045EC44 /* Language.h */,
 				71444E4C159AE00C0045EC44 /* Language.m */,
-				71444E53159AE6760045EC44 /* Letter.h */,
-				71444E54159AE6760045EC44 /* Letter.m */,
+				714D2F1815A60BFA005042C5 /* WordsAndLetters.h */,
+				714D2F1915A60BFA005042C5 /* WordsAndLetters.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -609,12 +612,23 @@
 		71444E56159AE7980045EC44 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				7192206A15929D5300CD3A77 /* HelloWorldLayer.h */,
-				7192206B15929D5300CD3A77 /* HelloWorldLayer.m */,
+				71E937B215994909003D60EA /* VerbosityGameLayer.h */,
+				71E937B31599490A003D60EA /* VerbosityGameLayer.m */,
 				71AECCCF1596729300D65EA3 /* LetterTile.h */,
 				71AECCD01596729300D65EA3 /* LetterTile.m */,
+				714D2F1C15A622C1005042C5 /* VerbosityGameState.h */,
+				714D2F1D15A622C1005042C5 /* VerbosityGameState.m */,
 			);
 			name = Game;
+			sourceTree = "<group>";
+		};
+		716E289815A4AD420013648B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				716E289A15A4AD560013648B /* GameCache.h */,
+				716E289B15A4AD560013648B /* GameCache.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		71921ED015929D5000CD3A77 = {
@@ -656,6 +670,7 @@
 		71921EF115929D5000CD3A77 /* Verbosity */ = {
 			isa = PBXGroup;
 			children = (
+				716E289815A4AD420013648B /* Utilities */,
 				71444E56159AE7980045EC44 /* Game */,
 				71444E4F159AE2530045EC44 /* Models */,
 				71444E4E159AE2400045EC44 /* Repository */,
@@ -664,8 +679,6 @@
 				7192206815929D5300CD3A77 /* AppDelegate.m */,
 				71921EF215929D5000CD3A77 /* Resources */,
 				7192206315929D5300CD3A77 /* Supporting Files */,
-				71E937B215994909003D60EA /* VerbosityGameLayer.h */,
-				71E937B31599490A003D60EA /* VerbosityGameLayer.m */,
 			);
 			path = Verbosity;
 			sourceTree = "<group>";
@@ -1286,13 +1299,14 @@
 			files = (
 				7192206615929D5300CD3A77 /* main.m in Sources */,
 				7192206915929D5300CD3A77 /* AppDelegate.m in Sources */,
-				7192206C15929D5300CD3A77 /* HelloWorldLayer.m in Sources */,
 				71AECCD11596729300D65EA3 /* LetterTile.m in Sources */,
 				71E937AD1597FC34003D60EA /* Word.m in Sources */,
 				71E937B41599490A003D60EA /* VerbosityGameLayer.m in Sources */,
 				71444E4D159AE00C0045EC44 /* Language.m in Sources */,
 				71444E52159AE2870045EC44 /* VerbosityRepository.m in Sources */,
-				71444E55159AE6760045EC44 /* Letter.m in Sources */,
+				716E289C15A4AD560013648B /* GameCache.m in Sources */,
+				714D2F1A15A60BFA005042C5 /* WordsAndLetters.m in Sources */,
+				714D2F1E15A622C1005042C5 /* VerbosityGameState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

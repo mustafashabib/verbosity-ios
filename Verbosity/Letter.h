@@ -11,17 +11,17 @@
 
 @interface Letter : NSObject{
 int ID;
-char Value;
-int Key; //prime number value in this alphabet
-    int RelatedLanguageID;
+NSString* Value;
+long Key; //prime number value in this alphabet
+int RelatedLanguageID;
 }
 
 @property(nonatomic) int ID;
-@property(nonatomic) char Value;
-@property(nonatomic) int Key;
+@property(nonatomic) NSString* Value;
+@property(nonatomic) long Key;
 @property(nonatomic) int RelatedLanguageID;
 
--(id) initWithID:(int)uniqueID andValue:(char)value andKey:(int)key andLanguage:(int)related_language_id;
+-(id) initWithID:(int)uniqueID andValue:(NSString*)value andKey:(long)key andLanguage:(int)related_language_id;
 +(long) makeKeyForLetters:(NSString*)letters andLanguage:(int)related_language_id;
 
 @end

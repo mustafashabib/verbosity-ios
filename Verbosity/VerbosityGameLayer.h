@@ -11,7 +11,6 @@
 
 @interface VerbosityGameLayer : CCLayer {
     CCArray* _words; /*all words for this level*/
-    float _time; /*time in the level*/
     CCLabelTTF *_yourScore;
     CCLabelTTF *_timeLabel;
     CCArray *_otherScores;
@@ -21,6 +20,5 @@
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
--(void) initWords;
--(void) initLetters;
+-(void) addLetters;
 @end
