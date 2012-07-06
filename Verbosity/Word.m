@@ -13,7 +13,7 @@
 @synthesize ID;
 @synthesize Value;
 @synthesize Key;
-@synthesize Popularity;
+@synthesize Popularity;//the lower this #, the rarer the word is, with 1 being the minimum - this is actually a count of how often this word was found in our corpus
 @synthesize RelatedLanguageID;
 
 - (id)initWithUniqueId:(int)uniqueID value:(NSString *)value key:(long)key 

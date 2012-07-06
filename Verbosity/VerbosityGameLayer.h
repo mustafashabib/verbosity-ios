@@ -7,18 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "cocos2d.h"
 
-@interface VerbosityGameLayer : CCLayer {
-    CCArray* _words; /*all words for this level*/
+@interface VerbosityGameLayer : CCLayer<UIGestureRecognizerDelegate> {
     CCLabelTTF *_yourScore;
     CCLabelTTF *_timeLabel;
+    CCLabelTTF *_yourStreak;
     CCArray *_otherScores;
-    NSString *_letters;
     
 }
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
--(void) addLetters;
 @end

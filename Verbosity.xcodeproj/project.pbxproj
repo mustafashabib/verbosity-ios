@@ -15,6 +15,8 @@
 		71444E52159AE2870045EC44 /* VerbosityRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 71444E51159AE2870045EC44 /* VerbosityRepository.m */; };
 		714D2F1A15A60BFA005042C5 /* WordsAndLetters.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F1915A60BFA005042C5 /* WordsAndLetters.m */; };
 		714D2F1E15A622C1005042C5 /* VerbosityGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F1D15A622C1005042C5 /* VerbosityGameState.m */; };
+		714D2F2115A63506005042C5 /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F2015A63506005042C5 /* NSMutableArray+Shuffling.m */; };
+		714D2F2415A64789005042C5 /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F2315A64789005042C5 /* CCNode+SFGestureRecognizers.m */; };
 		716E289C15A4AD560013648B /* GameCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 716E289B15A4AD560013648B /* GameCache.m */; };
 		71921EE015929D5000CD3A77 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EDF15929D5000CD3A77 /* QuartzCore.framework */; };
 		71921EE215929D5000CD3A77 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EE115929D5000CD3A77 /* OpenGLES.framework */; };
@@ -286,6 +288,10 @@
 		714D2F1915A60BFA005042C5 /* WordsAndLetters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordsAndLetters.m; sourceTree = "<group>"; };
 		714D2F1C15A622C1005042C5 /* VerbosityGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityGameState.h; sourceTree = "<group>"; };
 		714D2F1D15A622C1005042C5 /* VerbosityGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityGameState.m; sourceTree = "<group>"; };
+		714D2F1F15A63506005042C5 /* NSMutableArray+Shuffling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffling.h"; sourceTree = "<group>"; };
+		714D2F2015A63506005042C5 /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
+		714D2F2215A64788005042C5 /* CCNode+SFGestureRecognizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+SFGestureRecognizers.h"; sourceTree = "<group>"; };
+		714D2F2315A64789005042C5 /* CCNode+SFGestureRecognizers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+SFGestureRecognizers.m"; sourceTree = "<group>"; };
 		716E289A15A4AD560013648B /* GameCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCache.h; sourceTree = "<group>"; };
 		716E289B15A4AD560013648B /* GameCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCache.m; sourceTree = "<group>"; };
 		71921EDB15929D5000CD3A77 /* Verbosity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Verbosity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -627,6 +633,10 @@
 			children = (
 				716E289A15A4AD560013648B /* GameCache.h */,
 				716E289B15A4AD560013648B /* GameCache.m */,
+				714D2F1F15A63506005042C5 /* NSMutableArray+Shuffling.h */,
+				714D2F2015A63506005042C5 /* NSMutableArray+Shuffling.m */,
+				714D2F2215A64788005042C5 /* CCNode+SFGestureRecognizers.h */,
+				714D2F2315A64789005042C5 /* CCNode+SFGestureRecognizers.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1307,6 +1317,8 @@
 				716E289C15A4AD560013648B /* GameCache.m in Sources */,
 				714D2F1A15A60BFA005042C5 /* WordsAndLetters.m in Sources */,
 				714D2F1E15A622C1005042C5 /* VerbosityGameState.m in Sources */,
+				714D2F2115A63506005042C5 /* NSMutableArray+Shuffling.m in Sources */,
+				714D2F2415A64789005042C5 /* CCNode+SFGestureRecognizers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

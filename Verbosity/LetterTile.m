@@ -13,12 +13,21 @@
 static int letterID = 0;
 @implementation LetterTile
 
--(id) initWithLetter:(Letter*)letter{
+@synthesize LetterTag = _letterID;
+
+-(NSString*) Letter{
+    return _letter;
+}
+
+-(LetterState) State{
+    return _state;
+}
+-(id) initWithLetter:(NSString*)letter{
 if((self = [super init]) == nil) return nil;
 srandom(time(NULL));
 _letter = letter;
     CCSprite* sprite = [CCSprite spriteWithFile:@"tile.png"];
-    CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:[letter Value] dimensions:sprite.contentSize hAlignment:kCCTextAlignmentRight fontName:[VerbosityGameState sharedState].CurrentLanguage.Font fontSize:40];
+    CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:letter dimensions:sprite.contentSize hAlignment:kCCTextAlignmentRight fontName:[VerbosityGameState sharedState].CurrentLanguage.Font fontSize:40];
     currentLetter.color = ccc3(0, 0, 0);
     currentLetter.anchorPoint = ccp(.3,.3);
     currentLetter.position = ccp(sprite.position.x, sprite.position.y);
@@ -36,7 +45,7 @@ return self;
     return sprite.boundingBox.size;
 }
 
-+(id) letterWithLetter:(Letter*)letter
++(id) letterWithLetter:(NSString*)letter
 {
     return [[self alloc] initWithLetter:letter];    
 }
@@ -46,8 +55,19 @@ return self;
     [super onEnter];
 }
 
+-(void)resetState{
+    if(_state == kLetterStateUntouched){
+        return;
+    }
+    [self stopAllActions];
+    _state = kLetterStateUntouched;
+    
+    CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
+    [sprite setColor:ccc3(255, 255, 255)];
+    [sprite setScale:1.0];
+}
+
 -(BOOL)containsTouchLocation:(UITouch*)touch{
-    NSLog(@"containsTouch entered.");
     CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
     NSAssert([sprite isKindOfClass:[CCSprite class]], @"Letter - child with tag %d is not sprite", _letterID);
     return CGRectContainsPoint([sprite boundingBox], [self convertTouchToNodeSpace:touch]);
@@ -60,7 +80,7 @@ return self;
     _state = kLetterStateTouched;
     
     
-    NSLog(@"touch began for %@.", _letter.Value);
+    NSLog(@"touch began for %@.", _letter);
     id scaleUpAction =  [CCScaleTo actionWithDuration:.35 scaleX:1.25 scaleY:1.25];
     id scaleDownAction = [CCScaleTo actionWithDuration:0.35 scaleX:1.0 scaleY:1.0];
     id seq = [CCSequence actions:scaleUpAction,scaleDownAction, nil];
@@ -88,7 +108,6 @@ return self;
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     
-    NSLog(@"touch ends.");
     
     NSAssert(_state == kLetterStateTouched, @"Letter - Unexpected state!");  
     CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
@@ -106,6 +125,7 @@ return self;
         _state = kLetterStateUsed;
         [sprite setColor:ccc3(128, 128, 128)];   
         [sprite setScale:1.0];
+        [[VerbosityGameState sharedState] updateWordAttempt:_letter];//modify word attempt
         
     }
     

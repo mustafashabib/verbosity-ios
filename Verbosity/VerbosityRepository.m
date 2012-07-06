@@ -10,6 +10,10 @@
 #import "Word.h"
 #import "Language.h"
 #import "GameCache.h"
+#import "NSMutableArray+Shuffling.h"
+#import "cocos2d.h"
+
+#define kMinimumWordsForGame 20
 
 static VerbosityRepository *_context;
 
@@ -42,7 +46,7 @@ static VerbosityRepository *_context;
 
 - (NSArray *)getLanguages {
     NSMutableArray *languages = [[NSMutableArray alloc] init];
-    NSString *query = @"select id,name,case font when null then 'Code Pro Demo' else font end as font from Languages;";
+    NSString *query = @"select id,name, font,maximumwordlength from Languages;";
 	sqlite3_stmt *statement;
     
 	if(sqlite3_prepare_v2(_context, [query UTF8String], -1, &statement, nil)
@@ -101,7 +105,12 @@ static VerbosityRepository *_context;
 		}
 		sqlite3_finalize(statement);
 	}
+    if([words count] < kMinimumWordsForGame){
+        CCLOGINFO(@"Only found %d words for this game. Trying again.", [words count]);
+        return [self getWordsForLanguage:language_id withAtLeastOneWordOfLength:length];
+    }
 	
+    [letters shuffle];//shuffle up the letters
     return [[WordsAndLetters alloc] initWithWords:words andLetters:letters];	
 }
 
