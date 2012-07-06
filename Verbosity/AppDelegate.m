@@ -83,6 +83,9 @@
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 
+    // initialize random seed
+    srandom(time(NULL));
+    
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
 	[director_ pushScene: [VerbosityGameLayer scene]]; 
 

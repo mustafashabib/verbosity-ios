@@ -8,7 +8,7 @@
 
 #import "LetterTile.h"
 #import "VerbosityGameState.h"
-
+#import "LetterSlot.h"
 
 static int letterID = 0;
 @implementation LetterTile
@@ -23,19 +23,18 @@ static int letterID = 0;
     return _state;
 }
 -(id) initWithLetter:(NSString*)letter{
-if((self = [super init]) == nil) return nil;
-srandom(time(NULL));
-_letter = letter;
+    if((self = [super init]) == nil) return nil;
+    _letter = letter;
     CCSprite* sprite = [CCSprite spriteWithFile:@"tile.png"];
     CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:letter dimensions:sprite.contentSize hAlignment:kCCTextAlignmentRight fontName:[VerbosityGameState sharedState].CurrentLanguage.Font fontSize:40];
     currentLetter.color = ccc3(0, 0, 0);
     currentLetter.anchorPoint = ccp(.3,.3);
     currentLetter.position = ccp(sprite.position.x, sprite.position.y);
     _letterID = letterID++;
-[sprite addChild:currentLetter];
-[self addChild:sprite z:0 tag:_letterID];
-_state = kLetterStateUntouched;
-return self;
+    [sprite addChild:currentLetter];
+    [self addChild:sprite z:0 tag:_letterID];
+    _state = kLetterStateUntouched;
+    return self;
 
 }
 -(CGSize) getSize
@@ -55,16 +54,37 @@ return self;
     [super onEnter];
 }
 
+-(void)instantResetState{
+    if(_state == kLetterStateUntouched){
+        return;
+    }
+    [self stopAllActions];
+    _state = kLetterStateUntouched;
+    CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
+    [sprite setColor:ccc3(255, 255, 255)];
+    [sprite setScale:1.0];
+    
+    [self setPosition:_old_position];
+    [self setRotation:_old_rotation];
+    
+    
+}
 -(void)resetState{
     if(_state == kLetterStateUntouched){
         return;
     }
+    
     [self stopAllActions];
     _state = kLetterStateUntouched;
     
     CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
     [sprite setColor:ccc3(255, 255, 255)];
     [sprite setScale:1.0];
+    
+    CCMoveTo *moveToOriginalSlotAction = [[CCMoveTo alloc] initWithDuration:.125 position:_old_position];
+    CCRotateTo *rotateToOriginal = [[CCRotateTo alloc] initWithDuration:.125 angle:_old_rotation];
+    [self runAction:moveToOriginalSlotAction];
+    [self runAction:rotateToOriginal];
 }
 
 -(BOOL)containsTouchLocation:(UITouch*)touch{
@@ -122,11 +142,21 @@ return self;
         [sprite setScale:1.0];
         
     }else{
-        _state = kLetterStateUsed;
-        [sprite setColor:ccc3(128, 128, 128)];   
-        [sprite setScale:1.0];
-        [[VerbosityGameState sharedState] updateWordAttempt:_letter];//modify word attempt
         
+        _old_position = self.position;
+        _old_rotation = self.rotation;
+        _state = kLetterStateUsed;
+        //[sprite setColor:ccc3(128, 128, 128)];   
+        [sprite setScale:1.0];
+        
+       [[VerbosityGameState sharedState] updateWordAttempt:_letter];//modify word attempt
+        int position = [[VerbosityGameState sharedState].CurrentWordAttempt length] -1;
+        
+        LetterSlot* slot = (LetterSlot*)[[self parent] getChildByTag:kLetterSlotID + position];
+        CCMoveTo *moveToSlotAction = [[CCMoveTo alloc] initWithDuration:.125 position:slot.position];
+        CCRotateTo *rotateToZero = [[CCRotateTo alloc] initWithDuration:.125 angle:0];
+        [self runAction:rotateToZero];
+        [self runAction:moveToSlotAction];
     }
     
 }

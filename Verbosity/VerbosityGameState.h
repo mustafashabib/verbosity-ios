@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Language.h";
+#import "Language.h"
 #import "WordsAndLetters.h"
 
 @interface VerbosityGameState : NSObject
 {
+    int _rare_words_founds;
+    NSMutableArray *_words_found_of_length;
     long _score;
     float _time_left;
     float _start_time; //save how many seconds the level timer started out with
@@ -24,6 +26,8 @@
     NSString *_current_word_attempt;
 }
 
+@property(nonatomic) NSMutableArray *WordsFoundOfLength;
+@property(nonatomic) int RareWordsFound;
 @property(nonatomic) Language* CurrentLanguage;
 @property(nonatomic) WordsAndLetters* CurrentWordsAndLetters;
 @property(nonatomic) float TimeLeft;
@@ -33,8 +37,12 @@
 @property(nonatomic) int Streak;
 @property(nonatomic) NSString* CurrentWordAttempt;
 
+
 + (VerbosityGameState *)sharedState;
+
+- (void) update:(float)delta;
+- (BOOL) isGameActive;
 - (void) setupGame;
-- (int) submitWordAttempt;
+- (BOOL) submitWordAttempt;
 - (void) updateWordAttempt:(NSString*)newLetter;
 @end

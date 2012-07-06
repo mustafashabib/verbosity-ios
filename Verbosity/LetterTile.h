@@ -17,16 +17,18 @@ typedef enum {
 } LetterState;
 
 @interface LetterTile : CCNode <CCTargetedTouchDelegate>{
-    
     int _letterID;
     LetterState _state;
 @private 
     NSString* _letter;
+    CGPoint _old_position;
+    float _old_rotation;
 }
 -(CGSize) getSize;
 @property(nonatomic) int LetterTag;
 
 -(void)resetState;
+-(void)instantResetState;
 -(NSString*) Letter;
 -(LetterState) State;
 -(id)initWithLetter:(NSString*)letter;

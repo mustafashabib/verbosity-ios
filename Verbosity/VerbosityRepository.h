@@ -13,11 +13,10 @@
 
 /* repository which gathers data from the database*/
 /*schema is as follows
- CREATE TABLE Languages(id INTEGER PRIMARY KEY AUTOINCREMENT, name text);
  
- 
+ CREATE TABLE Languages(id INTEGER PRIMARY KEY AUTOINCREMENT,name text not null,font text not null, maximumwordlength integer not null);
  CREATE TABLE Words(id INTEGER PRIMARY KEY AUTOINCREMENT, word text, popularity integer, key integer,RelatedLanguageID integer, FOREIGN KEY(RelatedLanguageID) REFERENCES Languages(id));
-  */
+ */
 @interface VerbosityRepository : NSObject{
   sqlite3 *_context;
 }

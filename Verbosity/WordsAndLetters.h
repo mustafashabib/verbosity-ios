@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Word.h";
+#import "Word.h"
 
 @interface WordsAndLetters : NSObject{
 NSDictionary* Words;
@@ -17,5 +17,5 @@ NSArray* Letters;
 @property(nonatomic) NSArray* Letters;
 
 -(WordsAndLetters*) initWithWords:(NSDictionary*)words andLetters:(NSArray*)letters;
--(Word*) isRealWord:(NSString*)word;
+-(Word*) getWord:(NSString *)word;
 @end

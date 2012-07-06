@@ -17,6 +17,9 @@
 		714D2F1E15A622C1005042C5 /* VerbosityGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F1D15A622C1005042C5 /* VerbosityGameState.m */; };
 		714D2F2115A63506005042C5 /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F2015A63506005042C5 /* NSMutableArray+Shuffling.m */; };
 		714D2F2415A64789005042C5 /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F2315A64789005042C5 /* CCNode+SFGestureRecognizers.m */; };
+		714E7E0715A78A8900F7F316 /* LetterSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 714E7E0615A78A8900F7F316 /* LetterSlot.m */; };
+		714E7E0B15A78D9900F7F316 /* tile-shadow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 714E7E0915A78D9900F7F316 /* tile-shadow-hd.png */; };
+		714E7E0C15A78D9900F7F316 /* tile-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 714E7E0A15A78D9900F7F316 /* tile-shadow.png */; };
 		716E289C15A4AD560013648B /* GameCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 716E289B15A4AD560013648B /* GameCache.m */; };
 		71921EE015929D5000CD3A77 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EDF15929D5000CD3A77 /* QuartzCore.framework */; };
 		71921EE215929D5000CD3A77 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EE115929D5000CD3A77 /* OpenGLES.framework */; };
@@ -273,6 +276,11 @@
 		71E937B015994463003D60EA /* tile-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E937AE15994463003D60EA /* tile-hd.png */; };
 		71E937B115994463003D60EA /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E937AF15994463003D60EA /* tile.png */; };
 		71E937B41599490A003D60EA /* VerbosityGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E937B31599490A003D60EA /* VerbosityGameLayer.m */; };
+		71F3AA8D15A76FA500987689 /* VerbosityGameConstants.h in Resources */ = {isa = PBXBuildFile; fileRef = 71F3AA8C15A76FA500987689 /* VerbosityGameConstants.h */; };
+		71F3AA9415A7721000987689 /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9315A7721000987689 /* NSMutableArray+Queue.m */; };
+		71F3AA9715A772D100987689 /* VerbosityAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9615A772D100987689 /* VerbosityAlert.m */; };
+		71F3AA9A15A775B200987689 /* VerbosityAlertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9815A775B200987689 /* VerbosityAlertManager.m */; };
+		71F3AA9D15A77C7500987689 /* VerbosityHudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9C15A77C7400987689 /* VerbosityHudLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -292,6 +300,10 @@
 		714D2F2015A63506005042C5 /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
 		714D2F2215A64788005042C5 /* CCNode+SFGestureRecognizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+SFGestureRecognizers.h"; sourceTree = "<group>"; };
 		714D2F2315A64789005042C5 /* CCNode+SFGestureRecognizers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+SFGestureRecognizers.m"; sourceTree = "<group>"; };
+		714E7E0515A78A8900F7F316 /* LetterSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterSlot.h; sourceTree = "<group>"; };
+		714E7E0615A78A8900F7F316 /* LetterSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterSlot.m; sourceTree = "<group>"; };
+		714E7E0915A78D9900F7F316 /* tile-shadow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tile-shadow-hd.png"; path = "Resources/tile-shadow-hd.png"; sourceTree = "<group>"; };
+		714E7E0A15A78D9900F7F316 /* tile-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tile-shadow.png"; path = "Resources/tile-shadow.png"; sourceTree = "<group>"; };
 		716E289A15A4AD560013648B /* GameCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCache.h; sourceTree = "<group>"; };
 		716E289B15A4AD560013648B /* GameCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCache.m; sourceTree = "<group>"; };
 		71921EDB15929D5000CD3A77 /* Verbosity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Verbosity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -561,6 +573,15 @@
 		71E937AF15994463003D60EA /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tile.png; path = Resources/tile.png; sourceTree = "<group>"; };
 		71E937B215994909003D60EA /* VerbosityGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityGameLayer.h; sourceTree = "<group>"; };
 		71E937B31599490A003D60EA /* VerbosityGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityGameLayer.m; sourceTree = "<group>"; };
+		71F3AA8C15A76FA500987689 /* VerbosityGameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityGameConstants.h; sourceTree = "<group>"; };
+		71F3AA9215A7721000987689 /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
+		71F3AA9315A7721000987689 /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
+		71F3AA9515A772D100987689 /* VerbosityAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityAlert.h; sourceTree = "<group>"; };
+		71F3AA9615A772D100987689 /* VerbosityAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityAlert.m; sourceTree = "<group>"; };
+		71F3AA9815A775B200987689 /* VerbosityAlertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityAlertManager.m; sourceTree = "<group>"; };
+		71F3AA9915A775B200987689 /* VerbosityAlertManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityAlertManager.h; sourceTree = "<group>"; };
+		71F3AA9B15A77C7400987689 /* VerbosityHudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityHudLayer.h; sourceTree = "<group>"; };
+		71F3AA9C15A77C7400987689 /* VerbosityHudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityHudLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -624,6 +645,10 @@
 				71AECCD01596729300D65EA3 /* LetterTile.m */,
 				714D2F1C15A622C1005042C5 /* VerbosityGameState.h */,
 				714D2F1D15A622C1005042C5 /* VerbosityGameState.m */,
+				71F3AA9B15A77C7400987689 /* VerbosityHudLayer.h */,
+				71F3AA9C15A77C7400987689 /* VerbosityHudLayer.m */,
+				714E7E0515A78A8900F7F316 /* LetterSlot.h */,
+				714E7E0615A78A8900F7F316 /* LetterSlot.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -631,12 +656,19 @@
 		716E289815A4AD420013648B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				71F3AA9815A775B200987689 /* VerbosityAlertManager.m */,
+				71F3AA9915A775B200987689 /* VerbosityAlertManager.h */,
 				716E289A15A4AD560013648B /* GameCache.h */,
 				716E289B15A4AD560013648B /* GameCache.m */,
 				714D2F1F15A63506005042C5 /* NSMutableArray+Shuffling.h */,
 				714D2F2015A63506005042C5 /* NSMutableArray+Shuffling.m */,
 				714D2F2215A64788005042C5 /* CCNode+SFGestureRecognizers.h */,
 				714D2F2315A64789005042C5 /* CCNode+SFGestureRecognizers.m */,
+				71F3AA8C15A76FA500987689 /* VerbosityGameConstants.h */,
+				71F3AA9215A7721000987689 /* NSMutableArray+Queue.h */,
+				71F3AA9315A7721000987689 /* NSMutableArray+Queue.m */,
+				71F3AA9515A772D100987689 /* VerbosityAlert.h */,
+				71F3AA9615A772D100987689 /* VerbosityAlert.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -696,6 +728,8 @@
 		71921EF215929D5000CD3A77 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				714E7E0915A78D9900F7F316 /* tile-shadow-hd.png */,
+				714E7E0A15A78D9900F7F316 /* tile-shadow.png */,
 				71444E47159ADF510045EC44 /* verbosity.sqlite3 */,
 				71444E45159ACE9F0045EC44 /* Code Pro Demo.otf */,
 				71444E42159AC7390045EC44 /* Code Pro Light Demo.otf */,
@@ -1297,6 +1331,9 @@
 				71444E43159AC7390045EC44 /* Code Pro Light Demo.otf in Resources */,
 				71444E46159ACE9F0045EC44 /* Code Pro Demo.otf in Resources */,
 				71444E48159ADF510045EC44 /* verbosity.sqlite3 in Resources */,
+				71F3AA8D15A76FA500987689 /* VerbosityGameConstants.h in Resources */,
+				714E7E0B15A78D9900F7F316 /* tile-shadow-hd.png in Resources */,
+				714E7E0C15A78D9900F7F316 /* tile-shadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1319,6 +1356,11 @@
 				714D2F1E15A622C1005042C5 /* VerbosityGameState.m in Sources */,
 				714D2F2115A63506005042C5 /* NSMutableArray+Shuffling.m in Sources */,
 				714D2F2415A64789005042C5 /* CCNode+SFGestureRecognizers.m in Sources */,
+				71F3AA9415A7721000987689 /* NSMutableArray+Queue.m in Sources */,
+				71F3AA9715A772D100987689 /* VerbosityAlert.m in Sources */,
+				71F3AA9A15A775B200987689 /* VerbosityAlertManager.m in Sources */,
+				71F3AA9D15A77C7500987689 /* VerbosityHudLayer.m in Sources */,
+				714E7E0715A78A8900F7F316 /* LetterSlot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
