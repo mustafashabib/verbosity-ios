@@ -576,10 +576,10 @@
 		71F3AA8C15A76FA500987689 /* VerbosityGameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityGameConstants.h; sourceTree = "<group>"; };
 		71F3AA9215A7721000987689 /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
 		71F3AA9315A7721000987689 /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
-		71F3AA9515A772D100987689 /* VerbosityAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityAlert.h; sourceTree = "<group>"; };
-		71F3AA9615A772D100987689 /* VerbosityAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityAlert.m; sourceTree = "<group>"; };
-		71F3AA9815A775B200987689 /* VerbosityAlertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityAlertManager.m; sourceTree = "<group>"; };
-		71F3AA9915A775B200987689 /* VerbosityAlertManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityAlertManager.h; sourceTree = "<group>"; };
+		71F3AA9515A772D100987689 /* VerbosityAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = VerbosityAlert.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		71F3AA9615A772D100987689 /* VerbosityAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VerbosityAlert.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		71F3AA9815A775B200987689 /* VerbosityAlertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = VerbosityAlertManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		71F3AA9915A775B200987689 /* VerbosityAlertManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = VerbosityAlertManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		71F3AA9B15A77C7400987689 /* VerbosityHudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityHudLayer.h; sourceTree = "<group>"; };
 		71F3AA9C15A77C7400987689 /* VerbosityHudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityHudLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */

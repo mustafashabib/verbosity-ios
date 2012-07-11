@@ -34,9 +34,16 @@ static int letterID = 0;
     [sprite addChild:currentLetter];
     [self addChild:sprite z:0 tag:_letterID];
     _state = kLetterStateUntouched;
+    
     return self;
 
 }
+
+-(void)savePositionAndRotation{
+    _old_position = position_;
+    _old_rotation = rotation_;
+}
+
 -(CGSize) getSize
 {
     CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
@@ -54,10 +61,8 @@ static int letterID = 0;
     [super onEnter];
 }
 
--(void)instantResetState{
-    if(_state == kLetterStateUntouched){
-        return;
-    }
+-(void)instantResetState:(BOOL)should_disable{
+    
     [self stopAllActions];
     _state = kLetterStateUntouched;
     CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
@@ -66,6 +71,9 @@ static int letterID = 0;
     
     [self setPosition:_old_position];
     [self setRotation:_old_rotation];
+    if(should_disable){
+        _state = kLetterStateDisabled;
+    }
     
     
 }

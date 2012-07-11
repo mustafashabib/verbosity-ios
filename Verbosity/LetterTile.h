@@ -13,7 +13,8 @@
 typedef enum {
     kLetterStateTouched,
     kLetterStateUntouched,
-    kLetterStateUsed
+    kLetterStateUsed,
+    kLetterStateDisabled
 } LetterState;
 
 @interface LetterTile : CCNode <CCTargetedTouchDelegate>{
@@ -28,9 +29,9 @@ typedef enum {
 @property(nonatomic) int LetterTag;
 
 -(void)resetState;
--(void)instantResetState;
+-(void)instantResetState:(BOOL)should_disable;
 -(NSString*) Letter;
 -(LetterState) State;
 -(id)initWithLetter:(NSString*)letter;
-
+-(void)savePositionAndRotation;
 @end
