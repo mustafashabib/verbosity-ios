@@ -15,6 +15,8 @@ typedef enum {
     kHotStreakStarted,
     kHotStreakEnded,
     kTimeRunningOut,
+    kTimeNearlyDone,
+    kTimeOver,
     kGreatScore,
     kFastHands,
     kFailedWordAttempt,
@@ -29,5 +31,6 @@ typedef enum {
 @property(nonatomic) VerbosityAlertTypes AlertType;
 @property(nonatomic) id Data;
 
+-(BOOL)isOneTimeAlert;
 -(VerbosityAlert*) initWithType:(VerbosityAlertTypes)type andData:(id)data;
 @end

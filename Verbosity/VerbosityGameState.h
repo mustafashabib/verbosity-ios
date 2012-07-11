@@ -24,6 +24,8 @@
     WordsAndLetters* _current_words_and_letters;
     NSMutableSet* _found_words;
     NSString *_current_word_attempt;
+    int _attempted_words;
+    int _longest_streak;
 }
 
 @property(nonatomic) NSMutableArray *WordsFoundOfLength;
@@ -36,7 +38,8 @@
 @property(nonatomic) int CurrentWordsPerMinute;
 @property(nonatomic) int Streak;
 @property(nonatomic) NSString* CurrentWordAttempt;
-
+@property(nonatomic) int AttemptedWords;
+@property(nonatomic) int LongestStreak;
 
 + (VerbosityGameState *)sharedState;
 

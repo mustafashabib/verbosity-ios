@@ -15,6 +15,7 @@ static VerbosityAlertManager *sharedInstance = nil;
 - (VerbosityAlertManager*) init{
      if(self = [super init]){
          _alert_queue = [[NSMutableArray alloc] init];
+         _seen_alerts = [[NSMutableSet alloc] init];
      }
     return self;
 }
@@ -31,7 +32,16 @@ static VerbosityAlertManager *sharedInstance = nil;
 }
 
 - (void)addAlert:(VerbosityAlert *)alert{
-    [_alert_queue addObject:alert];
+    //if you've never seen this alert type, run it
+    //if you've seen it and it's NOT a one time alert, run it
+
+    if((![_seen_alerts containsObject:[NSNumber numberWithInt:alert.AlertType]]) ||
+       ([_seen_alerts containsObject:[NSNumber numberWithInt:alert.AlertType]] && ![alert isOneTimeAlert])){
+        [_alert_queue addObject:alert];
+        if(![_seen_alerts containsObject:[NSNumber numberWithInt:alert.AlertType]]){
+            [_seen_alerts addObject:[NSNumber numberWithInt:alert.AlertType]];//add it to the seen list if you've never seen this type
+        }
+    }
 }
 
 + (VerbosityAlertManager*)sharedAlertManager{

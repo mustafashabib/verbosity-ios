@@ -13,6 +13,7 @@
 {
     
     NSMutableArray* _alert_queue;
+    NSMutableSet* _seen_alerts;
 }
 
 

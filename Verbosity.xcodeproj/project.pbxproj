@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7124EF3715AD3A4700AE6542 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124EF3615AD3A4700AE6542 /* GameOverLayer.m */; };
+		7124EF3B15AD3C6100AE6542 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124EF3A15AD3C6100AE6542 /* CCUIViewWrapper.m */; };
 		71444E43159AC7390045EC44 /* Code Pro Light Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 71444E42159AC7390045EC44 /* Code Pro Light Demo.otf */; };
 		71444E46159ACE9F0045EC44 /* Code Pro Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 71444E45159ACE9F0045EC44 /* Code Pro Demo.otf */; };
 		71444E48159ADF510045EC44 /* verbosity.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 71444E47159ADF510045EC44 /* verbosity.sqlite3 */; };
@@ -284,6 +286,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7124EF3515AD3A4700AE6542 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		7124EF3615AD3A4700AE6542 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
+		7124EF3915AD3C6100AE6542 /* CCUIViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUIViewWrapper.h; sourceTree = "<group>"; };
+		7124EF3A15AD3C6100AE6542 /* CCUIViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUIViewWrapper.m; sourceTree = "<group>"; };
 		71444E42159AC7390045EC44 /* Code Pro Light Demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Code Pro Light Demo.otf"; sourceTree = "<group>"; };
 		71444E45159ACE9F0045EC44 /* Code Pro Demo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Code Pro Demo.otf"; sourceTree = "<group>"; };
 		71444E47159ADF510045EC44 /* verbosity.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = verbosity.sqlite3; path = Resources/verbosity.sqlite3; sourceTree = "<group>"; };
@@ -649,6 +655,8 @@
 				71F3AA9C15A77C7400987689 /* VerbosityHudLayer.m */,
 				714E7E0515A78A8900F7F316 /* LetterSlot.h */,
 				714E7E0615A78A8900F7F316 /* LetterSlot.m */,
+				7124EF3515AD3A4700AE6542 /* GameOverLayer.h */,
+				7124EF3615AD3A4700AE6542 /* GameOverLayer.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -669,6 +677,8 @@
 				71F3AA9315A7721000987689 /* NSMutableArray+Queue.m */,
 				71F3AA9515A772D100987689 /* VerbosityAlert.h */,
 				71F3AA9615A772D100987689 /* VerbosityAlert.m */,
+				7124EF3915AD3C6100AE6542 /* CCUIViewWrapper.h */,
+				7124EF3A15AD3C6100AE6542 /* CCUIViewWrapper.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1361,6 +1371,8 @@
 				71F3AA9A15A775B200987689 /* VerbosityAlertManager.m in Sources */,
 				71F3AA9D15A77C7500987689 /* VerbosityHudLayer.m in Sources */,
 				714E7E0715A78A8900F7F316 /* LetterSlot.m in Sources */,
+				7124EF3715AD3A4700AE6542 /* GameOverLayer.m in Sources */,
+				7124EF3B15AD3C6100AE6542 /* CCUIViewWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

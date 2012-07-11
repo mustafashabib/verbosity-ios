@@ -11,6 +11,7 @@
 #import "VerbosityGameState.h"
 #import "VerbosityAlertManager.h"
 #import "VerbosityGameConstants.h"
+#import "GameOverLayer.h"
 
 @implementation VerbosityHudLayer
 
@@ -64,14 +65,17 @@
             
             CCLabelTTF* duplicate_label = [[CCLabelTTF alloc] initWithString:@"Rare word!" fontName:@"ArialRoundedMTBold" fontSize:28];
             duplicate_label.anchorPoint = ccp(0,0);
-            id death2 = [CCCallFuncND actionWithTarget:duplicate_label  selector:@selector(removeFromParentAndCleanup:) data:(void*)YES];
             
             duplicate_label.color = ccc3(0, 255, 0 );
             label_bg.contentSize =  CGSizeMake(duplicate_label.contentSize.width*1.25, duplicate_label.contentSize.height*1.25);
-            id deathAction = [CCSequence actions:fadeOut, death,death2, nil];
+            
+            id deathAction = [CCSequence actions:fadeOut, death, nil];
             
             [label_bg addChild:duplicate_label];
             [[bg parent] addChild:label_bg z:NSIntegerMax];
+
+            id floatUp = [CCMoveBy actionWithDuration:.25 position:ccp(duplicate_label.position.x, duplicate_label.position.y*.75)];
+            [label_bg runAction:floatUp];
             [label_bg runAction:deathAction];
             
             //todo: update personal stats
@@ -93,14 +97,16 @@
            
             CCLabelTTF* duplicate_label = [[CCLabelTTF alloc] initWithString:@"Already found!" fontName:@"ArialRoundedMTBold" fontSize:28];
             duplicate_label.anchorPoint = ccp(0,0);
-            id death2 = [CCCallFuncND actionWithTarget:duplicate_label  selector:@selector(removeFromParentAndCleanup:) data:(void*)YES];
             
             duplicate_label.color = ccc3(255, 0, 0 );
             label_bg.contentSize =  CGSizeMake(duplicate_label.contentSize.width*1.25, duplicate_label.contentSize.height*1.25);
-            id deathAction = [CCSequence actions:fadeOut, death, death2,nil];
+            id deathAction = [CCSequence actions:fadeOut, death,nil];
             
             [label_bg addChild:duplicate_label];
             [[bg parent] addChild:label_bg z:NSIntegerMax];
+            id floatUp = [CCMoveBy actionWithDuration:.25 position:ccp(duplicate_label.position.x, duplicate_label.position.y*.75)];
+            [label_bg runAction:floatUp];
+
             [label_bg runAction:deathAction];
             break;
         }
@@ -140,14 +146,17 @@
             
             CCLabelTTF* duplicate_label = [[CCLabelTTF alloc] initWithString:@"Hot Streak!" fontName:@"ArialRoundedMTBold" fontSize:28];
             duplicate_label.anchorPoint = ccp(0,0);
-            id death2 = [CCCallFuncND actionWithTarget:duplicate_label  selector:@selector(removeFromParentAndCleanup:) data:(void*)YES];
-            id deathAction = [CCSequence actions:fadeOut, death,death2, nil];
+             id deathAction = [CCSequence actions:fadeOut, death, nil];
             
             duplicate_label.color = ccc3(0, 255, 0 );
             label_bg.contentSize =  CGSizeMake(duplicate_label.contentSize.width*1.25, duplicate_label.contentSize.height*1.25);
             
             [label_bg addChild:duplicate_label];
             [[bg parent] addChild:label_bg z:NSIntegerMax];
+            
+            id floatUp = [CCMoveBy actionWithDuration:.25 position:ccp(duplicate_label.position.x, duplicate_label.position.y*.75)];
+            [label_bg runAction:floatUp];
+
             [label_bg runAction:deathAction];
 
        
@@ -173,38 +182,61 @@
             duplicate_label.anchorPoint = ccp(0,0);
             
             duplicate_label.color = ccc3(255, 0, 0 );
-            id death2 = [CCCallFuncND actionWithTarget:duplicate_label  selector:@selector(removeFromParentAndCleanup:) data:(void*)YES];
             
-            id deathAction = [CCSequence actions:fadeOut, death,death2, nil];
+            id deathAction = [CCSequence actions:fadeOut, death, nil];
             
             label_bg.contentSize =  CGSizeMake(duplicate_label.contentSize.width*1.25, duplicate_label.contentSize.height*1.25);
             
             [label_bg addChild:duplicate_label];
             [[bg parent] addChild:label_bg z:NSIntegerMax];
+            id floatUp = [CCMoveBy actionWithDuration:.25 position:ccp(duplicate_label.position.x, duplicate_label.position.y*.75)];
+            [label_bg runAction:floatUp];
+
             [label_bg runAction:deathAction];
 
        
             break; 
         }
-        case kTimeRunningOut:{
+        case kTimeRunningOut:
+        case kTimeNearlyDone:{
             CCLOG(@"time running out.");
             
+            int duration_multiplier = 1;
+            if(alert.AlertType == kTimeRunningOut){
+                duration_multiplier = 2;
+            }
             //change music
             //flash background
             //change color of timer label to flash back and forth
-            CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
-            id action =  [CCTintTo actionWithDuration:.25 red:251 green:236 blue:94];
-            id actionReverse = [CCTintTo actionWithDuration:.25 red:255 green:255 blue:255];
-            id sequence = [CCSequence actionOne:action two:actionReverse];
-            action = sequence;
-            for(int i = 1; i < 20; i++)
-            {
-               action = [CCSequence actionOne:sequence two:action];
-            }
             
-            [bg runAction:action];
+            CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
+            [bg stopAllActions];
+            CCTintTo* fadeToNormal = [CCTintTo actionWithDuration:.5 red:bg.color.r green:bg.color.g blue:bg.color.b];
+            CCTintTo* fadeToYellow = [[CCTintTo alloc] initWithDuration:.5 red:255 green:255 blue:0];
+           /* CCTintTo* fadeToMagenta = [[CCTintTo alloc] initWithDuration:.06126*duration_multiplier red:255 green:0 blue:255];
+            CCTintTo* fadeToCyan = [[CCTintTo alloc] initWithDuration:.06126*duration_multiplier red:0 green:255 blue:255];
+            CCTintTo* fadeToWhite = [[CCTintTo alloc] initWithDuration:.06126*duration_multiplier red:255 green:255 blue:255];
+            
+            CCTintTo* fadeToRed = [[CCTintTo alloc] initWithDuration:.06126*duration_multiplier red:255 green:0 blue:0];
+            CCTintTo* fadeToGreen = [[CCTintTo alloc] initWithDuration:.06126*duration_multiplier red:0 green:255 blue:0];
+            CCTintTo* fadeToBlue = [[CCTintTo alloc] initWithDuration:.06126*duration_multiplier red:0 green:0 blue:255];
+            CCTintTo* fadeToBlack = [[CCTintTo alloc] initWithDuration:.06126*duration_multiplier red:0 green:0 blue:0];
+            
+            CCSequence* sequence = [CCSequence actions:fadeToYellow, fadeToMagenta, fadeToCyan, fadeToWhite, fadeToRed, fadeToGreen, fadeToBlue, fadeToBlack, nil];
+             */
+            CCSequence* sequence = [CCSequence actions:fadeToYellow, fadeToNormal, nil];
+            CCRepeat* repeat = [CCRepeat actionWithAction:sequence times:5*duration_multiplier];
+           
+            
+            [bg runAction:repeat];
+
             break;
         }
+        case kTimeOver:{
+            [self stopAllActions];
+            [[CCDirector sharedDirector] pushScene:[GameOverLayer scene]];
+        }
+            break;
         case kGreatScore:{
             CCLOG(@"great score!");
             
@@ -221,8 +253,7 @@
             
            
             CCLabelTTF* duplicate_label = [[CCLabelTTF alloc] initWithString:@"Great Score!" fontName:@"ArialRoundedMTBold" fontSize:28];
-            id death2 = [CCCallFuncND actionWithTarget:duplicate_label  selector:@selector(removeFromParentAndCleanup:) data:(void*)YES];
-            id deathAction = [CCSequence actions:fadeOut, death,death2, nil];
+            id deathAction = [CCSequence actions:fadeOut, death, nil];
             
             duplicate_label.anchorPoint = ccp(0,0);
             
@@ -231,6 +262,9 @@
             
             [label_bg addChild:duplicate_label];
             [[bg parent] addChild:label_bg z:NSIntegerMax];
+            id floatUp = [CCMoveBy actionWithDuration:.25 position:ccp(duplicate_label.position.x, duplicate_label.position.y*.75)];
+            [label_bg runAction:floatUp];
+
             [label_bg runAction:deathAction];
 
         
@@ -252,9 +286,8 @@
             id death = [CCCallFuncND actionWithTarget:label_bg  selector:@selector(removeFromParentAndCleanup:) data:(void*)YES];
             
             CCLabelTTF* duplicate_label = [[CCLabelTTF alloc] initWithString:@"Fast hands!" fontName:@"ArialRoundedMTBold" fontSize:28];
-            id death2 = [CCCallFuncND actionWithTarget:duplicate_label  selector:@selector(removeFromParentAndCleanup:) data:(void*)YES];
             
-            id deathAction = [CCSequence actions:fadeOut, death,death2, nil];
+            id deathAction = [CCSequence actions:fadeOut, death, nil];
             
             duplicate_label.anchorPoint = ccp(0,0);
             
@@ -263,6 +296,9 @@
             
             [label_bg addChild:duplicate_label];
             [[bg parent] addChild:label_bg z:NSIntegerMax];
+            id floatUp = [CCMoveBy actionWithDuration:.25 position:ccp(duplicate_label.position.x, duplicate_label.position.y*.75)];
+            [label_bg runAction:floatUp];
+
             [label_bg runAction:deathAction];
             break;
         }

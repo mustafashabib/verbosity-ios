@@ -26,9 +26,12 @@ static VerbosityGameState *sharedState = nil;
 @synthesize CurrentWordAttempt = _current_word_attempt;
 @synthesize RareWordsFound = _rare_words_founds;
 @synthesize WordsFoundOfLength = _words_found_of_length;
+@synthesize LongestStreak = _longest_streak;
+@synthesize AttemptedWords = _attempted_words;
 
 - (VerbosityGameState*) init{
     if(self = [super init]){
+        _longest_streak = 0;
         self.CurrentLanguage = (Language*)[[[VerbosityRepository context] getLanguages] objectAtIndex:0];
         self.TimeLeft = kGameTime;
         _start_time = kGameTime;
@@ -57,6 +60,7 @@ static VerbosityGameState *sharedState = nil;
 - (void) setupGame{
     self.CurrentWordsAndLetters = [[VerbosityRepository context] getWordsForLanguage:self.CurrentLanguage.ID withAtLeastOneWordOfLength:self.CurrentLanguage.MaximumWordLength];
     
+    _longest_streak = 0;
     self.TimeLeft = kGameTime;
     _start_time = kGameTime;
     _last_word_attempt_time = kGameTime;
@@ -79,9 +83,16 @@ static VerbosityGameState *sharedState = nil;
         VerbosityAlert* running_out_of_time_alert= [[VerbosityAlert alloc] initWithType:kTimeRunningOut andData:nil];
         [[VerbosityAlertManager sharedAlertManager] addAlert:running_out_of_time_alert];
     }
+    if(_time_left < 5){
+        VerbosityAlert* time_nearly_done_alert= [[VerbosityAlert alloc] initWithType:kTimeNearlyDone andData:nil];
+        [[VerbosityAlertManager sharedAlertManager] addAlert:time_nearly_done_alert];
+    }
     
     if(_time_left < 0){
-        _time_left = 0;
+        _time_left = 0; 
+        VerbosityAlert* time_done_alert= [[VerbosityAlert alloc] initWithType:kTimeOver andData:nil];
+        [[VerbosityAlertManager sharedAlertManager] addAlert:time_done_alert];
+
     }
     
     if([_current_word_attempt length] == 0){
@@ -97,13 +108,16 @@ static VerbosityGameState *sharedState = nil;
 //if yes, score will update, streak will increase by 1, current words per minute will update, and found words will update,  lastwordattempttime will always update
 // will return positive number (score of last word) if succeeded
 - (BOOL) submitWordAttempt{
-    
+    _attempted_words++;
     Word* matching_word = (Word*) [self.CurrentWordsAndLetters.Words objectForKey:_current_word_attempt];
    
     if(![_found_words containsObject:_current_word_attempt] && matching_word != nil){
         [_found_words addObject:_current_word_attempt];
         
         _streak++;
+        if(_streak > _longest_streak){
+            _longest_streak = _streak;
+        }
         float time_to_enter_word = _last_word_attempt_time - (int) _time_left;
         float seconds_per_letter = time_to_enter_word/[_current_word_attempt length];
         int speed_multiplier = 1;

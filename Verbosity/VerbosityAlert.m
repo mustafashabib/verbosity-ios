@@ -20,4 +20,18 @@
     _data = data;
     return self;
 }
+
+-(BOOL)isOneTimeAlert{
+    switch (_type) {
+        case kTimeRunningOut://<10sec
+        case kTimeNearlyDone://<5 sec
+        case kTimeOver:
+            return YES;
+            break;
+            
+        default:
+            return NO;
+            break;
+    }
+}
 @end
