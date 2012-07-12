@@ -1,4 +1,3 @@
-
 # Verbosity
 ## _betel nut games, inc._
 
