@@ -1,6 +1,8 @@
 # Verbosity
 
-A simple word game for the iOS. Make as many words as possible. Uses cocos2d 2.0 and ARC.
+A simple word game for the iOS. Make as many words as possible. Uses cocos2d 2.0 and ARC. 
+
+===================
 
 ## TO DOs
 
