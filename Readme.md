@@ -1,7 +1,11 @@
+
 # Verbosity
+_betel nut games, inc._
 
 A simple word game for the iOS. Make as many words as possible. Uses cocos2d 2.0 and ARC. 
+
 ===================
+
 ## TO DOs
 
 ###High Priority
