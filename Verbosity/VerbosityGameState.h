@@ -26,6 +26,7 @@
     NSString *_current_word_attempt;
     int _attempted_words;
     int _longest_streak;
+    NSMutableArray* _selected_letters;
 }
 
 @property(nonatomic) NSMutableArray *WordsFoundOfLength;
@@ -40,12 +41,14 @@
 @property(nonatomic) NSString* CurrentWordAttempt;
 @property(nonatomic) int AttemptedWords;
 @property(nonatomic) int LongestStreak;
+@property(nonatomic) NSMutableArray* SelectedLetters;
 
 + (VerbosityGameState *)sharedState;
-
 - (void) update:(float)delta;
 - (BOOL) isGameActive;
 - (void) setupGame;
 - (BOOL) submitWordAttempt;
-- (void) updateWordAttempt:(NSString*)newLetter;
+- (void) updateWordAttempt:(NSString*)newLetter withData:(id)data;
+- (void) clearWordAttempt;
+- (void) removeLastLetterFromWordAttempt;
 @end

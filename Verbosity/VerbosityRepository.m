@@ -29,7 +29,7 @@ static VerbosityRepository *_context;
 
 - (id)init {
 	if((self = [super init])) {
-		NSString *sqLiteDb = [[NSBundle mainBundle] pathForResource:@"verbosity"
+		NSString *sqLiteDb = [[NSBundle mainBundle] pathForResource:kDatabaseName
 															 ofType:@"sqlite3"];
 
 		if(sqlite3_open([sqLiteDb UTF8String], &_context) != SQLITE_OK) {          
@@ -65,7 +65,6 @@ static VerbosityRepository *_context;
 		}
 		sqlite3_finalize(statement);
 	}
-	
    	return languages;
 }
 
@@ -106,11 +105,13 @@ static VerbosityRepository *_context;
 		sqlite3_finalize(statement);
 	}
     if([words count] < kMinimumWordsForGame){
-        CCLOGINFO(@"Only found %d words for this game. Trying again.", [words count]);
+        CCLOG(@"Only found %d words for this game. Trying again.", [words count]);
         return [self getWordsForLanguage:language_id withAtLeastOneWordOfLength:length];
+    }else{
+        CCLOG(@"Found %d words", [words count]);
     }
 	
-    [letters shuffle];//shuffle up the letters
+	 [letters shuffle];//shuffle up the letters
     return [[WordsAndLetters alloc] initWithWords:words andLetters:letters];	
 }
 

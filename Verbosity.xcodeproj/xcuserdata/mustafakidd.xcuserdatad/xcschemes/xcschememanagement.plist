@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>VerbosityLite.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>cocos2d-library.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>71921EDA15929D5000CD3A77</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>71A463AA15B4C9FF001B4B31</key>
 		<dict>
 			<key>primary</key>
 			<true/>

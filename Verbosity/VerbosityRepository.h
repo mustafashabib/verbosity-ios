@@ -11,6 +11,11 @@
 #import <sqlite3.h>
 #import "WordsAndLetters.h"
 
+#if IS_LITE_VERSION
+#define kDatabaseName @"verbosityLite"
+#else
+#define kDatabaseName @"verbosity"
+#endif
 /* repository which gathers data from the database*/
 /*schema is as follows
  

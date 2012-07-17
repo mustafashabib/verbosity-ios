@@ -9,6 +9,7 @@
 #import "GameOverLayer.h"
 #import "VerbosityGameState.h"
 #import "CCUIViewWrapper.h"
+#import "Word.h"
 
 @implementation GameOverLayer
 +(CCScene *) scene
@@ -37,7 +38,7 @@
         textView.showsHorizontalScrollIndicator = NO;
         textView.alwaysBounceVertical = YES;
         
-        textView.text =[NSString stringWithFormat:@"Stats\nScore: %d\nPossible Words: %d\nFound Word: %d\nAttempted Words: %d\n%0f%% Correct\n %0f%% Found\nWPM: %d\nLongest Streak: %d\n", 
+        NSString* stats = [NSString stringWithFormat:@"Stats\nScore: %d\nPossible Words: %d\nFound Word: %d\nAttempted Words: %d\n%0f%% Correct\n%0f%% Found\nWPM: %d\nLongest Streak: %d\n", 
                         currentState.Score,
                         currentState.CurrentWordsAndLetters.Words.count,
                         currentState.FoundWords.count,
@@ -46,9 +47,23 @@
                         currentState.FoundWords.count*100.0f/currentState.CurrentWordsAndLetters.Words.count,
                         currentState.CurrentWordsPerMinute,
                         currentState.LongestStreak];
+        NSArray* keyArray = [[VerbosityGameState sharedState].CurrentWordsAndLetters.Words allKeys];
+        int count = [keyArray count];
+        NSString* word_list = [[NSString alloc] init];
+        for(int i = 0; i < count; i++){
+            Word* word = (Word*)[[VerbosityGameState sharedState].CurrentWordsAndLetters.Words objectForKey:[keyArray objectAtIndex:i]];
+
+            if(![[VerbosityGameState sharedState].FoundWords containsObject:word.Value]){
+                word_list = [NSString stringWithFormat:@"%@\n(X)%@", word_list, word.Value];
+            }else{
+                word_list = [NSString stringWithFormat:@"%@\n%@", word_list, word.Value];
+            }
+        }
+        textView.text = [NSString stringWithFormat:@"%@\n---Words---\n%@", stats, word_list];
+
         textView.textColor = [UIColor colorWithWhite:1 alpha:1];
         textView.font = [UIFont fontWithName:@"ArialMT" size:25.0];
-        textView.backgroundColor = [UIColor redColor];
+        textView.backgroundColor = [UIColor grayColor];
 
         CCUIViewWrapper* wrapper = [CCUIViewWrapper wrapperForUIView:textView];
         wrapper.contentSize = CGSizeMake(winSize.width, winSize.height);

@@ -16,9 +16,11 @@
 #import "LetterSlot.h"
 #import "NSMutableArray+Shuffling.h"
 #import "VerbosityGameConstants.h"
+#import "NSMutableArray+Stack.h"
 
 @implementation VerbosityGameLayer
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
+
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -46,7 +48,7 @@
 	if( (self=[super init])) {
         self.isTouchEnabled = YES;
         self.isAccelerometerEnabled = YES;
-        
+       
         /*add swipe and multitap gesture recognizers*/
         UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleCancelWordAttemptGestureRecognizer:)];
         [self addGestureRecognizer:swipeGestureRecognizer];
@@ -133,6 +135,7 @@
             [current_letter_tile instantResetState:YES];
             
         }
+        [[VerbosityGameState sharedState] clearWordAttempt];
         [self unscheduleUpdate];
     }
 }
@@ -150,16 +153,20 @@
 - (void)handleCancelWordAttemptGestureRecognizer:(UISwipeGestureRecognizer*)aGestureRecognizer
 {
     CCLOG(@"Got swipe gesture.");
+    if([[VerbosityGameState sharedState].CurrentWordAttempt length] == 0){
+        return;
+    }
+    
     for(int i =0; i < [VerbosityGameState sharedState].CurrentLanguage.MaximumWordLength; i++){
         int current_tag = kLetterTileTagStart + i;
         LetterTile* current_letter_tile = (LetterTile*)[self getChildByTag:current_tag];
         [current_letter_tile resetState];
     }
-    [VerbosityGameState sharedState].CurrentWordAttempt = @"";
+    [[VerbosityGameState sharedState] clearWordAttempt];
 }
 
 - (void) handleTapGestureRecognizer:(UITapGestureRecognizer*)sender{
-      if (sender.state == UIGestureRecognizerStateEnded)     
+      if (sender.state == UIGestureRecognizerStateEnded && [[VerbosityGameState sharedState].CurrentWordAttempt length] > 0)     
       { 
            BOOL is_valid = [[VerbosityGameState sharedState] submitWordAttempt];
           CCLOG(@"Got tap gesture (two fingers tapped once)");
@@ -168,22 +175,12 @@
               LetterTile* current_letter_tile = (LetterTile*)[self getChildByTag:current_tag];
               [current_letter_tile resetState];
           }
+          
          if(is_valid){
               //YES
             
               CCLOG(@"YES! Found word with score");
              
-             
-             /*add floating score label
-             CCLabelTTF *current_word_label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@ - %d", current_word_attempt, last_word_score] fontName:@"ArialRoundedMTBold" fontSize:12.0];
-             current_word_label.position = ccp(winSize.width/2, winSize.height - winSize.height/3);
-             current_word_label.anchorPoint = ccp(.5,.5);
-             id fadeOut = [CCFadeOut actionWithDuration:0.5f];
-             id death = [CCCallFuncND actionWithTarget:current_word_label  selector:@selector(removeFromParentAndCleanup:) data:(void*)YES];
-             id deathAction = [CCSequence actions:fadeOut, death, nil];
-             [self addChild:current_word_label];
-             [current_word_label runAction:deathAction];
-              */
              
           }else{
               //NO
@@ -191,7 +188,7 @@
           }
           
                    
-          [VerbosityGameState sharedState].CurrentWordAttempt = @"";
+          [[VerbosityGameState sharedState] clearWordAttempt];
       }
 }
 
@@ -203,8 +200,9 @@
         int current_tag = kLetterTileTagStart + i;
         
         LetterTile* current_letter_tile = (LetterTile*)[self getChildByTag:current_tag];
+       
         [current_letter_tile instantResetState:NO];
-        [VerbosityGameState sharedState].CurrentWordAttempt = @"";
+        [[VerbosityGameState sharedState] clearWordAttempt];
         
         [shakeable_positions addObject:[NSValue valueWithCGPoint:current_letter_tile.position]];
         [shakeable_letters addObject:current_letter_tile];

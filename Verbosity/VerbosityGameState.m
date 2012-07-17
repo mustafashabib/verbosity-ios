@@ -11,6 +11,7 @@
 #import "VerbosityGameConstants.h"
 #import "VerbosityAlertManager.h"
 #import "VerbosityAlert.h"
+#import "NSMutableArray+Stack.h"
 
 static VerbosityGameState *sharedState = nil;
 
@@ -28,6 +29,8 @@ static VerbosityGameState *sharedState = nil;
 @synthesize WordsFoundOfLength = _words_found_of_length;
 @synthesize LongestStreak = _longest_streak;
 @synthesize AttemptedWords = _attempted_words;
+@synthesize SelectedLetters = _selected_letters;
+
 
 - (VerbosityGameState*) init{
     if(self = [super init]){
@@ -39,9 +42,10 @@ static VerbosityGameState *sharedState = nil;
         _last_word_attempt_time = kGameTime;
         _found_words=[[NSMutableSet alloc] init];
         _current_words_and_letters = nil;
-        self.Score = 0; 
+        _selected_letters = [[NSMutableArray alloc] init];
+        _score = 0; 
         _current_word_attempt = @"";
-        self.Streak = 0;
+        _streak = 0;
         _rare_words_founds = 0;
         _words_found_of_length = [[NSMutableArray alloc] initWithCapacity:_current_language.MaximumWordLength];
         for(int i = 0; i < _current_language.MaximumWordLength;i++){
@@ -65,8 +69,9 @@ static VerbosityGameState *sharedState = nil;
     _start_time = kGameTime;
     _last_word_attempt_time = kGameTime;
     _found_words=[[NSMutableSet alloc] init];
-    self.Score = 0;
-    self.Streak = 0;
+    _score = 0;
+    _streak = 0;
+    _selected_letters = [[NSMutableArray alloc] init];
     _current_word_attempt = @"";
     self.CurrentWordsPerMinute = 0;
     
@@ -99,8 +104,22 @@ static VerbosityGameState *sharedState = nil;
         _last_word_attempt_time = _time_left;
     }
 }
+-(void) clearWordAttempt{
+    _current_word_attempt = @"";
+    [_selected_letters removeAllObjects];
+    VerbosityAlert* cleared_alert = [[VerbosityAlert alloc] initWithType:kClearedAttempt andData:nil];
+    [[VerbosityAlertManager sharedAlertManager] addAlert:cleared_alert];
+}
 
-- (void) updateWordAttempt:(NSString*)newLetter{
+- (void) removeLastLetterFromWordAttempt{
+     _current_word_attempt = [_current_word_attempt substringWithRange:NSMakeRange(0, [_current_word_attempt length] - 1)];
+    id letter = [_selected_letters pop];
+    VerbosityAlert* removed_letter_alert = [[VerbosityAlert alloc] initWithType:kRemovedLastLetter andData:letter];
+    [[VerbosityAlertManager sharedAlertManager] addAlert:removed_letter_alert];
+    
+}
+- (void) updateWordAttempt:(NSString*)newLetter withData:(id)data{
+    [_selected_letters push:data];
     _current_word_attempt = [NSString stringWithFormat:@"%@%@", _current_word_attempt, newLetter];
     VerbosityAlert* new_letter_alert = [[VerbosityAlert alloc] initWithType:kWordAttemptUpdated andData:_current_word_attempt];
     [[VerbosityAlertManager sharedAlertManager] addAlert:new_letter_alert];

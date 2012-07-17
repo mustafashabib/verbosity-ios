@@ -9,6 +9,9 @@
 #import "LetterTile.h"
 #import "VerbosityGameState.h"
 #import "LetterSlot.h"
+#import "VerbosityGameConstants.h"
+#import "NSMutableArray+Stack.h"
+#import "VerbosityGameLayer.h"
 
 static int letterID = 0;
 @implementation LetterTile
@@ -74,6 +77,7 @@ static int letterID = 0;
     if(should_disable){
         _state = kLetterStateDisabled;
     }
+    [VerbosityGameState sharedState].CurrentWordAttempt = @"";    
     
     
 }
@@ -93,6 +97,7 @@ static int letterID = 0;
     CCRotateTo *rotateToOriginal = [[CCRotateTo alloc] initWithDuration:.125 angle:_old_rotation];
     [self runAction:moveToOriginalSlotAction];
     [self runAction:rotateToOriginal];
+    
 }
 
 -(BOOL)containsTouchLocation:(UITouch*)touch{
@@ -102,18 +107,21 @@ static int letterID = 0;
 }
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if (_state != kLetterStateUntouched) return NO;
+    if (_state != kLetterStateUntouched && _state != kLetterStateUsed) return NO;
     if ( ![self containsTouchLocation:touch] ) return NO;
     
-    _state = kLetterStateTouched;
     
-    
-    NSLog(@"touch began for %@.", _letter);
-    id scaleUpAction =  [CCScaleTo actionWithDuration:.35 scaleX:1.25 scaleY:1.25];
-    id scaleDownAction = [CCScaleTo actionWithDuration:0.35 scaleX:1.0 scaleY:1.0];
-    id seq = [CCSequence actions:scaleUpAction,scaleDownAction, nil];
-    id myAction = [CCRepeatForever actionWithAction:seq];
-    [self runAction:myAction];
+    if(_state != kLetterStateUsed){
+        NSLog(@"touch began for %@.", _letter);
+        id scaleUpAction =  [CCScaleTo actionWithDuration:.35 scaleX:1.25 scaleY:1.25];
+        id scaleDownAction = [CCScaleTo actionWithDuration:0.35 scaleX:1.0 scaleY:1.0];
+        id seq = [CCSequence actions:scaleUpAction,scaleDownAction, nil];
+        id myAction = [CCRepeatForever actionWithAction:seq];
+        [self runAction:myAction];
+        _state = kLetterStateTouched;
+        
+    }
+   
     return YES;
 }
 
@@ -137,7 +145,7 @@ static int letterID = 0;
 {
     
     
-    NSAssert(_state == kLetterStateTouched, @"Letter - Unexpected state!");  
+    NSAssert(_state == kLetterStateTouched || _state == kLetterStateUsed, @"Letter - Unexpected state!");  
     CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
     NSAssert([sprite isKindOfClass:[CCSprite class]], @"Letter -child with tag %d is not sprite", _letterID);
     
@@ -149,15 +157,14 @@ static int letterID = 0;
         [sprite setColor:ccc3(255, 255, 255)];
         [sprite setScale:1.0];
         
-    }else{
-        
+    }else if(_state != kLetterStateUsed){
         _old_position = self.position;
         _old_rotation = self.rotation;
         _state = kLetterStateUsed;
         //[sprite setColor:ccc3(128, 128, 128)];   
         [sprite setScale:1.0];
         
-       [[VerbosityGameState sharedState] updateWordAttempt:_letter];//modify word attempt
+        [[VerbosityGameState sharedState] updateWordAttempt:_letter withData:self];//modify word attempt
         int position = [[VerbosityGameState sharedState].CurrentWordAttempt length] -1;
         
         LetterSlot* slot = (LetterSlot*)[[self parent] getChildByTag:kLetterSlotID + position];
@@ -165,7 +172,16 @@ static int letterID = 0;
         CCRotateTo *rotateToZero = [[CCRotateTo alloc] initWithDuration:.125 angle:0];
         [self runAction:rotateToZero];
         [self runAction:moveToSlotAction];
+    }else if(_state == kLetterStateUsed){
+        LetterTile* last_letter = [[VerbosityGameState sharedState].SelectedLetters peek];
+        if(self == last_letter)
+            {
+                CCLOG(@"Touched last letter %@", _letter);
+                [self resetState];
+                [[VerbosityGameState sharedState] removeLastLetterFromWordAttempt];
+            }else{
+                CCLOG(@"Touched non-last letter %@", _letter);
+            }
     }
-    
 }
 @end

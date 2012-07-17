@@ -20,7 +20,9 @@ typedef enum {
     kGreatScore,
     kFastHands,
     kFailedWordAttempt,
-    kDuplicateWord
+    kRemovedLastLetter,
+    kDuplicateWord,
+    kClearedAttempt
 } VerbosityAlertTypes;
 @interface VerbosityAlert : NSObject
 {

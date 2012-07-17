@@ -45,6 +45,58 @@
 		71921F0915929D5000CD3A77 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 71921F0815929D5000CD3A77 /* iTunesArtwork */; };
 		7192206615929D5300CD3A77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7192206515929D5300CD3A77 /* main.m */; };
 		7192206915929D5300CD3A77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7192206815929D5300CD3A77 /* AppDelegate.m */; };
+		71A463AC15B4C9FF001B4B31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7192206515929D5300CD3A77 /* main.m */; };
+		71A463AD15B4C9FF001B4B31 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7192206815929D5300CD3A77 /* AppDelegate.m */; };
+		71A463AE15B4C9FF001B4B31 /* LetterTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AECCD01596729300D65EA3 /* LetterTile.m */; };
+		71A463AF15B4C9FF001B4B31 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E937AC1597FC34003D60EA /* Word.m */; };
+		71A463B015B4C9FF001B4B31 /* VerbosityGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E937B31599490A003D60EA /* VerbosityGameLayer.m */; };
+		71A463B115B4C9FF001B4B31 /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 71444E4C159AE00C0045EC44 /* Language.m */; };
+		71A463B215B4C9FF001B4B31 /* VerbosityRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 71444E51159AE2870045EC44 /* VerbosityRepository.m */; };
+		71A463B315B4C9FF001B4B31 /* GameCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 716E289B15A4AD560013648B /* GameCache.m */; };
+		71A463B415B4C9FF001B4B31 /* WordsAndLetters.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F1915A60BFA005042C5 /* WordsAndLetters.m */; };
+		71A463B515B4C9FF001B4B31 /* VerbosityGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F1D15A622C1005042C5 /* VerbosityGameState.m */; };
+		71A463B615B4C9FF001B4B31 /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F2015A63506005042C5 /* NSMutableArray+Shuffling.m */; };
+		71A463B715B4C9FF001B4B31 /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F2315A64789005042C5 /* CCNode+SFGestureRecognizers.m */; };
+		71A463B815B4C9FF001B4B31 /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9315A7721000987689 /* NSMutableArray+Queue.m */; };
+		71A463B915B4C9FF001B4B31 /* VerbosityAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9615A772D100987689 /* VerbosityAlert.m */; };
+		71A463BA15B4C9FF001B4B31 /* VerbosityAlertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9815A775B200987689 /* VerbosityAlertManager.m */; };
+		71A463BB15B4C9FF001B4B31 /* VerbosityHudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9C15A77C7400987689 /* VerbosityHudLayer.m */; };
+		71A463BC15B4C9FF001B4B31 /* LetterSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 714E7E0615A78A8900F7F316 /* LetterSlot.m */; };
+		71A463BD15B4C9FF001B4B31 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124EF3615AD3A4700AE6542 /* GameOverLayer.m */; };
+		71A463BE15B4C9FF001B4B31 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124EF3A15AD3C6100AE6542 /* CCUIViewWrapper.m */; };
+		71A463C015B4C9FF001B4B31 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 71444E49159ADFAE0045EC44 /* libsqlite3.dylib */; };
+		71A463C115B4C9FF001B4B31 /* libcocos2d-library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71AECAED15929DAB00D65EA3 /* libcocos2d-library.a */; };
+		71A463C215B4C9FF001B4B31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EDF15929D5000CD3A77 /* QuartzCore.framework */; };
+		71A463C315B4C9FF001B4B31 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EE115929D5000CD3A77 /* OpenGLES.framework */; };
+		71A463C415B4C9FF001B4B31 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EE315929D5000CD3A77 /* OpenAL.framework */; };
+		71A463C515B4C9FF001B4B31 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EE515929D5000CD3A77 /* AudioToolbox.framework */; };
+		71A463C615B4C9FF001B4B31 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EE715929D5000CD3A77 /* AVFoundation.framework */; };
+		71A463C715B4C9FF001B4B31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EE915929D5000CD3A77 /* UIKit.framework */; };
+		71A463C815B4C9FF001B4B31 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EEB15929D5000CD3A77 /* Foundation.framework */; };
+		71A463C915B4C9FF001B4B31 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EED15929D5000CD3A77 /* CoreGraphics.framework */; };
+		71A463CA15B4C9FF001B4B31 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EEF15929D5000CD3A77 /* GameKit.framework */; };
+		71A463CC15B4C9FF001B4B31 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 71921EF315929D5000CD3A77 /* Default.png */; };
+		71A463CD15B4C9FF001B4B31 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 71921EF515929D5000CD3A77 /* fps_images.png */; };
+		71A463CE15B4C9FF001B4B31 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 71921EF715929D5000CD3A77 /* fps_images-hd.png */; };
+		71A463CF15B4C9FF001B4B31 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 71921EF915929D5000CD3A77 /* fps_images-ipadhd.png */; };
+		71A463D015B4C9FF001B4B31 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 71921EFB15929D5000CD3A77 /* Icon-72.png */; };
+		71A463D115B4C9FF001B4B31 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 71921EFD15929D5000CD3A77 /* Icon-Small-50.png */; };
+		71A463D215B4C9FF001B4B31 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 71921EFF15929D5000CD3A77 /* Icon-Small.png */; };
+		71A463D315B4C9FF001B4B31 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71921F0115929D5000CD3A77 /* Icon-Small@2x.png */; };
+		71A463D415B4C9FF001B4B31 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71921F0315929D5000CD3A77 /* Icon.png */; };
+		71A463D515B4C9FF001B4B31 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71921F0515929D5000CD3A77 /* Icon@2x.png */; };
+		71A463D615B4C9FF001B4B31 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 71921F0815929D5000CD3A77 /* iTunesArtwork */; };
+		71A463D715B4C9FF001B4B31 /* tile-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E937AE15994463003D60EA /* tile-hd.png */; };
+		71A463D815B4C9FF001B4B31 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E937AF15994463003D60EA /* tile.png */; };
+		71A463D915B4C9FF001B4B31 /* Code Pro Light Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 71444E42159AC7390045EC44 /* Code Pro Light Demo.otf */; };
+		71A463DA15B4C9FF001B4B31 /* Code Pro Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 71444E45159ACE9F0045EC44 /* Code Pro Demo.otf */; };
+		71A463DC15B4C9FF001B4B31 /* VerbosityGameConstants.h in Resources */ = {isa = PBXBuildFile; fileRef = 71F3AA8C15A76FA500987689 /* VerbosityGameConstants.h */; };
+		71A463DD15B4C9FF001B4B31 /* tile-shadow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 714E7E0915A78D9900F7F316 /* tile-shadow-hd.png */; };
+		71A463DE15B4C9FF001B4B31 /* tile-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 714E7E0A15A78D9900F7F316 /* tile-shadow.png */; };
+		71A463E715B4CCFC001B4B31 /* VerbosityLite-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71A463E615B4CCFC001B4B31 /* VerbosityLite-Info.plist */; };
+		71A463EA15B4D017001B4B31 /* verbosityLite.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 71A463E815B4D013001B4B31 /* verbosityLite.sqlite3 */; };
+		71A463F215B4E606001B4B31 /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A463F115B4E606001B4B31 /* NSMutableArray+Stack.m */; };
+		71A463F415B4E60D001B4B31 /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A463F115B4E606001B4B31 /* NSMutableArray+Stack.m */; };
 		71AECAEE15929DAB00D65EA3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EEB15929D5000CD3A77 /* Foundation.framework */; };
 		71AECAF815929DE900D65EA3 /* libcocos2d-library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71AECAED15929DAB00D65EA3 /* libcocos2d-library.a */; };
 		71AECBED15929E2300D65EA3 /* CCAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 71AECAFB15929E2300D65EA3 /* CCAction.h */; };
@@ -338,6 +390,11 @@
 		7192206515929D5300CD3A77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7192206715929D5300CD3A77 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7192206815929D5300CD3A77 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		71A463E215B4C9FF001B4B31 /* Verbosity Lite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Verbosity Lite.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		71A463E615B4CCFC001B4B31 /* VerbosityLite-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "VerbosityLite-Info.plist"; path = "Resources/VerbosityLite-Info.plist"; sourceTree = "<group>"; };
+		71A463E815B4D013001B4B31 /* verbosityLite.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = verbosityLite.sqlite3; path = Resources/verbosityLite.sqlite3; sourceTree = "<group>"; };
+		71A463F015B4E606001B4B31 /* NSMutableArray+Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Stack.h"; sourceTree = "<group>"; };
+		71A463F115B4E606001B4B31 /* NSMutableArray+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stack.m"; sourceTree = "<group>"; };
 		71AECAED15929DAB00D65EA3 /* libcocos2d-library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcocos2d-library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71AECAF115929DAB00D65EA3 /* cocos2d-library-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "cocos2d-library-Prefix.pch"; sourceTree = "<group>"; };
 		71AECAFB15929E2300D65EA3 /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
@@ -609,6 +666,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		71A463BF15B4C9FF001B4B31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71A463C015B4C9FF001B4B31 /* libsqlite3.dylib in Frameworks */,
+				71A463C115B4C9FF001B4B31 /* libcocos2d-library.a in Frameworks */,
+				71A463C215B4C9FF001B4B31 /* QuartzCore.framework in Frameworks */,
+				71A463C315B4C9FF001B4B31 /* OpenGLES.framework in Frameworks */,
+				71A463C415B4C9FF001B4B31 /* OpenAL.framework in Frameworks */,
+				71A463C515B4C9FF001B4B31 /* AudioToolbox.framework in Frameworks */,
+				71A463C615B4C9FF001B4B31 /* AVFoundation.framework in Frameworks */,
+				71A463C715B4C9FF001B4B31 /* UIKit.framework in Frameworks */,
+				71A463C815B4C9FF001B4B31 /* Foundation.framework in Frameworks */,
+				71A463C915B4C9FF001B4B31 /* CoreGraphics.framework in Frameworks */,
+				71A463CA15B4C9FF001B4B31 /* GameKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		71AECAEA15929DAB00D65EA3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -679,6 +754,8 @@
 				71F3AA9615A772D100987689 /* VerbosityAlert.m */,
 				7124EF3915AD3C6100AE6542 /* CCUIViewWrapper.h */,
 				7124EF3A15AD3C6100AE6542 /* CCUIViewWrapper.m */,
+				71A463F015B4E606001B4B31 /* NSMutableArray+Stack.h */,
+				71A463F115B4E606001B4B31 /* NSMutableArray+Stack.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -699,6 +776,7 @@
 			children = (
 				71921EDB15929D5000CD3A77 /* Verbosity.app */,
 				71AECAED15929DAB00D65EA3 /* libcocos2d-library.a */,
+				71A463E215B4C9FF001B4B31 /* Verbosity Lite.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -738,6 +816,8 @@
 		71921EF215929D5000CD3A77 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				71A463E815B4D013001B4B31 /* verbosityLite.sqlite3 */,
+				71A463E615B4CCFC001B4B31 /* VerbosityLite-Info.plist */,
 				714E7E0915A78D9900F7F316 /* tile-shadow-hd.png */,
 				714E7E0A15A78D9900F7F316 /* tile-shadow.png */,
 				71444E47159ADF510045EC44 /* verbosity.sqlite3 */,
@@ -1276,6 +1356,23 @@
 			productReference = 71921EDB15929D5000CD3A77 /* Verbosity.app */;
 			productType = "com.apple.product-type.application";
 		};
+		71A463AA15B4C9FF001B4B31 /* VerbosityLite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71A463DF15B4C9FF001B4B31 /* Build configuration list for PBXNativeTarget "VerbosityLite" */;
+			buildPhases = (
+				71A463AB15B4C9FF001B4B31 /* Sources */,
+				71A463BF15B4C9FF001B4B31 /* Frameworks */,
+				71A463CB15B4C9FF001B4B31 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VerbosityLite;
+			productName = Verbosity;
+			productReference = 71A463E215B4C9FF001B4B31 /* Verbosity Lite.app */;
+			productType = "com.apple.product-type.application";
+		};
 		71AECAEC15929DAB00D65EA3 /* cocos2d-library */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71AECAF515929DAC00D65EA3 /* Build configuration list for PBXNativeTarget "cocos2d-library" */;
@@ -1300,7 +1397,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0430;
-				ORGANIZATIONNAME = "We Are Mammoth";
+				ORGANIZATIONNAME = "Betel Nut Games";
 			};
 			buildConfigurationList = 71921ED515929D5000CD3A77 /* Build configuration list for PBXProject "Verbosity" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1316,6 +1413,7 @@
 			targets = (
 				71921EDA15929D5000CD3A77 /* Verbosity */,
 				71AECAEC15929DAB00D65EA3 /* cocos2d-library */,
+				71A463AA15B4C9FF001B4B31 /* VerbosityLite */,
 			);
 		};
 /* End PBXProject section */
@@ -1344,6 +1442,33 @@
 				71F3AA8D15A76FA500987689 /* VerbosityGameConstants.h in Resources */,
 				714E7E0B15A78D9900F7F316 /* tile-shadow-hd.png in Resources */,
 				714E7E0C15A78D9900F7F316 /* tile-shadow.png in Resources */,
+				71A463E715B4CCFC001B4B31 /* VerbosityLite-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71A463CB15B4C9FF001B4B31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71A463CC15B4C9FF001B4B31 /* Default.png in Resources */,
+				71A463CD15B4C9FF001B4B31 /* fps_images.png in Resources */,
+				71A463CE15B4C9FF001B4B31 /* fps_images-hd.png in Resources */,
+				71A463CF15B4C9FF001B4B31 /* fps_images-ipadhd.png in Resources */,
+				71A463D015B4C9FF001B4B31 /* Icon-72.png in Resources */,
+				71A463D115B4C9FF001B4B31 /* Icon-Small-50.png in Resources */,
+				71A463D215B4C9FF001B4B31 /* Icon-Small.png in Resources */,
+				71A463D315B4C9FF001B4B31 /* Icon-Small@2x.png in Resources */,
+				71A463D415B4C9FF001B4B31 /* Icon.png in Resources */,
+				71A463D515B4C9FF001B4B31 /* Icon@2x.png in Resources */,
+				71A463D615B4C9FF001B4B31 /* iTunesArtwork in Resources */,
+				71A463D715B4C9FF001B4B31 /* tile-hd.png in Resources */,
+				71A463D815B4C9FF001B4B31 /* tile.png in Resources */,
+				71A463D915B4C9FF001B4B31 /* Code Pro Light Demo.otf in Resources */,
+				71A463DA15B4C9FF001B4B31 /* Code Pro Demo.otf in Resources */,
+				71A463DC15B4C9FF001B4B31 /* VerbosityGameConstants.h in Resources */,
+				71A463DD15B4C9FF001B4B31 /* tile-shadow-hd.png in Resources */,
+				71A463DE15B4C9FF001B4B31 /* tile-shadow.png in Resources */,
+				71A463EA15B4D017001B4B31 /* verbosityLite.sqlite3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1373,6 +1498,34 @@
 				714E7E0715A78A8900F7F316 /* LetterSlot.m in Sources */,
 				7124EF3715AD3A4700AE6542 /* GameOverLayer.m in Sources */,
 				7124EF3B15AD3C6100AE6542 /* CCUIViewWrapper.m in Sources */,
+				71A463F215B4E606001B4B31 /* NSMutableArray+Stack.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71A463AB15B4C9FF001B4B31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71A463AC15B4C9FF001B4B31 /* main.m in Sources */,
+				71A463AD15B4C9FF001B4B31 /* AppDelegate.m in Sources */,
+				71A463AE15B4C9FF001B4B31 /* LetterTile.m in Sources */,
+				71A463AF15B4C9FF001B4B31 /* Word.m in Sources */,
+				71A463B015B4C9FF001B4B31 /* VerbosityGameLayer.m in Sources */,
+				71A463B115B4C9FF001B4B31 /* Language.m in Sources */,
+				71A463B215B4C9FF001B4B31 /* VerbosityRepository.m in Sources */,
+				71A463B315B4C9FF001B4B31 /* GameCache.m in Sources */,
+				71A463B415B4C9FF001B4B31 /* WordsAndLetters.m in Sources */,
+				71A463B515B4C9FF001B4B31 /* VerbosityGameState.m in Sources */,
+				71A463B615B4C9FF001B4B31 /* NSMutableArray+Shuffling.m in Sources */,
+				71A463B715B4C9FF001B4B31 /* CCNode+SFGestureRecognizers.m in Sources */,
+				71A463B815B4C9FF001B4B31 /* NSMutableArray+Queue.m in Sources */,
+				71A463B915B4C9FF001B4B31 /* VerbosityAlert.m in Sources */,
+				71A463BA15B4C9FF001B4B31 /* VerbosityAlertManager.m in Sources */,
+				71A463BB15B4C9FF001B4B31 /* VerbosityHudLayer.m in Sources */,
+				71A463BC15B4C9FF001B4B31 /* LetterSlot.m in Sources */,
+				71A463BD15B4C9FF001B4B31 /* GameOverLayer.m in Sources */,
+				71A463BE15B4C9FF001B4B31 /* CCUIViewWrapper.m in Sources */,
+				71A463F415B4E60D001B4B31 /* NSMutableArray+Stack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1535,6 +1688,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Verbosity/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					"COCOS2D_DEBUG=1",
+				);
 				HEADER_SEARCH_PATHS = "\"Verbosity/libs/kazmath/include\"";
 				INFOPLIST_FILE = Verbosity/Resources/Info.plist;
 				OTHER_LDFLAGS = (
@@ -1561,6 +1718,56 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		71A463E015B4C9FF001B4B31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Verbosity/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					"COCOS2D_DEBUG=1",
+					IS_LITE_VERSION,
+				);
+				HEADER_SEARCH_PATHS = "\"Verbosity/libs/kazmath/include\"";
+				INFOPLIST_FILE = "Verbosity/Resources/VerbosityLite-Info.plist";
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "Verbosity Lite";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		71A463E115B4C9FF001B4B31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Verbosity/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					NDEBUG,
+					"NS_BLOCK_ASSERTIONS=1",
+					IS_LITE_VERSION,
+				);
+				HEADER_SEARCH_PATHS = "\"Verbosity/libs/kazmath/include\"";
+				INFOPLIST_FILE = "Verbosity/Resources/VerbosityLite-Info.plist";
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "Verbosity Lite";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1623,6 +1830,15 @@
 			buildConfigurations = (
 				7192207015929D5300CD3A77 /* Debug */,
 				7192207115929D5300CD3A77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71A463DF15B4C9FF001B4B31 /* Build configuration list for PBXNativeTarget "VerbosityLite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71A463E015B4C9FF001B4B31 /* Debug */,
+				71A463E115B4C9FF001B4B31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
