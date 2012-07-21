@@ -3,12 +3,14 @@
 //  Verbosity
 //
 //  Created by Mustafa Shabib on 7/5/12.
-//  Copyright (c) 2012 We Are Mammoth. All rights reserved.
+//  Copyright (c) 2012 Betel Nut Games. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "Language.h"
 #import "WordsAndLetters.h"
+
+//todo - extract stats into its own object
 
 @interface VerbosityGameState : NSObject
 {

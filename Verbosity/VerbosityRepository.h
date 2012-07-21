@@ -3,7 +3,7 @@
 //  Verbosity
 //
 //  Created by Mustafa Shabib on 6/27/12.
-//  Copyright (c) 2012 We Are Mammoth. All rights reserved.
+//  Copyright (c) 2012 Betel Nut Games. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -19,6 +19,7 @@
 /* repository which gathers data from the database*/
 /*schema is as follows
  
+ CREATE TABLE GameStats(id INTEGER PRIMARY KEY AUTOINCREMENT, datePlayed INTEGER NOT NULL, RareWordsFound integer, Score integer NOT NULL, RelatedLanguageID INTEGER NOT NULL, WordsPerMinute INTEGER NOT NULL, AttemptedWords INTEGER NOT NULL, LongestStreak INTEGER NOT NULL, FOREIGN KEY(RelatedLanguageID) REFERENCES Languages(id));
  CREATE TABLE Languages(id INTEGER PRIMARY KEY AUTOINCREMENT,name text not null,font text not null, maximumwordlength integer not null);
  CREATE TABLE Words(id INTEGER PRIMARY KEY AUTOINCREMENT, word text, popularity integer, key integer,RelatedLanguageID integer, FOREIGN KEY(RelatedLanguageID) REFERENCES Languages(id));
  */
@@ -30,8 +31,13 @@
 
 -(WordsAndLetters*) getWordsForLanguage:(int)language_id withAtLeastOneWordOfLength:(int)length;
 -(NSArray*) getLanguages;
-
-//local high scores?
+//todo: once extracted stats into own object then pull it back here and save it
+/*-(void) saveStats;
+-(NSArray*) getStatsForLanguage:(int)language_id;
+-(NSArray*) getStats;
+-(GameStat*) getAverageStats;
+-(GameStat*) getAverageStatsForLanguage:(int)language_id;
+*/
 @end
 
 

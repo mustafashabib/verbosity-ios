@@ -3,7 +3,7 @@
 //  Verbosity
 //
 //  Created by Mustafa Shabib on 7/6/12.
-//  Copyright (c) 2012 We Are Mammoth. All rights reserved.
+//  Copyright (c) 2012 Betel Nut Games. All rights reserved.
 //
 
 #import "VerbosityHudLayer.h"
@@ -51,8 +51,9 @@
     switch (alert.AlertType) {
         case kFoundRareWord:
         {
-            CCLOG(@"Found rare word.");
             NSNumber* popularity = alert.Data;
+            
+            CCLOG(@"Found rare word with popularity %d", popularity);
             CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
             CCLayerColor* label_bg = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)];
             
@@ -112,8 +113,9 @@
         }
         case kScoreIncreased:
         {
-            CCLOG(@"Score increased.");
             NSNumber* current_word_score = (NSNumber*)alert.Data;
+            CCLOG(@"Score increased by %d.", [current_word_score intValue]);
+            
             //change score label
             //particle effects
             //color of layer
@@ -126,8 +128,8 @@
             
         }
         case kWordAttemptUpdated:{
-            CCLOG(@"word attempt updated.");
             NSString* current_word = (NSString*)alert.Data;
+            CCLOG(@"word attempt updated, it's now %@", current_word);
             //todo: play sound
             
             break;
@@ -234,13 +236,14 @@
         }
         case kTimeOver:{
             [self stopAllActions];
-            [[CCDirector sharedDirector] pushScene:[GameOverLayer scene]];
+            [[CCDirector sharedDirector] replaceScene:[GameOverLayer scene]];
         }
             break;
         case kGreatScore:{
-            CCLOG(@"great score!");
             
             NSNumber* current_word_score = (NSNumber*)alert.Data;
+            CCLOG(@"great score! score was %d", [current_word_score intValue]);
+            
             CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
             CCLayerColor* label_bg = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)];
             
@@ -270,11 +273,11 @@
         
             break;
         }
-        case kFastHands:{
-            CCLOG(@"fast hands");
-            
+        case kFastHands:{            
             NSNumber* seconds_per_letter = (NSNumber*)alert.Data;
-            NSNumber* current_word_score = (NSNumber*)alert.Data;
+            
+            CCLOG(@"fast hands, %.2f seconds per letter", [seconds_per_letter floatValue]);
+
             CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
             CCLayerColor* label_bg = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)];
             

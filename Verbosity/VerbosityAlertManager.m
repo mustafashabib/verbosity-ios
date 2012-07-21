@@ -3,7 +3,7 @@
 //  Verbosity
 //
 //  Created by Mustafa Shabib on 7/6/12.
-//  Copyright (c) 2012 We Are Mammoth. All rights reserved.
+//  Copyright (c) 2012 Betel Nut Games. All rights reserved.
 //
 
 #import "VerbosityAlertManager.h"
@@ -18,6 +18,11 @@ static VerbosityAlertManager *sharedInstance = nil;
          _seen_alerts = [[NSMutableSet alloc] init];
      }
     return self;
+}
+
+-(void) resetAlerts{
+    [_alert_queue removeAllObjects];
+    [_seen_alerts removeAllObjects];
 }
 
 - (NSArray *)getAll{

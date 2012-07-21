@@ -3,10 +3,11 @@
 //  Verbosity
 //
 //  Created by Mustafa Shabib on 7/10/12.
-//  Copyright (c) 2012 We Are Mammoth. All rights reserved.
+//  Copyright (c) 2012 Betel Nut Games. All rights reserved.
 //
 
 #import "GameOverLayer.h"
+#import "VerbosityGameLayer.h"
 #import "VerbosityGameState.h"
 #import "CCUIViewWrapper.h"
 #import "Word.h"
@@ -66,9 +67,27 @@
         textView.backgroundColor = [UIColor grayColor];
 
         CCUIViewWrapper* wrapper = [CCUIViewWrapper wrapperForUIView:textView];
-        wrapper.contentSize = CGSizeMake(winSize.width, winSize.height);
+        wrapper.contentSize = CGSizeMake(winSize.width/2, winSize.height);
 
         [self addChild:wrapper];
+        // Default font size will be 22 points.
+        [CCMenuItemFont setFontSize:22];
+        
+        // Reset Button
+        CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
+            [[CCDirector sharedDirector] replaceScene: [VerbosityGameLayer scene]];
+        }];
+        CCMenu *menu = [CCMenu menuWithItems: reset, nil];
+        
+        [menu alignItemsVertically];
+        
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        
+        [menu setPosition:ccp( size.width/2 + 50, size.height/2)];
+        
+        
+        [self addChild: menu];	
+
     }
     return self;
 }

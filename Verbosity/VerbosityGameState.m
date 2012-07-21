@@ -3,7 +3,7 @@
 //  Verbosity
 //
 //  Created by Mustafa Shabib on 7/5/12.
-//  Copyright (c) 2012 We Are Mammoth. All rights reserved.
+//  Copyright (c) 2012 Betel Nut Games. All rights reserved.
 //
 
 #import "VerbosityGameState.h"
@@ -34,11 +34,12 @@ static VerbosityGameState *sharedState = nil;
 
 - (VerbosityGameState*) init{
     if(self = [super init]){
+        [[VerbosityAlertManager sharedAlertManager] resetAlerts];
         _longest_streak = 0;
-        self.CurrentLanguage = (Language*)[[[VerbosityRepository context] getLanguages] objectAtIndex:0];
-        self.TimeLeft = kGameTime;
+        _current_language = (Language*)[[[VerbosityRepository context] getLanguages] objectAtIndex:0];
+        _time_left= kGameTime;
         _start_time = kGameTime;
-        self.CurrentWordsPerMinute = 0;
+        _current_words_per_minute = 0;
         _last_word_attempt_time = kGameTime;
         _found_words=[[NSMutableSet alloc] init];
         _current_words_and_letters = nil;
@@ -47,6 +48,7 @@ static VerbosityGameState *sharedState = nil;
         _current_word_attempt = @"";
         _streak = 0;
         _rare_words_founds = 0;
+        _attempted_words = 0;
         _words_found_of_length = [[NSMutableArray alloc] initWithCapacity:_current_language.MaximumWordLength];
         for(int i = 0; i < _current_language.MaximumWordLength;i++){
             [_words_found_of_length addObject:[NSNumber numberWithInt:0]];
@@ -62,20 +64,21 @@ static VerbosityGameState *sharedState = nil;
 
 
 - (void) setupGame{
-    self.CurrentWordsAndLetters = [[VerbosityRepository context] getWordsForLanguage:self.CurrentLanguage.ID withAtLeastOneWordOfLength:self.CurrentLanguage.MaximumWordLength];
-    
+    [[VerbosityAlertManager sharedAlertManager] resetAlerts];
     _longest_streak = 0;
-    self.TimeLeft = kGameTime;
+    _current_language = (Language*)[[[VerbosityRepository context] getLanguages] objectAtIndex:0];
+    _time_left= kGameTime;
     _start_time = kGameTime;
+    _current_words_per_minute = 0;
     _last_word_attempt_time = kGameTime;
     _found_words=[[NSMutableSet alloc] init];
-    _score = 0;
-    _streak = 0;
+    _current_words_and_letters = nil;
     _selected_letters = [[NSMutableArray alloc] init];
+    _score = 0; 
     _current_word_attempt = @"";
-    self.CurrentWordsPerMinute = 0;
-    
+    _streak = 0;
     _rare_words_founds = 0;
+    _attempted_words = 0;
     _words_found_of_length = [[NSMutableArray alloc] initWithCapacity:_current_language.MaximumWordLength];
     for(int i = 0; i < _current_language.MaximumWordLength;i++){
         [_words_found_of_length addObject:[NSNumber numberWithInt:0]];

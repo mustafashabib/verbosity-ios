@@ -1,0 +1,9 @@
+select x.Popularity median 
+from words x, words y 
+group by x.Popularity having 
+sum(case when y.Popularity <= x.Popularity then 1 else 0 end) >= (count(*)+1/2)
+and 
+sum(case when y.Popularity >= x.Popularity then 1 else 0 end) >= (count(*)/2)+1;
+
+
+delete from words where popularity < 42 and relatedlanguageid = (select id from languages where name = 'English');

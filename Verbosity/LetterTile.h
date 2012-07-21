@@ -3,7 +3,7 @@
 //  Verbosity
 //
 //  Created by Mustafa Shabib on 4/18/12.
-//  Copyright 2012 We Are Mammoth. All rights reserved.
+//  Copyright 2012 Betel Nut Games. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
