@@ -25,7 +25,7 @@
         _timeLabel.position = CGPointMake(winSize.width/2, winSize.height);
         _timeLabel.anchorPoint = CGPointMake(.5f, 1.0f);
     
-        _yourScore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d", current_state.Score] fontName:@"ArialRoundedMTBold" fontSize:12];
+        _yourScore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d", current_state.Stats.Score] fontName:@"ArialRoundedMTBold" fontSize:12];
         _yourScore.position = CGPointMake(0, winSize.height);
         _yourScore.anchorPoint = ccp(0,1);
     
@@ -323,7 +323,7 @@
 -(void)update:(ccTime)delta{
    
     [_timeLabel setString:[NSString stringWithFormat:@"%f", [VerbosityGameState sharedState].TimeLeft]];
-    [_yourScore setString:[NSString stringWithFormat:@"Score: %d/%d words",[VerbosityGameState sharedState].Score,[[VerbosityGameState sharedState].FoundWords count]]];
+    [_yourScore setString:[NSString stringWithFormat:@"Score: %d/%d words",[VerbosityGameState sharedState].Stats.Score,[[VerbosityGameState sharedState].FoundWords count]]];
     
     if(![[VerbosityGameState sharedState] isGameActive]){
         [self showRestartMenu];        

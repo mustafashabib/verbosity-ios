@@ -18,39 +18,30 @@ static VerbosityGameState *sharedState = nil;
 
 @implementation VerbosityGameState
 @synthesize CurrentWordsAndLetters = _current_words_and_letters;
-@synthesize CurrentLanguage = _current_language;
 @synthesize TimeLeft = _time_left;
-@synthesize Score = _score;
-@synthesize CurrentWordsPerMinute = _current_words_per_minute;
 @synthesize Streak = _streak;
 @synthesize FoundWords = _found_words;
 @synthesize CurrentWordAttempt = _current_word_attempt;
-@synthesize RareWordsFound = _rare_words_founds;
 @synthesize WordsFoundOfLength = _words_found_of_length;
-@synthesize LongestStreak = _longest_streak;
-@synthesize AttemptedWords = _attempted_words;
 @synthesize SelectedLetters = _selected_letters;
-
+@synthesize Stats = _stats;
 
 - (VerbosityGameState*) init{
     if(self = [super init]){
         [[VerbosityAlertManager sharedAlertManager] resetAlerts];
-        _longest_streak = 0;
-        _current_language = (Language*)[[[VerbosityRepository context] getLanguages] objectAtIndex:0];
+        _stats = [[GameStat alloc] init];
+        _stats.CurrentLanguage = (Language*)[[[VerbosityRepository context] getLanguages] objectAtIndex:0];
         _time_left= kGameTime;
         _start_time = kGameTime;
-        _current_words_per_minute = 0;
         _last_word_attempt_time = kGameTime;
         _found_words=[[NSMutableSet alloc] init];
-        _current_words_and_letters = nil;
+        _current_words_and_letters = [[VerbosityRepository context] getWordsForLanguage:_stats.CurrentLanguage.ID withAtLeastOneWordOfLength:_stats.CurrentLanguage.MaximumWordLength];
         _selected_letters = [[NSMutableArray alloc] init];
-        _score = 0; 
         _current_word_attempt = @"";
         _streak = 0;
-        _rare_words_founds = 0;
-        _attempted_words = 0;
-        _words_found_of_length = [[NSMutableArray alloc] initWithCapacity:_current_language.MaximumWordLength];
-        for(int i = 0; i < _current_language.MaximumWordLength;i++){
+        
+        _words_found_of_length = [[NSMutableArray alloc] initWithCapacity:_stats.CurrentLanguage.MaximumWordLength];
+        for(int i = 0; i < _stats.CurrentLanguage.MaximumWordLength;i++){
             [_words_found_of_length addObject:[NSNumber numberWithInt:0]];
         }
     }
@@ -65,22 +56,18 @@ static VerbosityGameState *sharedState = nil;
 
 - (void) setupGame{
     [[VerbosityAlertManager sharedAlertManager] resetAlerts];
-    _longest_streak = 0;
-    _current_language = (Language*)[[[VerbosityRepository context] getLanguages] objectAtIndex:0];
+    [_stats resetStats];
     _time_left= kGameTime;
     _start_time = kGameTime;
-    _current_words_per_minute = 0;
     _last_word_attempt_time = kGameTime;
     _found_words=[[NSMutableSet alloc] init];
-    _current_words_and_letters = nil;
+    _current_words_and_letters = [[VerbosityRepository context] getWordsForLanguage:_stats.CurrentLanguage.ID withAtLeastOneWordOfLength:_stats.CurrentLanguage.MaximumWordLength];
     _selected_letters = [[NSMutableArray alloc] init];
-    _score = 0; 
     _current_word_attempt = @"";
     _streak = 0;
-    _rare_words_founds = 0;
-    _attempted_words = 0;
-    _words_found_of_length = [[NSMutableArray alloc] initWithCapacity:_current_language.MaximumWordLength];
-    for(int i = 0; i < _current_language.MaximumWordLength;i++){
+    
+    _words_found_of_length = [[NSMutableArray alloc] initWithCapacity:_stats.CurrentLanguage.MaximumWordLength];
+    for(int i = 0; i < _stats.CurrentLanguage.MaximumWordLength;i++){
         [_words_found_of_length addObject:[NSNumber numberWithInt:0]];
     }
 }
@@ -130,15 +117,15 @@ static VerbosityGameState *sharedState = nil;
 //if yes, score will update, streak will increase by 1, current words per minute will update, and found words will update,  lastwordattempttime will always update
 // will return positive number (score of last word) if succeeded
 - (BOOL) submitWordAttempt{
-    _attempted_words++;
+    _stats.AttemptedWords++;
     Word* matching_word = (Word*) [self.CurrentWordsAndLetters.Words objectForKey:_current_word_attempt];
    
     if(![_found_words containsObject:_current_word_attempt] && matching_word != nil){
         [_found_words addObject:_current_word_attempt];
-        
+        _stats.TotalWordsFound++;
         _streak++;
-        if(_streak > _longest_streak){
-            _longest_streak = _streak;
+        if(_streak > _stats.LongestStreak){
+            _stats.LongestStreak++;
         }
         float time_to_enter_word = _last_word_attempt_time - (int) _time_left;
         float seconds_per_letter = time_to_enter_word/[_current_word_attempt length];
@@ -159,16 +146,17 @@ static VerbosityGameState *sharedState = nil;
         float popularity_multiplier = MAX(1,100/matching_word.Popularity);
         int length = [_current_word_attempt length];
         if(popularity_multiplier >= 75){
-            _rare_words_founds++;
+            
+            _stats.RareWordsFound++;
             VerbosityAlert* rare_word_found_alert = [[VerbosityAlert alloc] initWithType:kFoundRareWord andData:[NSNumber numberWithInt:popularity_multiplier]];
             [[VerbosityAlertManager sharedAlertManager] addAlert:rare_word_found_alert];            
         }
         
         int current_word_score = (_streak * speed_multiplier * popularity_multiplier * length) * 100;
-        _score += current_word_score;
+        _stats.Score += current_word_score;
         _last_word_attempt_time = _time_left;
         float minutes_passed = (_start_time - _time_left)/60.0f;
-        _current_words_per_minute = [_found_words count]/minutes_passed;
+        _stats.WordsPerMinute = _stats.TotalWordsFound/minutes_passed;
         
         _current_word_attempt = @"";
         

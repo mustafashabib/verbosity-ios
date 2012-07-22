@@ -10,7 +10,9 @@
 #import "VerbosityGameLayer.h"
 #import "VerbosityGameState.h"
 #import "CCUIViewWrapper.h"
+#import "VerbosityRepository.h"
 #import "Word.h"
+#import "MainMenu.h"
 
 @implementation GameOverLayer
 +(CCScene *) scene
@@ -31,6 +33,8 @@
     if(self){
         self.isTouchEnabled=YES;
         VerbosityGameState* currentState = [VerbosityGameState sharedState];
+        VerbosityRepository* repository = [VerbosityRepository context];
+        [repository saveStats:currentState.Stats];
         CGSize winSize = [CCDirector sharedDirector].winSize;
         UITextView* textView = [[UITextView alloc] initWithFrame:CGRectMake(0,0,winSize.width,winSize.height)];
         
@@ -40,14 +44,14 @@
         textView.alwaysBounceVertical = YES;
         
         NSString* stats = [NSString stringWithFormat:@"Stats\nScore: %d\nPossible Words: %d\nFound Word: %d\nAttempted Words: %d\n%0f%% Correct\n%0f%% Found\nWPM: %d\nLongest Streak: %d\n", 
-                        currentState.Score,
+                        currentState.Stats.Score,
                         currentState.CurrentWordsAndLetters.Words.count,
                         currentState.FoundWords.count,
-                        currentState.AttemptedWords,
-                        currentState.FoundWords.count*100.0f/currentState.AttemptedWords,
+                        currentState.Stats.AttemptedWords,
+                        currentState.FoundWords.count*100.0f/currentState.Stats.AttemptedWords,
                         currentState.FoundWords.count*100.0f/currentState.CurrentWordsAndLetters.Words.count,
-                        currentState.CurrentWordsPerMinute,
-                        currentState.LongestStreak];
+                        currentState.Stats.WordsPerMinute,
+                        currentState.Stats.LongestStreak];
         NSArray* keyArray = [[VerbosityGameState sharedState].CurrentWordsAndLetters.Words allKeys];
         int count = [keyArray count];
         NSString* word_list = [[NSString alloc] init];
@@ -74,10 +78,13 @@
         [CCMenuItemFont setFontSize:22];
         
         // Reset Button
-        CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
+        CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Play Again" block:^(id sender){
             [[CCDirector sharedDirector] replaceScene: [VerbosityGameLayer scene]];
         }];
-        CCMenu *menu = [CCMenu menuWithItems: reset, nil];
+        CCMenuItemLabel *main_menu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
+            [[CCDirector sharedDirector] replaceScene: [MainMenu scene]];
+        }];
+        CCMenu *menu = [CCMenu menuWithItems: reset, main_menu, nil];
         
         [menu alignItemsVertically];
         

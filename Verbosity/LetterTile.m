@@ -29,7 +29,7 @@ static int letterID = 0;
     if((self = [super init]) == nil) return nil;
     _letter = letter;
     CCSprite* sprite = [CCSprite spriteWithFile:@"tile.png"];
-    CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:letter dimensions:sprite.contentSize hAlignment:kCCTextAlignmentRight fontName:[VerbosityGameState sharedState].CurrentLanguage.Font fontSize:40];
+    CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:letter dimensions:sprite.contentSize hAlignment:kCCTextAlignmentRight fontName:[VerbosityGameState sharedState].Stats.CurrentLanguage.Font fontSize:40];
     currentLetter.color = ccc3(0, 0, 0);
     currentLetter.anchorPoint = ccp(.3,.3);
     currentLetter.position = ccp(sprite.position.x, sprite.position.y);

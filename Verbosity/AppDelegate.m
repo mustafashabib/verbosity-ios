@@ -9,7 +9,7 @@
 #import "cocos2d.h"
 
 #import "AppDelegate.h"
-#import "VerbosityGameLayer.h"
+#import "MainMenu.h"
 
 @implementation AppController
 
@@ -87,7 +87,7 @@
     srandom(time(NULL));
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene: [VerbosityGameLayer scene]]; 
+	[director_ pushScene: [MainMenu scene]]; 
 
 	return YES;
 }

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7123FD2815BC8B49004D9E57 /* GameStat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7123FD2715BC8B49004D9E57 /* GameStat.m */; };
+		7123FD2A15BC8B4E004D9E57 /* GameStat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7123FD2715BC8B49004D9E57 /* GameStat.m */; };
+		7123FD2D15BCA851004D9E57 /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7123FD2C15BCA851004D9E57 /* MainMenu.m */; };
+		7123FD2E15BCA857004D9E57 /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7123FD2C15BCA851004D9E57 /* MainMenu.m */; };
+		7123FD3115BCB892004D9E57 /* GameStatsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7123FD3015BCB892004D9E57 /* GameStatsLayer.m */; };
+		7123FD3215BCB892004D9E57 /* GameStatsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7123FD3015BCB892004D9E57 /* GameStatsLayer.m */; };
+		7123FD3515BCBBD1004D9E57 /* HistoricalGameStat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7123FD3415BCBBD1004D9E57 /* HistoricalGameStat.m */; };
+		7123FD3615BCBBD1004D9E57 /* HistoricalGameStat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7123FD3415BCBBD1004D9E57 /* HistoricalGameStat.m */; };
 		7124EF3715AD3A4700AE6542 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124EF3615AD3A4700AE6542 /* GameOverLayer.m */; };
 		7124EF3B15AD3C6100AE6542 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124EF3A15AD3C6100AE6542 /* CCUIViewWrapper.m */; };
 		71444E43159AC7390045EC44 /* Code Pro Light Demo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 71444E42159AC7390045EC44 /* Code Pro Light Demo.otf */; };
@@ -338,6 +346,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7123FD2615BC8B49004D9E57 /* GameStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStat.h; sourceTree = "<group>"; };
+		7123FD2715BC8B49004D9E57 /* GameStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStat.m; sourceTree = "<group>"; };
+		7123FD2B15BCA850004D9E57 /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
+		7123FD2C15BCA851004D9E57 /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
+		7123FD2F15BCB891004D9E57 /* GameStatsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStatsLayer.h; sourceTree = "<group>"; };
+		7123FD3015BCB892004D9E57 /* GameStatsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStatsLayer.m; sourceTree = "<group>"; };
+		7123FD3315BCBBD0004D9E57 /* HistoricalGameStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoricalGameStat.h; sourceTree = "<group>"; };
+		7123FD3415BCBBD1004D9E57 /* HistoricalGameStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoricalGameStat.m; sourceTree = "<group>"; };
 		7124EF3515AD3A4700AE6542 /* GameOverLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
 		7124EF3615AD3A4700AE6542 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		7124EF3915AD3C6100AE6542 /* CCUIViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUIViewWrapper.h; sourceTree = "<group>"; };
@@ -713,6 +729,10 @@
 				71444E4C159AE00C0045EC44 /* Language.m */,
 				714D2F1815A60BFA005042C5 /* WordsAndLetters.h */,
 				714D2F1915A60BFA005042C5 /* WordsAndLetters.m */,
+				7123FD2615BC8B49004D9E57 /* GameStat.h */,
+				7123FD2715BC8B49004D9E57 /* GameStat.m */,
+				7123FD3315BCBBD0004D9E57 /* HistoricalGameStat.h */,
+				7123FD3415BCBBD1004D9E57 /* HistoricalGameStat.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -732,6 +752,10 @@
 				714E7E0615A78A8900F7F316 /* LetterSlot.m */,
 				7124EF3515AD3A4700AE6542 /* GameOverLayer.h */,
 				7124EF3615AD3A4700AE6542 /* GameOverLayer.m */,
+				7123FD2B15BCA850004D9E57 /* MainMenu.h */,
+				7123FD2C15BCA851004D9E57 /* MainMenu.m */,
+				7123FD2F15BCB891004D9E57 /* GameStatsLayer.h */,
+				7123FD3015BCB892004D9E57 /* GameStatsLayer.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1499,6 +1523,10 @@
 				7124EF3715AD3A4700AE6542 /* GameOverLayer.m in Sources */,
 				7124EF3B15AD3C6100AE6542 /* CCUIViewWrapper.m in Sources */,
 				71A463F215B4E606001B4B31 /* NSMutableArray+Stack.m in Sources */,
+				7123FD2815BC8B49004D9E57 /* GameStat.m in Sources */,
+				7123FD2D15BCA851004D9E57 /* MainMenu.m in Sources */,
+				7123FD3115BCB892004D9E57 /* GameStatsLayer.m in Sources */,
+				7123FD3515BCBBD1004D9E57 /* HistoricalGameStat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1526,6 +1554,10 @@
 				71A463BD15B4C9FF001B4B31 /* GameOverLayer.m in Sources */,
 				71A463BE15B4C9FF001B4B31 /* CCUIViewWrapper.m in Sources */,
 				71A463F415B4E60D001B4B31 /* NSMutableArray+Stack.m in Sources */,
+				7123FD2A15BC8B4E004D9E57 /* GameStat.m in Sources */,
+				7123FD2E15BCA857004D9E57 /* MainMenu.m in Sources */,
+				7123FD3215BCB892004D9E57 /* GameStatsLayer.m in Sources */,
+				7123FD3615BCBBD1004D9E57 /* HistoricalGameStat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

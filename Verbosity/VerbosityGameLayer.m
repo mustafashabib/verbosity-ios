@@ -82,11 +82,11 @@
     
     VerbosityGameState* current_state = [VerbosityGameState sharedState];
     CGSize winSize = [CCDirector sharedDirector].winSize;
-    float widthSpacing = (winSize.width/current_state.CurrentLanguage.MaximumWordLength+1.0f)/(current_state.CurrentLanguage.MaximumWordLength+1.0f);
+    float widthSpacing = (winSize.width/current_state.Stats.CurrentLanguage.MaximumWordLength+1.0f)/(current_state.Stats.CurrentLanguage.MaximumWordLength+1.0f);
     
     BOOL useSpacing = NO;
     srand(time(NULL));
-    for(int i = 0; i < current_state.CurrentLanguage.MaximumWordLength; i++){
+    for(int i = 0; i < current_state.Stats.CurrentLanguage.MaximumWordLength; i++){
         
         if(i>0){
             useSpacing = YES;
@@ -129,7 +129,7 @@
 -(void) update:(ccTime)delta{
     [[VerbosityGameState sharedState] update:delta];
     if(![[VerbosityGameState sharedState] isGameActive]){
-        for(int i =0; i < [VerbosityGameState sharedState].CurrentLanguage.MaximumWordLength; i++){
+        for(int i =0; i < [VerbosityGameState sharedState].Stats.CurrentLanguage.MaximumWordLength; i++){
             int current_tag = kLetterTileTagStart + i;
             LetterTile* current_letter_tile = (LetterTile*)[self getChildByTag:current_tag];
             [current_letter_tile instantResetState:YES];
@@ -157,7 +157,7 @@
         return;
     }
     
-    for(int i =0; i < [VerbosityGameState sharedState].CurrentLanguage.MaximumWordLength; i++){
+    for(int i =0; i < [VerbosityGameState sharedState].Stats.CurrentLanguage.MaximumWordLength; i++){
         int current_tag = kLetterTileTagStart + i;
         LetterTile* current_letter_tile = (LetterTile*)[self getChildByTag:current_tag];
         [current_letter_tile resetState];
@@ -170,7 +170,7 @@
       { 
            BOOL is_valid = [[VerbosityGameState sharedState] submitWordAttempt];
           CCLOG(@"Got tap gesture (two fingers tapped once)");
-          for(int i =0; i < [VerbosityGameState sharedState].CurrentLanguage.MaximumWordLength; i++){
+          for(int i =0; i < [VerbosityGameState sharedState].Stats.CurrentLanguage.MaximumWordLength; i++){
               int current_tag = kLetterTileTagStart + i;
               LetterTile* current_letter_tile = (LetterTile*)[self getChildByTag:current_tag];
               [current_letter_tile resetState];
@@ -193,10 +193,12 @@
 }
 
 -(void) shakeLetters{
+    //todo fix this, letters overlap sometimes
+
     CCArray* shakeable_letters = [[CCArray alloc] init];
     NSMutableArray* shakeable_positions = [[NSMutableArray alloc] init];
     
-    for(int i =0; i < [VerbosityGameState sharedState].CurrentLanguage.MaximumWordLength; i++){
+    for(int i =0; i < [VerbosityGameState sharedState].Stats.CurrentLanguage.MaximumWordLength; i++){
         int current_tag = kLetterTileTagStart + i;
         
         LetterTile* current_letter_tile = (LetterTile*)[self getChildByTag:current_tag];
@@ -217,11 +219,12 @@
         LetterTile* current_tile = (LetterTile*)[shakeable_letters objectAtIndex:i];
         [current_tile runAction:shuffle_action];
     }
+     
 }
 
 -(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
     
-    float THRESHOLD = 2;
+    float THRESHOLD = 1.5;
     
     if (acceleration.x > THRESHOLD || acceleration.x < -THRESHOLD || 
         acceleration.y > THRESHOLD || acceleration.y < -THRESHOLD ||
@@ -230,7 +233,7 @@
         if (!_shake_once) {
             _shake_once = true;
         }
-        [self shakeLetters];
+       // [self shakeLetters];
     }
     else {
         _shake_once = false;
