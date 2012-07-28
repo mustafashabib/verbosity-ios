@@ -23,7 +23,6 @@ typedef enum {
 @private 
     NSString* _letter;
     CGPoint _old_position;
-    float _old_rotation;
 }
 -(CGSize) getSize;
 @property(nonatomic) int LetterTag;
@@ -33,5 +32,5 @@ typedef enum {
 -(NSString*) Letter;
 -(LetterState) State;
 -(id)initWithLetter:(NSString*)letter;
--(void)savePositionAndRotation;
+-(void)savePosition;
 @end

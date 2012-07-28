@@ -97,11 +97,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityRepository.m"
-         timestampString = "364688569.444256"
+         timestampString = "365205560.407542"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "185"
-         endingLineNumber = "185"
+         startingLineNumber = "205"
+         endingLineNumber = "205"
          landmarkName = "-getWordsForLanguage:withAtLeastOneWordOfLength:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -136,11 +136,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityRepository.m"
-         timestampString = "364688569.444256"
+         timestampString = "365205560.407542"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "148"
-         endingLineNumber = "148"
+         startingLineNumber = "168"
+         endingLineNumber = "168"
          landmarkName = "-getLanguages"
          landmarkType = "5">
       </FileBreakpoint>
@@ -149,11 +149,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityRepository.m"
-         timestampString = "364688569.444256"
+         timestampString = "365205560.407542"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "220"
-         endingLineNumber = "220"
+         startingLineNumber = "240"
+         endingLineNumber = "240"
          landmarkName = "-getWordsForLanguage:withAtLeastOneWordOfLength:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -162,11 +162,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364178431.822344"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "76"
-         endingLineNumber = "76"
+         startingLineNumber = "79"
+         endingLineNumber = "79"
          landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
@@ -175,11 +175,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364178647.533851"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "165"
-         endingLineNumber = "165"
+         startingLineNumber = "149"
+         endingLineNumber = "149"
          landmarkName = "-handleCancelWordAttemptGestureRecognizer:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -188,11 +188,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364178431.822344"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "85"
-         endingLineNumber = "85"
+         startingLineNumber = "88"
+         endingLineNumber = "88"
          landmarkName = "-addLetters"
          landmarkType = "5">
       </FileBreakpoint>
@@ -201,11 +201,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364178431.822344"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "97"
-         endingLineNumber = "97"
+         startingLineNumber = "96"
+         endingLineNumber = "96"
          landmarkName = "-addLetters"
          landmarkType = "5">
       </FileBreakpoint>
@@ -214,11 +214,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityRepository.m"
-         timestampString = "364688569.444256"
+         timestampString = "365205560.407542"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "149"
-         endingLineNumber = "149"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
          landmarkName = "-getLanguages"
          landmarkType = "5">
       </FileBreakpoint>
@@ -227,11 +227,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364178647.533851"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "163"
-         endingLineNumber = "163"
+         startingLineNumber = "147"
+         endingLineNumber = "147"
          landmarkName = "-handleCancelWordAttemptGestureRecognizer:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -240,11 +240,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364178431.822344"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "125"
-         endingLineNumber = "125"
+         startingLineNumber = "109"
+         endingLineNumber = "109"
          landmarkName = "-addLetters"
          landmarkType = "5">
       </FileBreakpoint>
@@ -253,38 +253,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/LetterTile.m"
-         timestampString = "364178431.822344"
+         timestampString = "365208203.370425"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "70"
-         endingLineNumber = "70"
-         landmarkName = "-instantResetState:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Verbosity/LetterTile.m"
-         timestampString = "364178431.822344"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "69"
-         endingLineNumber = "69"
-         landmarkName = "-instantResetState:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Verbosity/LetterTile.m"
-         timestampString = "364178431.822344"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "149"
-         endingLineNumber = "149"
-         landmarkName = "-ccTouchEnded:withEvent:"
+         startingLineNumber = "116"
+         endingLineNumber = "116"
+         landmarkName = "-ccTouchBegan:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -292,11 +266,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364178647.533851"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "180"
-         endingLineNumber = "180"
+         startingLineNumber = "164"
+         endingLineNumber = "164"
          landmarkName = "-handleTapGestureRecognizer:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -344,11 +318,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364178431.822344"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55"
+         startingLineNumber = "58"
+         endingLineNumber = "58"
          landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
@@ -357,11 +331,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364178431.822344"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "139"
-         endingLineNumber = "139"
+         startingLineNumber = "123"
+         endingLineNumber = "123"
          landmarkName = "-update:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -409,11 +383,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityHudLayer.m"
-         timestampString = "364684539.463125"
+         timestampString = "365208706.336933"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "191"
-         endingLineNumber = "191"
+         startingLineNumber = "196"
+         endingLineNumber = "196"
          landmarkName = "-showAlert:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -422,11 +396,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364684539.463125"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "238"
-         endingLineNumber = "238"
+         startingLineNumber = "222"
+         endingLineNumber = "222"
          landmarkName = "-accelerometer:didAccelerate:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -435,11 +409,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364684539.463125"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "237"
-         endingLineNumber = "237"
+         startingLineNumber = "221"
+         endingLineNumber = "221"
          landmarkName = "-accelerometer:didAccelerate:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -448,11 +422,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364684539.463125"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "236"
-         endingLineNumber = "236"
+         startingLineNumber = "220"
+         endingLineNumber = "220"
          landmarkName = "-accelerometer:didAccelerate:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -461,11 +435,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364178431.822344"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "149"
-         endingLineNumber = "149"
+         startingLineNumber = "133"
+         endingLineNumber = "133"
          landmarkName = "@implementation VerbosityGameLayer"
          landmarkType = "3">
       </FileBreakpoint>
@@ -474,11 +448,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364684539.463125"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "223"
-         endingLineNumber = "223"
+         startingLineNumber = "207"
+         endingLineNumber = "207"
          landmarkName = "-shakeLetters"
          landmarkType = "5">
       </FileBreakpoint>
@@ -487,11 +461,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364684539.463125"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "220"
-         endingLineNumber = "220"
+         startingLineNumber = "204"
+         endingLineNumber = "204"
          landmarkName = "-shakeLetters"
          landmarkType = "5">
       </FileBreakpoint>
@@ -500,11 +474,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364178647.533851"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "173"
-         endingLineNumber = "173"
+         startingLineNumber = "157"
+         endingLineNumber = "157"
          landmarkName = "-handleTapGestureRecognizer:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -513,11 +487,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityHudLayer.m"
-         timestampString = "364684539.463125"
+         timestampString = "365208706.336933"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "198"
-         endingLineNumber = "198"
+         startingLineNumber = "203"
+         endingLineNumber = "203"
          landmarkName = "-showAlert:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -526,11 +500,76 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/LetterTile.m"
-         timestampString = "364178431.822344"
+         timestampString = "365208203.370425"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "148"
-         endingLineNumber = "148"
+         startingLineNumber = "115"
+         endingLineNumber = "115"
+         landmarkName = "-ccTouchBegan:withEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Verbosity/LetterTile.m"
+         timestampString = "365208203.370425"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "122"
+         endingLineNumber = "122"
+         landmarkName = "-ccTouchBegan:withEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Verbosity/LetterTile.m"
+         timestampString = "365208203.370425"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "123"
+         endingLineNumber = "123"
+         landmarkName = "-ccTouchBegan:withEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Verbosity/LetterTile.m"
+         timestampString = "365208203.370425"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "121"
+         endingLineNumber = "121"
+         landmarkName = "-ccTouchBegan:withEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Verbosity/LetterTile.m"
+         timestampString = "365208203.370425"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "128"
+         endingLineNumber = "128"
+         landmarkName = "@implementation LetterTile"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Verbosity/LetterTile.m"
+         timestampString = "365208203.370425"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "145"
+         endingLineNumber = "145"
          landmarkName = "-ccTouchEnded:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -539,11 +578,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/LetterTile.m"
-         timestampString = "364178431.822344"
+         timestampString = "365208203.370425"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "155"
-         endingLineNumber = "155"
+         startingLineNumber = "150"
+         endingLineNumber = "150"
          landmarkName = "-ccTouchEnded:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -552,76 +591,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/LetterTile.m"
-         timestampString = "364178431.822344"
+         timestampString = "365208203.370425"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "156"
-         endingLineNumber = "156"
-         landmarkName = "-ccTouchEnded:withEvent:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Verbosity/LetterTile.m"
-         timestampString = "364178431.822344"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "154"
-         endingLineNumber = "154"
-         landmarkName = "-ccTouchEnded:withEvent:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Verbosity/LetterTile.m"
-         timestampString = "364178431.822344"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "161"
-         endingLineNumber = "161"
-         landmarkName = "-ccTouchEnded:withEvent:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Verbosity/LetterTile.m"
-         timestampString = "364176441.322237"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "179"
-         endingLineNumber = "179"
-         landmarkName = "-ccTouchEnded:withEvent:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Verbosity/LetterTile.m"
-         timestampString = "364176698.459713"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "184"
-         endingLineNumber = "184"
-         landmarkName = "-ccTouchEnded:withEvent:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Verbosity/LetterTile.m"
-         timestampString = "364176699.422661"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "183"
-         endingLineNumber = "183"
+         startingLineNumber = "149"
+         endingLineNumber = "149"
          landmarkName = "-ccTouchEnded:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -695,11 +669,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityRepository.h"
-         timestampString = "364691634.711756"
+         timestampString = "365202311.225428"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "37"
-         endingLineNumber = "37"
+         startingLineNumber = "42"
+         endingLineNumber = "42"
          landmarkName = "-saveStats:"
          landmarkType = "4">
       </FileBreakpoint>
@@ -734,11 +708,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364684461.517683"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "130"
-         endingLineNumber = "130"
+         startingLineNumber = "114"
+         endingLineNumber = "114"
          landmarkName = "-update:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -760,11 +734,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364684669.224672"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "49"
-         endingLineNumber = "49"
+         startingLineNumber = "52"
+         endingLineNumber = "52"
          landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
@@ -773,11 +747,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityGameLayer.m"
-         timestampString = "364684918.302023"
+         timestampString = "365209267.832759"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "73"
-         endingLineNumber = "73"
+         startingLineNumber = "76"
+         endingLineNumber = "76"
          landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
@@ -799,11 +773,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityRepository.m"
-         timestampString = "364688569.444256"
+         timestampString = "365205560.407542"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "237"
-         endingLineNumber = "237"
+         startingLineNumber = "257"
+         endingLineNumber = "257"
          landmarkName = "-saveStats:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -825,11 +799,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityRepository.m"
-         timestampString = "364688541.963305"
+         timestampString = "365205560.407542"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "234"
-         endingLineNumber = "234"
+         startingLineNumber = "254"
+         endingLineNumber = "254"
          landmarkName = "-saveStats:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -838,11 +812,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityRepository.m"
-         timestampString = "364688548.499806"
+         timestampString = "365205560.407542"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
+         startingLineNumber = "157"
+         endingLineNumber = "157"
          landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
@@ -851,11 +825,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityRepository.m"
-         timestampString = "364688551.357487"
+         timestampString = "365205560.407542"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "114"
-         endingLineNumber = "114"
+         startingLineNumber = "119"
+         endingLineNumber = "119"
          landmarkName = "-loadDB"
          landmarkType = "5">
       </FileBreakpoint>
@@ -886,15 +860,15 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityRepository.m"
-         timestampString = "364691846.123533"
+         timestampString = "365205560.407542"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "130"
-         endingLineNumber = "130"
+         startingLineNumber = "150"
+         endingLineNumber = "150"
          landmarkName = "-loadDB"
          landmarkType = "5">
       </FileBreakpoint>
@@ -903,11 +877,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Verbosity/VerbosityRepository.m"
-         timestampString = "364691861.022446"
+         timestampString = "365205560.407542"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "266"
-         endingLineNumber = "266"
+         startingLineNumber = "286"
+         endingLineNumber = "286"
          landmarkName = "-getHistoricalBestStats"
          landmarkType = "5">
       </FileBreakpoint>
@@ -974,6 +948,71 @@
          startingLineNumber = "36"
          endingLineNumber = "36"
          landmarkName = "-init"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Verbosity/VerbosityRepository.m"
+         timestampString = "365205560.407542"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "140"
+         endingLineNumber = "140"
+         landmarkName = "-loadDB"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Verbosity/VerbosityRepository.m"
+         timestampString = "365205560.407542"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "132"
+         endingLineNumber = "132"
+         landmarkName = "-loadDB"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Verbosity/libs/cocos2d/CCLabelTTF.m"
+         timestampString = "365203249.111712"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "61"
+         endingLineNumber = "61"
+         landmarkName = "+labelWithString:dimensions:hAlignment:fontName:fontSize:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Verbosity/libs/cocos2d/CCTexture2D.m"
+         timestampString = "365203980.437425"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "671"
+         endingLineNumber = "671"
+         landmarkName = "-initWithString:dimensions:hAlignment:vAlignment:lineBreakMode:fontName:fontSize:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Verbosity/VerbosityHudLayer.m"
+         timestampString = "365208815.577523"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "122"
+         endingLineNumber = "122"
+         landmarkName = "-showAlert:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

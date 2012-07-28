@@ -61,7 +61,7 @@
         HistoricalGameStat* historical_stats = [[VerbosityRepository context] getHistoricalBestStats];
     //select max(RareWordsFound), max(score), max(wordsperminute), avg(totalwordsfound)/avg(attemptedwords)*100 as avgSuccess, max(longeststreak) from gamestats;
         if(historical_stats){
-        NSString* stats = [NSString stringWithFormat:@"Best Score: %d\nAvg Success Rate: %.2f%%\nBest WPM: %d\nLongest Streak:%d\nMost Rare Words Found:%d", 
+        NSString* stats = [NSString stringWithFormat:@"Best Score: %ld\nAvg Success Rate: %.2f%%\nBest WPM: %d\nLongest Streak:%d\nMost Rare Words Found:%d", 
                           historical_stats.BestScore, historical_stats.AvgSuccessRate, historical_stats.AvgWPM, historical_stats.BestLongestStreak, historical_stats.MostRareWordsFound];
        textView.text = stats;
         }else{

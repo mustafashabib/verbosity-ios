@@ -43,7 +43,7 @@
         textView.showsHorizontalScrollIndicator = NO;
         textView.alwaysBounceVertical = YES;
         
-        NSString* stats = [NSString stringWithFormat:@"Stats\nScore: %d\nPossible Words: %d\nFound Word: %d\nAttempted Words: %d\n%0f%% Correct\n%0f%% Found\nWPM: %d\nLongest Streak: %d\n", 
+        NSString* stats = [NSString stringWithFormat:@"Stats\nScore: %ld\nPossible Words: %d\nFound Word: %d\nAttempted Words: %d\n%0f%% Correct\n%0f%% Found\nWPM: %d\nLongest Streak: %d\n", 
                         currentState.Stats.Score,
                         currentState.CurrentWordsAndLetters.Words.count,
                         currentState.FoundWords.count,

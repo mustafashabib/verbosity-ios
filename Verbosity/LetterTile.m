@@ -28,11 +28,16 @@ static int letterID = 0;
 -(id) initWithLetter:(NSString*)letter{
     if((self = [super init]) == nil) return nil;
     _letter = letter;
-    CCSprite* sprite = [CCSprite spriteWithFile:@"tile.png"];
-    CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:letter dimensions:sprite.contentSize hAlignment:kCCTextAlignmentRight fontName:[VerbosityGameState sharedState].Stats.CurrentLanguage.Font fontSize:40];
+    
+    CCSprite* sprite = [CCSprite spriteWithFile:@"tilewhite.png"];
+    CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:letter dimensions:sprite.contentSize hAlignment:kCCTextAlignmentCenter fontName:[VerbosityGameState sharedState].Stats.CurrentLanguage.Font fontSize:40];
+   // CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:letter dimensions:sprite.contentSize hAlignment:kCCTextAlignmentRight fontName:@"ArialMT" fontSize:40];
+    
     currentLetter.color = ccc3(0, 0, 0);
-    currentLetter.anchorPoint = ccp(.3,.3);
-    currentLetter.position = ccp(sprite.position.x, sprite.position.y);
+    
+      currentLetter.position = ccp(sprite.position.x+.5*sprite.contentSize.width, sprite.position.y+.5*sprite.contentSize.height);
+ //  currentLetter.position = ccp(sprite.position.x+.5*sprite.contentSize.width, sprite.position.y+.25*sprite.contentSize.height);
+    
     _letterID = letterID++;
     [sprite addChild:currentLetter];
     [self addChild:sprite z:0 tag:_letterID];
@@ -42,9 +47,8 @@ static int letterID = 0;
 
 }
 
--(void)savePositionAndRotation{
+-(void)savePosition{
     _old_position = position_;
-    _old_rotation = rotation_;
 }
 
 -(CGSize) getSize
@@ -73,7 +77,6 @@ static int letterID = 0;
     [sprite setScale:1.0];
     
     [self setPosition:_old_position];
-    [self setRotation:_old_rotation];
     if(should_disable){
         _state = kLetterStateDisabled;
     }
@@ -94,9 +97,7 @@ static int letterID = 0;
     [sprite setScale:1.0];
     
     CCMoveTo *moveToOriginalSlotAction = [[CCMoveTo alloc] initWithDuration:.125 position:_old_position];
-    CCRotateTo *rotateToOriginal = [[CCRotateTo alloc] initWithDuration:.125 angle:_old_rotation];
     [self runAction:moveToOriginalSlotAction];
-    [self runAction:rotateToOriginal];
     
 }
 
@@ -159,7 +160,6 @@ static int letterID = 0;
         
     }else if(_state != kLetterStateUsed){
         _old_position = self.position;
-        _old_rotation = self.rotation;
         _state = kLetterStateUsed;
         //[sprite setColor:ccc3(128, 128, 128)];   
         [sprite setScale:1.0];

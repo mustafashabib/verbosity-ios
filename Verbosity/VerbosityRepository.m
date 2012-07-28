@@ -13,7 +13,6 @@
 #import "NSMutableArray+Shuffling.h"
 #import "cocos2d.h"
 
-#define kMinimumWordsForGame 20
 
 static VerbosityRepository *_context;
 static sqlite3* _db;
@@ -26,6 +25,12 @@ static sqlite3* _db;
 	}
 
 	return _context;
+}
+
++ (void) loadDatabase{
+    if(_context == nil) {
+		_context = [[VerbosityRepository alloc] init];        
+	}
 }
 
 - (BOOL)_executeNonQuery:(NSString*)sql_query{
@@ -50,7 +55,7 @@ static sqlite3* _db;
     //backup db
     
     NSString* dbFilename = [NSString stringWithFormat:@"%@.sqlite3", kDatabaseName];
-    NSString* dbBackupFilename = [NSString stringWithFormat:@"backup_%@.sqlite3"];
+    NSString* dbBackupFilename = [NSString stringWithFormat:@"%@_backup.sqlite3",kDatabaseName];
     NSError *error;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -112,7 +117,9 @@ static sqlite3* _db;
 
 - (void)loadDB{
     sqlite3_close(_db);
-    //copy db to docs path if necessary. always open from docs.
+    
+    //copy db to docs path if necessary. always open from docs since we need write access
+
     NSString* dbFilename = [NSString stringWithFormat:@"%@.sqlite3", kDatabaseName];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
@@ -120,10 +127,23 @@ static sqlite3* _db;
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
     NSString *docDBPath = [documentsDirectory stringByAppendingPathComponent:dbFilename];
+    NSNumber *dbVersion = (NSNumber*)[[NSUserDefaults standardUserDefaults] objectForKey:@"dbversion"];
+    BOOL need_to_copy_db_from_resources = NO;
+    if(dbVersion == nil || [dbVersion intValue] != kDBVersion){
+        need_to_copy_db_from_resources = YES;
+        //todo add migration logic to copy the user stats to the new db
+    }
+    else if([fileManager fileExistsAtPath:docDBPath] == NO){
+        need_to_copy_db_from_resources = YES; //db doesn't exist in docs
+    }
     
-    if ([fileManager fileExistsAtPath:docDBPath] == NO) {
+    if (need_to_copy_db_from_resources) {
+        if([fileManager fileExistsAtPath:docDBPath]){
+            [fileManager removeItemAtPath:docDBPath error:nil]; //rmeove it if it's there
+        }
         NSString *resourcePath = [[NSBundle mainBundle] pathForResource:kDatabaseName  ofType:@"sqlite3"];
         [fileManager copyItemAtPath:resourcePath toPath:docDBPath error:&error];
+        [[NSUserDefaults standardUserDefaults] setInteger:kDBVersion forKey:@"dbversion"];
     }
     
     if(sqlite3_open([docDBPath UTF8String], &_db) != SQLITE_OK) {          
@@ -193,7 +213,7 @@ static sqlite3* _db;
 		while(sqlite3_step(statement) == SQLITE_ROW) {
             if(!got_letters){
                 char *randomChars = (char *)sqlite3_column_text(statement,0);//must always be six letters long
-                for(int i = 0; i < 6;i++){
+                for(int i = 0; i < length;i++){
                     NSString* current_letter = [NSString stringWithFormat:@"%c", randomChars[i]];
                     [letters addObject:current_letter];
                 }

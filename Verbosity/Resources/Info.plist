@@ -37,8 +37,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Code Pro Light Demo.otf</string>
-		<string>Code Pro Demo.otf</string>
+		<string>AmerType Md BT.ttf</string>
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>

@@ -13,7 +13,7 @@
 
 -(LetterSlot*) init{
     if((self = [super init]) == nil) return nil;
-    CCSprite* sprite = [CCSprite spriteWithFile:@"tile-shadow.png"];
+    CCSprite* sprite = [CCSprite spriteWithFile:@"tileblack.png"];
     _slotID = kLetterSlotID++;
     [self addChild:sprite z:0 tag:_slotID];
     return self;

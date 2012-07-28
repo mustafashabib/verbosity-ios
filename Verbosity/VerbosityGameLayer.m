@@ -30,8 +30,11 @@
 	VerbosityGameLayer *layer = [VerbosityGameLayer node];
     
     VerbosityHudLayer *hud = [VerbosityHudLayer node];
-    CCLayerColor *bg = [CCLayerColor layerWithColor:ccc4(128,128,128,255)];
-    
+    CCLayerColor *bg = [CCLayerColor layerWithColor:ccc4(255,255,255,255)];
+    CCSprite* bg_sprite = [CCSprite spriteWithFile:@"background.jpg"];
+    bg_sprite.anchorPoint = ccp(0,0);
+    [bg addChild:bg_sprite z:0 tag:kBackgroundSpriteTag];
+    bg_sprite.opacity = 128;
     [scene addChild:bg z:0 tag:kBackgroundTag];
 	// add layer as a child to scene
 	[scene addChild: layer z:0];
@@ -82,44 +85,25 @@
     
     VerbosityGameState* current_state = [VerbosityGameState sharedState];
     CGSize winSize = [CCDirector sharedDirector].winSize;
-    float widthSpacing = (winSize.width/current_state.Stats.CurrentLanguage.MaximumWordLength+1.0f)/(current_state.Stats.CurrentLanguage.MaximumWordLength+1.0f);
-    
-    BOOL useSpacing = NO;
+   // float widthSpacing = (winSize.width/current_state.Stats.CurrentLanguage.MaximumWordLength+1.0f)/(current_state.Stats.CurrentLanguage.MaximumWordLength+1.0f);
+    float widthSpacing = (.025f * winSize.width);
+
     srand(time(NULL));
     for(int i = 0; i < current_state.Stats.CurrentLanguage.MaximumWordLength; i++){
-        
-        if(i>0){
-            useSpacing = YES;
-        }
-        
+                
         NSString* current_letter = (NSString*)[current_state.CurrentWordsAndLetters.Letters objectAtIndex:i];
         LetterTile* lt = [[LetterTile alloc] initWithLetter:current_letter];
         LetterSlot* ls = [[LetterSlot alloc] init];
         CGSize letterSize = [lt getSize];
-        if(useSpacing){
-            lt.position =  ccp((i*letterSize.width + letterSize.width *.5f)+widthSpacing*i, winSize.height*.75);
-            ls.position = ccp((i*letterSize.width + letterSize.width * .5f) +widthSpacing*i, winSize.height*.75 - letterSize.height*1.05);
+        //position =
+        //(widthSpacing + letterSize.width)*i + widthSpacing;
+        float x = ((widthSpacing + letterSize.width)*i + widthSpacing) + letterSize.width*.5;
+
+        lt.position =  ccp(x, winSize.height*.75);
+        ls.position = ccp(x, winSize.height*.75 - letterSize.height*1.25);
           
-        }else{
-            lt.position = ccp(i*letterSize.width + letterSize.width *.5f, winSize.height*.75); 
-            ls.position = ccp((i*letterSize.width + letterSize.width * .5f), winSize.height*.75 - letterSize.height*1.05);            
-        }
         
-        float val = arc4random()%5;
-        
-        CCLOG(@"%f is random", val);
-        if(val < 1){
-            lt.rotation = 15;
-        }else if(val >= 1 && val < 2){
-            lt.rotation = 5;
-        }else if(val>= 2 && val < 3){
-            lt.rotation = -5;
-        }
-        else
-        {
-            lt.rotation = -15;
-        }
-        [lt savePositionAndRotation];
+        [lt savePosition];
         [self addChild:lt z:1 tag:kLetterTileTagStart+i];
         [self addChild:ls z:0 tag:kLetterSlotID+i];
     }
@@ -166,7 +150,7 @@
 }
 
 - (void) handleTapGestureRecognizer:(UITapGestureRecognizer*)sender{
-      if (sender.state == UIGestureRecognizerStateEnded && [[VerbosityGameState sharedState].CurrentWordAttempt length] > 0)     
+      if (sender.state == UIGestureRecognizerStateEnded && [[VerbosityGameState sharedState].CurrentWordAttempt length] > 1)
       { 
            BOOL is_valid = [[VerbosityGameState sharedState] submitWordAttempt];
           CCLOG(@"Got tap gesture (two fingers tapped once)");

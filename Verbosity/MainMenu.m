@@ -9,6 +9,7 @@
 #import "MainMenu.h"
 #import "VerbosityGameLayer.h"
 #import "GameStatsLayer.h"
+#import "VerbosityRepository.h"
 
 @implementation MainMenu
 +(CCScene *) scene
@@ -48,7 +49,8 @@
         [menu setPosition:ccp( size.width/2, size.height/2)];
         
         
-        [self addChild: menu];	
+        [self addChild: menu];
+        [VerbosityRepository loadDatabase];
         
     }
     return self;

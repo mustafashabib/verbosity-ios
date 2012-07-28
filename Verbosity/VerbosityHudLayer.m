@@ -25,7 +25,7 @@
         _timeLabel.position = CGPointMake(winSize.width/2, winSize.height);
         _timeLabel.anchorPoint = CGPointMake(.5f, 1.0f);
     
-        _yourScore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %d", current_state.Stats.Score] fontName:@"ArialRoundedMTBold" fontSize:12];
+        _yourScore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %ld", current_state.Stats.Score] fontName:@"ArialRoundedMTBold" fontSize:12];
         _yourScore.position = CGPointMake(0, winSize.height);
         _yourScore.anchorPoint = ccp(0,1);
     
@@ -53,7 +53,7 @@
         {
             NSNumber* popularity = alert.Data;
             
-            CCLOG(@"Found rare word with popularity %d", popularity);
+            CCLOG(@"Found rare word with popularity %ld", [popularity longValue]);
             CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
             CCLayerColor* label_bg = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)];
             
@@ -120,10 +120,13 @@
             //particle effects
             //color of layer
             CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
-            CCTintTo* fadeToNormalColor = [[CCTintTo alloc] initWithDuration:.06126 red:bg.color.r green:bg.color.g blue:bg.color.b];
-            CCTintTo* fadeToWhiteAction = [[CCTintTo alloc] initWithDuration:.125 red:255 green:255 blue:255];
-            CCSequence* sequence = [CCSequence actions:fadeToWhiteAction, fadeToNormalColor, fadeToWhiteAction, fadeToNormalColor, nil];
-            [bg runAction:sequence];
+            CCSprite* bg_sprite = (CCSprite*)[bg getChildByTag:kBackgroundSpriteTag];
+            
+            CCTintTo* fadeToNormalColor = [[CCTintTo alloc] initWithDuration:.06126 red:bg_sprite.color.r green:bg_sprite.color.g blue:bg_sprite.color.b];
+            
+            CCTintTo* fadeToGreenAction = [[CCTintTo alloc] initWithDuration:.125 red:0 green:255 blue:0];
+            CCSequence* sequence = [CCSequence actions:fadeToGreenAction, fadeToNormalColor, fadeToGreenAction, fadeToNormalColor, nil];
+            [bg_sprite runAction:sequence];
         break;
             
         }
@@ -167,10 +170,13 @@
         case kHotStreakEnded:{
             CCLOG(@"streak ended.");
             CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
-            CCTintTo* fadeToNormalColor = [[CCTintTo alloc] initWithDuration:.06126 red:bg.color.r green:bg.color.g blue:bg.color.b];
+            CCSprite* bg_sprite = (CCSprite*)[bg getChildByTag:kBackgroundSpriteTag];
+            
+
+            CCTintTo* fadeToNormalColor = [[CCTintTo alloc] initWithDuration:.06126 red:bg_sprite.color.r green:bg_sprite.color.g blue:bg_sprite.color.b];
             CCTintTo* fadeToRed = [[CCTintTo alloc] initWithDuration:.125 red:255 green:0 blue:0];
             CCSequence* sequence = [CCSequence actions:fadeToRed, fadeToNormalColor, fadeToRed, fadeToNormalColor, nil];
-            [bg runAction:sequence];
+            [bg_sprite runAction:sequence];
             CCLayerColor* label_bg = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)];
             
             label_bg.ignoreAnchorPointForPosition = NO;
@@ -213,7 +219,10 @@
             
             CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
             [bg stopAllActions];
-            CCTintTo* fadeToNormal = [CCTintTo actionWithDuration:.5 red:bg.color.r green:bg.color.g blue:bg.color.b];
+            CCSprite* bg_sprite = (CCSprite*)[bg getChildByTag:kBackgroundSpriteTag];
+            [bg_sprite stopAllActions];
+            
+            CCTintTo* fadeToNormal = [CCTintTo actionWithDuration:.5 red:bg_sprite.color.r green:bg_sprite.color.g blue:bg_sprite.color.b];
             CCTintTo* fadeToYellow = [[CCTintTo alloc] initWithDuration:.5 red:255 green:255 blue:0];
            /* CCTintTo* fadeToMagenta = [[CCTintTo alloc] initWithDuration:.06126*duration_multiplier red:255 green:0 blue:255];
             CCTintTo* fadeToCyan = [[CCTintTo alloc] initWithDuration:.06126*duration_multiplier red:0 green:255 blue:255];
@@ -230,7 +239,7 @@
             CCRepeat* repeat = [CCRepeat actionWithAction:sequence times:5*duration_multiplier];
            
             
-            [bg runAction:repeat];
+            [bg_sprite runAction:repeat];
 
             break;
         }
@@ -309,10 +318,11 @@
         case kFailedWordAttempt:{
             CCLOG(@"failed word attempt.");
             CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
-            CCTintTo* fadeToNormalColor = [[CCTintTo alloc] initWithDuration:.06126 red:bg.color.r green:bg.color.g blue:bg.color.b];
+            CCSprite* bg_sprite = (CCSprite*)[bg getChildByTag:kBackgroundSpriteTag];
+            CCTintTo* fadeToNormalColor = [[CCTintTo alloc] initWithDuration:.06126 red:bg_sprite.color.r green:bg_sprite.color.g blue:bg_sprite.color.b];
             CCTintTo* fadeToRed = [[CCTintTo alloc] initWithDuration:.125 red:255 green:0 blue:0];
             CCSequence* sequence = [CCSequence actions:fadeToRed, fadeToNormalColor, fadeToRed, fadeToNormalColor, nil];
-            [bg runAction:sequence];
+            [bg_sprite runAction:sequence];
             break;
         }
         default:
@@ -323,7 +333,7 @@
 -(void)update:(ccTime)delta{
    
     [_timeLabel setString:[NSString stringWithFormat:@"%f", [VerbosityGameState sharedState].TimeLeft]];
-    [_yourScore setString:[NSString stringWithFormat:@"Score: %d/%d words",[VerbosityGameState sharedState].Stats.Score,[[VerbosityGameState sharedState].FoundWords count]]];
+    [_yourScore setString:[NSString stringWithFormat:@"Score: %ld/%d words",[VerbosityGameState sharedState].Stats.Score,[[VerbosityGameState sharedState].FoundWords count]]];
     
     if(![[VerbosityGameState sharedState] isGameActive]){
         [self showRestartMenu];        
