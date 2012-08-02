@@ -18,6 +18,7 @@
 @synthesize Score = _score;
 @synthesize TotalWordsFound = _total_words_found;
 @synthesize WordsPerMinute = _words_per_minute;
+@synthesize LongestColdStreak = _longest_cold_streak;
 
 -(id)init{
     if(self = [super init]){
@@ -26,6 +27,7 @@
         
         _date_played = [NSDate date];
         _longest_streak = 0;
+        _longest_cold_streak = 0;
         _rare_words_found = 0;
         _score = 0;
         _total_words_found = 0;
@@ -41,7 +43,7 @@
     return self;
 }
 
--(id)initWithAttemptedWords:(int)attempted_words andCurrentLanguage:(Language*)language andDatePlayed:(NSDate*)date andLongestStreak:(int)longest_streak andRareWordsFound:(int)rare_words_found andScore:(long)score andTotalWordsFound:(int)total_words_found andWordsPerMinute:(int)words_per_minute{
+-(id)initWithAttemptedWords:(int)attempted_words andCurrentLanguage:(Language*)language andDatePlayed:(NSDate*)date andLongestStreak:(int)longest_streak andLongestColdStreak:(int)longest_cold_streak andRareWordsFound:(int)rare_words_found andScore:(long)score andTotalWordsFound:(int)total_words_found andWordsPerMinute:(int)words_per_minute{
     if(self = [super init]){
         _attempted_words = attempted_words;
         _current_language = language;
@@ -50,9 +52,14 @@
         _rare_words_found = rare_words_found;
         _score = score;
         _total_words_found = total_words_found;
+        _longest_cold_streak = longest_cold_streak;
         _words_per_minute = words_per_minute;
     }
     return self;
+}
+//computed property
+-(int) TotalWordsMissed{
+    return _attempted_words - _total_words_found;
 }
 
 -(void)resetStats{
@@ -61,6 +68,7 @@
     _longest_streak = 0;
     _rare_words_found = 0;
     _score = 0;
+    _longest_cold_streak = 0;
     _total_words_found = 0;
     _words_per_minute = 0;
     //keep language the same

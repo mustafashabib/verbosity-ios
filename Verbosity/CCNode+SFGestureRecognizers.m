@@ -171,6 +171,9 @@ static NSString *const UIGestureRecognizerSFGestureRecognizersPassingDelegateKey
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
+    if(originalDelegate == nil){
+        return NO;
+    }
     if ([originalDelegate respondsToSelector:@selector(gestureRecognizerShouldBegin:)]) {
         return [originalDelegate gestureRecognizerShouldBegin:gestureRecognizer];
     }
@@ -179,6 +182,10 @@ static NSString *const UIGestureRecognizerSFGestureRecognizersPassingDelegateKey
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
+    if(originalDelegate == nil){
+        return NO;
+    }
+
     if ([originalDelegate respondsToSelector:@selector(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:)]) {
         return [originalDelegate gestureRecognizer:gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:otherGestureRecognizer];
     }

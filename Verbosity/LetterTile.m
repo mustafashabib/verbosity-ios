@@ -70,7 +70,6 @@ static int letterID = 0;
 
 -(void)instantResetState:(BOOL)should_disable{
     
-    [self stopAllActions];
     _state = kLetterStateUntouched;
     CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
     [sprite setColor:ccc3(255, 255, 255)];
@@ -85,10 +84,6 @@ static int letterID = 0;
     
 }
 -(void)resetState{
-    if(_state == kLetterStateUntouched){
-        return;
-    }
-    
     [self stopAllActions];
     _state = kLetterStateUntouched;
     
@@ -111,19 +106,23 @@ static int letterID = 0;
     if (_state != kLetterStateUntouched && _state != kLetterStateUsed) return NO;
     if ( ![self containsTouchLocation:touch] ) return NO;
     
-    
-    if(_state != kLetterStateUsed){
-        NSLog(@"touch began for %@.", _letter);
-        id scaleUpAction =  [CCScaleTo actionWithDuration:.35 scaleX:1.25 scaleY:1.25];
-        id scaleDownAction = [CCScaleTo actionWithDuration:0.35 scaleX:1.0 scaleY:1.0];
-        id seq = [CCSequence actions:scaleUpAction,scaleDownAction, nil];
-        id myAction = [CCRepeatForever actionWithAction:seq];
-        [self runAction:myAction];
+   
+    //only listen to touches for "USED" and "Untouched"
+    if(_state == kLetterStateUntouched){
+        _startTouchState = kLetterStateUntouched;
+        
+        CCLOG(@"touch began for %@.", _letter);
         _state = kLetterStateTouched;
         
+        return YES;
     }
+    if(_state == kLetterStateUsed){
+        _startTouchState = kLetterStateUsed;
+        
+        return YES;
+    }
+    return NO;
    
-    return YES;
 }
 
 
@@ -149,30 +148,22 @@ static int letterID = 0;
     NSAssert(_state == kLetterStateTouched || _state == kLetterStateUsed, @"Letter - Unexpected state!");  
     CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
     NSAssert([sprite isKindOfClass:[CCSprite class]], @"Letter -child with tag %d is not sprite", _letterID);
-    
-    [self stopAllActions];
-    id resetScale = [CCEaseIn actionWithAction:[CCScaleTo actionWithDuration:0.25 scale:1.0]];
-    [self runAction:resetScale];
-    if ( ![self containsTouchLocation:touch] ) {
-        _state = kLetterStateUntouched;
-        [sprite setColor:ccc3(255, 255, 255)];
-        [sprite setScale:1.0];
+
+    if ( ![self containsTouchLocation:touch] ) {//they let go and finger not on letter
+        _state = _startTouchState;//reset state back to what it was
         
-    }else if(_state != kLetterStateUsed){
-        _old_position = self.position;
-        _state = kLetterStateUsed;
-        //[sprite setColor:ccc3(128, 128, 128)];   
-        [sprite setScale:1.0];
+    }else if(_startTouchState == kLetterStateUntouched){//about to move into a slot
+        _old_position = self.position;//save old position
+        _state = kLetterStateUsed;//set state to used
         
         [[VerbosityGameState sharedState] updateWordAttempt:_letter withData:self];//modify word attempt
         int position = [[VerbosityGameState sharedState].CurrentWordAttempt length] -1;
         
         LetterSlot* slot = (LetterSlot*)[[self parent] getChildByTag:kLetterSlotID + position];
         CCMoveTo *moveToSlotAction = [[CCMoveTo alloc] initWithDuration:.125 position:slot.position];
-        CCRotateTo *rotateToZero = [[CCRotateTo alloc] initWithDuration:.125 angle:0];
-        [self runAction:rotateToZero];
-        [self runAction:moveToSlotAction];
-    }else if(_state == kLetterStateUsed){
+        [self runAction:moveToSlotAction]; //move to slot
+        
+    }else if(_state == kLetterStateUsed){//about to put back into original position
         LetterTile* last_letter = [[VerbosityGameState sharedState].SelectedLetters peek];
         if(self == last_letter)
             {

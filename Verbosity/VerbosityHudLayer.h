@@ -10,15 +10,17 @@
 #import "cocos2d.h"
 #import "VerbosityAlert.h"
 
+#define kMaxAlertsToShow 5
+
 @interface VerbosityHudLayer : CCLayer {
     CCLabelTTF *_yourScore;
     CCLabelTTF *_timeLabel;
     CCSprite *_pauseButton;
+    NSMutableArray *_current_labels;
 }
 
 
 -(void)showPauseMenu;
 -(void)showRestartMenu;
--(void)showAlert:(VerbosityAlert*)alert;
 
 @end

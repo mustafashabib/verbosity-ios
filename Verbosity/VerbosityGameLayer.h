@@ -16,6 +16,7 @@
     CCLabelTTF *_yourStreak;
     CCArray *_otherScores;
     BOOL _shake_once;
+    BOOL _start_game;
     
 }
 // returns a CCScene that contains the HelloWorldLayer as the only child

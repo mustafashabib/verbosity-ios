@@ -16,12 +16,14 @@
     int _avg_wpm;
     float _avg_success_rate;
     int _best_longest_streak;
+    int _worst_cold_streak;
 }
 @property(nonatomic) int MostRareWordsFound;
 @property(nonatomic) long BestScore;
 @property(nonatomic) int AvgWPM;
 @property(nonatomic) float AvgSuccessRate;
 @property(nonatomic) int BestLongestStreak;
+@property(nonatomic) int WorstColdStreak;
 
--(id) initWithMostRareWordsFound:(int)most_rare_words andBestScore:(long)best_score andAvgWPM:(int)avg_wpm andAvgSuccessRate:(float)avg_success_rate andBestLongestStreak:(int)best_longest_streak;
+-(id) initWithMostRareWordsFound:(int)most_rare_words andBestScore:(long)best_score andAvgWPM:(int)avg_wpm andAvgSuccessRate:(float)avg_success_rate andBestLongestStreak:(int)best_longest_streak andWorstColdStreak:(int)worst_cold_streak;
 @end

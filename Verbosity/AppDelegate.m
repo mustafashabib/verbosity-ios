@@ -17,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [TestFlight takeOff:@"0720a5d7fbaa84c532f261d15814e864_MTEwODk5MjAxMi0wNy0xNiAyMDo1NjoyNy4yNjQ2MDQ"];
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
@@ -35,7 +36,7 @@
 	director_.wantsFullScreenLayout = YES;
 
 	// Display FSP and SPF
-	[director_ setDisplayStats:YES];
+	[director_ setDisplayStats:NO];
 
 	// set FPS at 60
 	[director_ setAnimationInterval:1.0/60];

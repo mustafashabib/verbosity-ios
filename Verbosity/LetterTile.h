@@ -19,6 +19,7 @@ typedef enum {
 
 @interface LetterTile : CCNode <CCTargetedTouchDelegate>{
     int _letterID;
+    LetterState _startTouchState;
     LetterState _state;
 @private 
     NSString* _letter;

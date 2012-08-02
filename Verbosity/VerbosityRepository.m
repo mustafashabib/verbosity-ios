@@ -27,11 +27,7 @@ static sqlite3* _db;
 	return _context;
 }
 
-+ (void) loadDatabase{
-    if(_context == nil) {
-		_context = [[VerbosityRepository alloc] init];        
-	}
-}
+
 
 - (BOOL)_executeNonQuery:(NSString*)sql_query{
     sqlite3_stmt *statement;
@@ -246,7 +242,7 @@ static sqlite3* _db;
     long today_in_unix_time = (long)[today timeIntervalSince1970];
     
     /*bind values*/
-    NSString *query = [NSString stringWithFormat:@"insert into gamestats(datePlayed,RareWordsFound , Score, RelatedLanguageID, WordsPerMinute, AttemptedWords, LongestStreak,TotalWordsFound) values(%ld, %d, %ld, %d, %d, %d, %d, %d);", today_in_unix_time, stat.RareWordsFound, stat.Score, stat.CurrentLanguage.ID, stat.WordsPerMinute, stat.AttemptedWords, stat.LongestStreak, stat.TotalWordsFound];
+    NSString *query = [NSString stringWithFormat:@"insert into gamestats(datePlayed,RareWordsFound , Score, RelatedLanguageID, WordsPerMinute, AttemptedWords, LongestStreak,LongestColdStreak,TotalWordsFound) values(%ld, %d, %ld, %d, %d, %d, %d, %d, %d);", today_in_unix_time, stat.RareWordsFound, stat.Score, stat.CurrentLanguage.ID, stat.WordsPerMinute, stat.AttemptedWords, stat.LongestStreak, stat.LongestColdStreak, stat.TotalWordsFound];
     
    
 	sqlite3_stmt *statement;
@@ -283,7 +279,7 @@ static sqlite3* _db;
 -(HistoricalGameStat*) getHistoricalBestStats{
     //select max(RareWordsFound), max(score), max(wordsperminute), avg(totalwordsfound)/avg(attemptedwords) as avgSuccess, max(longeststreak) from gamestats;
     
-    NSString *query = @"select max(RareWordsFound), max(score), max(wordsperminute), avg(totalwordsfound)/avg(attemptedwords)*100 as avgSuccess, max(longeststreak) from gamestats";
+    NSString *query = @"select max(RareWordsFound), max(score), max(wordsperminute), avg(totalwordsfound)/avg(attemptedwords)*100 as avgSuccess, max(longeststreak), max(longestcoldstreak) from gamestats";
     
     HistoricalGameStat *historical_stat = nil;
 	sqlite3_stmt *statement;
@@ -296,8 +292,9 @@ static sqlite3* _db;
             int wpm = sqlite3_column_int(statement, 2);
             float avg_success = sqlite3_column_double(statement, 3);
             int longest_streak = sqlite3_column_int(statement, 4);
+            int worst_cold_streak = sqlite3_column_int(statement, 5);
             
-            historical_stat = [[HistoricalGameStat alloc] initWithMostRareWordsFound:rare_words_found andBestScore:score andAvgWPM:wpm andAvgSuccessRate:avg_success andBestLongestStreak:longest_streak];
+            historical_stat = [[HistoricalGameStat alloc] initWithMostRareWordsFound:rare_words_found andBestScore:score andAvgWPM:wpm andAvgSuccessRate:avg_success andBestLongestStreak:longest_streak andWorstColdStreak:worst_cold_streak];
             
         }
 		sqlite3_finalize(statement);
@@ -310,7 +307,7 @@ static sqlite3* _db;
 -(HistoricalGameStat*) getHistoricalBestStatsForLanguage:(int)language_id{
     //select max(RareWordsFound), max(score), max(wordsperminute), avg(totalwordsfound)/avg(attemptedwords) as avgSuccess, max(longeststreak) from gamestats;
     
-    NSString *query = [NSString stringWithFormat:@"select max(RareWordsFound), max(score), max(wordsperminute), avg(totalwordsfound)/avg(attemptedwords)*100 as avgSuccess, max(longeststreak) from gamestats where relatedlanguageid = %d", language_id];
+    NSString *query = [NSString stringWithFormat:@"select max(RareWordsFound), max(score), max(wordsperminute), avg(totalwordsfound)/avg(attemptedwords)*100 as avgSuccess, max(longeststreak), max(longestcoldstreak) from gamestats where relatedlanguageid = %d", language_id];
     
     HistoricalGameStat *historical_stat = nil;
 	sqlite3_stmt *statement;
@@ -323,8 +320,9 @@ static sqlite3* _db;
             int wpm = sqlite3_column_int(statement, 2);
             float avg_success = sqlite3_column_double(statement, 3);
             int longest_streak = sqlite3_column_int(statement, 4);
+            int worst_cold_streak = sqlite3_column_int(statement, 5);
             
-            historical_stat = [[HistoricalGameStat alloc] initWithMostRareWordsFound:rare_words_found andBestScore:score andAvgWPM:wpm andAvgSuccessRate:avg_success andBestLongestStreak:longest_streak];
+            historical_stat = [[HistoricalGameStat alloc] initWithMostRareWordsFound:rare_words_found andBestScore:score andAvgWPM:wpm andAvgSuccessRate:avg_success andBestLongestStreak:longest_streak andWorstColdStreak:worst_cold_streak];
             
         }
 		sqlite3_finalize(statement);
@@ -334,7 +332,7 @@ static sqlite3* _db;
 
 
 -(GameStat*) getAverageStats{
-    NSString *query = @"select avg(RareWordsFound) as RareWordsFound, avg(score) as score, avg(WordsPerMinute) as WordsPerMinute, avg(AttemptedWords) as AttemptedWords, avg(LongestStreak),avg(TotalWordsFound) from GameStats";
+    NSString *query = @"select avg(RareWordsFound) as RareWordsFound, avg(score) as score, avg(WordsPerMinute) as WordsPerMinute, avg(AttemptedWords) as AttemptedWords, avg(LongestStreak),avg(TotalWordsFound),avg(LongestColdStreak) from GameStats";
     
     GameStat *avg_stat = nil;
 	sqlite3_stmt *statement;
@@ -346,9 +344,10 @@ static sqlite3* _db;
                 long score = sqlite3_column_int64(statement, 1);
                 int wpm = sqlite3_column_int(statement, 2);
                 int attempted_words = sqlite3_column_int(statement, 3);
-                int longest_streak = sqlite3_column_int(statement, 4);
-                int total_words_found = sqlite3_column_int(statement, 5);
-             avg_stat = [[GameStat alloc] initWithAttemptedWords:attempted_words andCurrentLanguage:nil andDatePlayed:nil andLongestStreak:longest_streak andRareWordsFound:rare_words_found andScore:score andTotalWordsFound:total_words_found andWordsPerMinute:wpm];
+            int longest_streak = sqlite3_column_int(statement, 4);
+            int total_words_found = sqlite3_column_int(statement, 5);
+            int longest_cold_streak = sqlite3_column_int(statement, 6);
+            avg_stat = [[GameStat alloc] initWithAttemptedWords:attempted_words andCurrentLanguage:nil andDatePlayed:nil andLongestStreak:longest_streak andLongestColdStreak:longest_cold_streak  andRareWordsFound:rare_words_found andScore:score andTotalWordsFound:total_words_found andWordsPerMinute:wpm];
             
         }
 		sqlite3_finalize(statement);
@@ -357,7 +356,7 @@ static sqlite3* _db;
 }
 
 -(GameStat*) getAverageStatsForLanguage:(int)language_id{
-    NSString *query = [NSString stringWithFormat:@"select avg(RareWordsFound) as RareWordsFound, avg(score) as score, avg(WordsPerMinute) as WordsPerMinute, avg(AttemptedWords) as AttemptedWords, avg(LongestStreak),avg(TotalWordsFound) from GameStats where RelatedLanguageID = %d", language_id];
+    NSString *query = [NSString stringWithFormat:@"select avg(RareWordsFound) as RareWordsFound, avg(score) as score, avg(WordsPerMinute) as WordsPerMinute, avg(AttemptedWords) as AttemptedWords, avg(LongestStreak),avg(TotalWordsFound),avg(LongestColdStreak)  from GameStats where RelatedLanguageID = %d", language_id];
     
     GameStat *avg_stat = nil;
 	sqlite3_stmt *statement;
@@ -371,7 +370,8 @@ static sqlite3* _db;
             int attempted_words = sqlite3_column_int(statement, 3);
             int longest_streak = sqlite3_column_int(statement, 4);
             int total_words_found = sqlite3_column_int(statement, 5);
-            avg_stat = [[GameStat alloc] initWithAttemptedWords:attempted_words andCurrentLanguage:nil andDatePlayed:nil andLongestStreak:longest_streak andRareWordsFound:rare_words_found andScore:score andTotalWordsFound:total_words_found andWordsPerMinute:wpm];
+            int longest_cold_streak = sqlite3_column_int(statement, 6);
+            avg_stat = [[GameStat alloc] initWithAttemptedWords:attempted_words andCurrentLanguage:nil andDatePlayed:nil andLongestStreak:longest_streak andLongestColdStreak:(int)longest_cold_streak andRareWordsFound:rare_words_found andScore:score andTotalWordsFound:total_words_found andWordsPerMinute:wpm];
             
         }
 		sqlite3_finalize(statement);

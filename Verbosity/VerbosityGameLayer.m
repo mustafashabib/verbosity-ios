@@ -18,6 +18,7 @@
 #import "VerbosityGameConstants.h"
 #import "NSMutableArray+Stack.h"
 
+
 @implementation VerbosityGameLayer
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
 
@@ -30,8 +31,8 @@
 	VerbosityGameLayer *layer = [VerbosityGameLayer node];
     
     VerbosityHudLayer *hud = [VerbosityHudLayer node];
-    CCLayerColor *bg = [CCLayerColor layerWithColor:ccc4(255,255,255,255)];
-    CCSprite* bg_sprite = [CCSprite spriteWithFile:@"background.jpg"];
+    CCLayerColor *bg = [CCLayerColor layerWithColor:ccc4(256,256,256,255)];
+    CCSprite* bg_sprite = [CCSprite spriteWithFile:@"background_game.jpg"];
     bg_sprite.anchorPoint = ccp(0,0);
     [bg addChild:bg_sprite z:0 tag:kBackgroundSpriteTag];
     bg_sprite.opacity = 128;
@@ -49,35 +50,76 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init])) {
-        self.isTouchEnabled = YES;
-        self.isAccelerometerEnabled = YES;
-       
-        /*add swipe and multitap gesture recognizers*/
-        UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleCancelWordAttemptGestureRecognizer:)];
-        [self addGestureRecognizer:swipeGestureRecognizer];
-        swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
-        swipeGestureRecognizer.delegate = self;
+        _start_game = NO;
+        CCLabelTTF* loading = [CCLabelTTF labelWithString:@"Finding Letters..." fontName:@"ArialMT" fontSize:48];
+        CGSize winSize = [CCDirector sharedDirector].winSize;
+        loading.ignoreAnchorPointForPosition = NO;
+        loading.anchorPoint = ccp(.5,.5);
+        loading.position = ccp(winSize.width/2,winSize.height/2);
+        [self addChild:loading];
+               
+        dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+        dispatch_async(queue, ^{
+            [[VerbosityGameState sharedState] setupGame];
         
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestureRecognizer:)];
-        [self addGestureRecognizer:tapGestureRecognizer];
-        tapGestureRecognizer.numberOfTapsRequired = 1;
-        tapGestureRecognizer.numberOfTouchesRequired = 2; //touch once with two fingers 
-        tapGestureRecognizer.delegate = self;
-/*
-        UILongPressGestureRecognizer *longrec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-        [self addGestureRecognizer:longrec];
- */
-        /*add shake gesture handler*/
-        [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1/60];
-        _shake_once = false;
+            dispatch_async(dispatch_get_main_queue(),^{
+                self.isTouchEnabled = YES;
+                self.isAccelerometerEnabled = YES;
+                
+                /*add swipe and multitap gesture recognizers*/
+                UISwipeGestureRecognizer *swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleCancelWordAttemptGestureRecognizer:)];
+                [self addGestureRecognizer:swipeGestureRecognizer];
+                swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
+                swipeGestureRecognizer.delegate = self;
+                
+                UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestureRecognizer:)];
+                [self addGestureRecognizer:tapGestureRecognizer];
+                tapGestureRecognizer.numberOfTapsRequired = 1;
+                tapGestureRecognizer.numberOfTouchesRequired = 2; //touch once with two fingers
+                tapGestureRecognizer.delegate = self;
+                /*
+                 UILongPressGestureRecognizer *longrec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+                 [self addGestureRecognizer:longrec];
+                 */
+                /*add shake gesture handler*/
+                [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1/60];
+                _shake_once = false;
+                              
+                CCCallBlock* getReady = [CCCallBlock actionWithBlock:^{
+                    loading.opacity = 0;
+                    [loading setString:@"Get Ready..."];
+                    loading.color = ccRED;
+                    loading.opacity = 255;
+                }];
+                CCCallBlock* getSet = [CCCallBlock actionWithBlock:^{
+                    loading.opacity = 0;
+                    [loading setString:@"Get Set..."];
+                    loading.color = ccYELLOW;
+                    loading.opacity = 255;
+                }];
+                CCCallBlock* go = [CCCallBlock actionWithBlock:^{
+                    loading.opacity = 0;
+                    [loading setString:@"Go!"];
+                    loading.color = ccGREEN;
+                    loading.opacity = 255;
+
+                }];
+                
+                CCCallBlock* addLettersCall = [CCCallBlock actionWithBlock:^{
+                    [self removeChild:loading cleanup:YES];
+                    [self addLetters];
+                    _start_game = YES;
+                }];
+                
+                CCSequence* startItUp = [CCSequence actions:[CCDelayTime actionWithDuration:.5],getReady,[CCDelayTime actionWithDuration:.5], getSet, [CCDelayTime actionWithDuration:.5], go, [CCDelayTime actionWithDuration:.5],addLettersCall,nil];
+                [loading runAction:startItUp];
+                
+            });
+        });
         
-        [[VerbosityGameState sharedState] setupGame];
-        
-        [self addLetters];
         [self scheduleUpdate];
     }
     return self;
-    
 }
 
 -(void) addLetters
@@ -88,7 +130,6 @@
    // float widthSpacing = (winSize.width/current_state.Stats.CurrentLanguage.MaximumWordLength+1.0f)/(current_state.Stats.CurrentLanguage.MaximumWordLength+1.0f);
     float widthSpacing = (.025f * winSize.width);
 
-    srand(time(NULL));
     for(int i = 0; i < current_state.Stats.CurrentLanguage.MaximumWordLength; i++){
                 
         NSString* current_letter = (NSString*)[current_state.CurrentWordsAndLetters.Letters objectAtIndex:i];
@@ -111,16 +152,19 @@
 }
 
 -(void) update:(ccTime)delta{
-    [[VerbosityGameState sharedState] update:delta];
-    if(![[VerbosityGameState sharedState] isGameActive]){
-        for(int i =0; i < [VerbosityGameState sharedState].Stats.CurrentLanguage.MaximumWordLength; i++){
-            int current_tag = kLetterTileTagStart + i;
-            LetterTile* current_letter_tile = (LetterTile*)[self getChildByTag:current_tag];
-            [current_letter_tile instantResetState:YES];
-            
+    if([VerbosityGameState sharedState].CurrentGameState == kGameStateReady && _start_game){
+        [[VerbosityGameState sharedState] update:delta];
+        if(![[VerbosityGameState sharedState] isGameActive]){
+            for(int i =0; i < [VerbosityGameState sharedState].Stats.CurrentLanguage.MaximumWordLength; i++){
+                int current_tag = kLetterTileTagStart + i;
+                LetterTile* current_letter_tile = (LetterTile*)[self getChildByTag:current_tag];
+                [current_letter_tile instantResetState:YES];
+                
+            }
+            [[VerbosityGameState sharedState] clearWordAttempt];
+            [self unscheduleUpdate];
+            _start_game = NO;
         }
-        [[VerbosityGameState sharedState] clearWordAttempt];
-        [self unscheduleUpdate];
     }
 }
 
@@ -136,6 +180,9 @@
  */
 - (void)handleCancelWordAttemptGestureRecognizer:(UISwipeGestureRecognizer*)aGestureRecognizer
 {
+    if([VerbosityGameState sharedState].CurrentGameState != kGameStateReady){
+        return;
+    }
     CCLOG(@"Got swipe gesture.");
     if([[VerbosityGameState sharedState].CurrentWordAttempt length] == 0){
         return;
@@ -150,7 +197,10 @@
 }
 
 - (void) handleTapGestureRecognizer:(UITapGestureRecognizer*)sender{
-      if (sender.state == UIGestureRecognizerStateEnded && [[VerbosityGameState sharedState].CurrentWordAttempt length] > 1)
+    if([VerbosityGameState sharedState].CurrentGameState != kGameStateReady){
+        return;
+    }
+    if (sender.state == UIGestureRecognizerStateEnded && [[VerbosityGameState sharedState].CurrentWordAttempt length] > 1)
       { 
            BOOL is_valid = [[VerbosityGameState sharedState] submitWordAttempt];
           CCLOG(@"Got tap gesture (two fingers tapped once)");
@@ -177,8 +227,7 @@
 }
 
 -(void) shakeLetters{
-    //todo fix this, letters overlap sometimes
-
+    
     CCArray* shakeable_letters = [[CCArray alloc] init];
     NSMutableArray* shakeable_positions = [[NSMutableArray alloc] init];
     
@@ -207,7 +256,9 @@
 }
 
 -(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-    
+    if([VerbosityGameState sharedState].CurrentGameState != kGameStateReady){
+        return;
+    }
     float THRESHOLD = 1.5;
     
     if (acceleration.x > THRESHOLD || acceleration.x < -THRESHOLD || 

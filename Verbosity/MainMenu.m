@@ -50,7 +50,6 @@
         
         
         [self addChild: menu];
-        [VerbosityRepository loadDatabase];
         
     }
     return self;
