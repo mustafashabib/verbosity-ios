@@ -88,6 +88,25 @@
     srandom(time(NULL));
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
+    
+    /*preload images
+    PreloadImages("DarkGrayBackground.jpg", "GrayWave1.png","GrayWave2.png","GrayWave1.png", "Graywave2.png",
+                  "Graywave3.png", "Graywave4.png","graywave5.png","Graywave6.png","lightGrayBackground.jpg",
+                  "tileblack.png","tilewhite.png","title.png");*/
+    [CCSprite spriteWithFile: @"DarkGrayBackground.jpg"];
+    [CCSprite spriteWithFile: @"GrayWave1.png"];
+    [CCSprite spriteWithFile: @"GrayWave2.png"];
+    [CCSprite spriteWithFile: @"GrayWave1.png"];
+    [CCSprite spriteWithFile: @"Graywave2.png"];
+    [CCSprite spriteWithFile: @"Graywave3.png"];
+    [CCSprite spriteWithFile: @"Graywave4.png"];
+    [CCSprite spriteWithFile: @"graywave5.png"];
+    [CCSprite spriteWithFile: @"Graywave6.png"];
+    [CCSprite spriteWithFile: @"lightGrayBackground.jpg"];
+    [CCSprite spriteWithFile: @"tileblack.png"];
+    [CCSprite spriteWithFile: @"tilewhite.png"];
+    [CCSprite spriteWithFile: @"title.png"];
+    
 	[director_ pushScene: [MainMenu scene]]; 
 
 	return YES;

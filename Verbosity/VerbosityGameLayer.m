@@ -26,16 +26,34 @@
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
-	
+	NSArray* possibleBottoms = [NSArray arrayWithObjects:
+                                @"GrayWave1.png",
+                                @"GrayWave2.png",
+                                @"GrayWave1.png",
+                                @"Graywave2.png",
+                                @"Graywave3.png",
+                                @"Graywave4.png",
+                                @"graywave5.png",
+                                @"Graywave6.png",nil];
+    NSUInteger randomIndex = arc4random() % [possibleBottoms count];
+    NSString *randomBottomFilename = [possibleBottoms objectAtIndex:randomIndex];
   	// 'layer' is an autorelease object.
 	VerbosityGameLayer *layer = [VerbosityGameLayer node];
     
     VerbosityHudLayer *hud = [VerbosityHudLayer node];
     CCLayerColor *bg = [CCLayerColor layerWithColor:ccc4(256,256,256,255)];
-    CCSprite* bg_sprite = [CCSprite spriteWithFile:@"background_game.jpg"];
+    NSString* bg_name = @"DarkGrayBackground.jpg";
+    if(arc4random()%2 == 0){
+        bg_name = @"lightGrayBackground.jpg";
+    }
+    CCSprite* bg_sprite = [CCSprite spriteWithFile:bg_name];
+    
+    CCSprite* bg_sprite_bottom = [CCSprite spriteWithFile:randomBottomFilename];
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
     bg_sprite.anchorPoint = ccp(0,0);
+    bg_sprite_bottom.position = ccp(winSize.width/2, 0);
     [bg addChild:bg_sprite z:0 tag:kBackgroundSpriteTag];
-    bg_sprite.opacity = 128;
+    [bg addChild:bg_sprite_bottom z:0 tag:kBackgroundSpriteBottomTag];
     [scene addChild:bg z:0 tag:kBackgroundTag];
 	// add layer as a child to scene
 	[scene addChild: layer z:0];

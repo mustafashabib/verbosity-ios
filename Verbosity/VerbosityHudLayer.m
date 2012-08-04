@@ -67,8 +67,8 @@
     //old way with background
         CCLabelTTF* label = [[CCLabelTTF alloc] initWithString:labelString fontName:@"ArialRoundedMTBold" fontSize:14 ];
     
-    label.anchorPoint = ccp(0,0);
-    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    label.anchorPoint = ccp(.5,0);
     label.color = color;
     
     
@@ -82,14 +82,29 @@
     
     [_current_labels addObject:label];
     int alpha_multiply = (int)(255.0f/kMaxAlertsToShow);
+    CGSize biggest_size = CGSizeMake(0, 0);
+    for(int i = [_current_labels count]-1; i >= 0;i--){//start at newest
+        CCLabelTTF* current_alert_label = [_current_labels objectAtIndex:i];
+        if(current_alert_label.contentSize.width > biggest_size.width){
+            biggest_size = current_alert_label.contentSize;
+        }
+    }
+    CCLayerColor* bg_layer = [CCLayerColor layerWithColor:ccc4(64, 64, 64, 128)];
+    bg_layer.contentSize = CGSizeMake(biggest_size.width, biggest_size.height*[_current_labels count]);
+    bg_layer.position = ccp(winSize.width/2, 0);
+    bg_layer.anchorPoint = ccp(.5,0);
+    bg_layer.ignoreAnchorPointForPosition = NO;
+    [self removeChildByTag:987356 cleanup:YES];
+    [self addChild:bg_layer z:0 tag:987356];
     
     for(int i = [_current_labels count]-1; i >= 0;i--){//start at newest
         int age = [_current_labels count]-1 - i;
+        
         CCLabelTTF* current_alert_label = [_current_labels objectAtIndex:i];
         current_alert_label.opacity = 255 -(alpha_multiply*age);
-        CGPoint destination = ccp(0, age*current_alert_label.contentSize.height);
+        CGPoint destination = ccp(winSize.width/2, age*current_alert_label.contentSize.height);
         if(age==0){
-            current_alert_label.position = ccp(0,-current_alert_label.contentSize.height); //off screen
+            current_alert_label.position = ccp(winSize.width/2,-current_alert_label.contentSize.height); //off screen
             [self addChild:current_alert_label];
         }
     CCMoveTo *moveToAction = [CCMoveTo actionWithDuration:.25 position:destination];
@@ -102,12 +117,15 @@
     
     CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
     CCSprite* bg_sprite = (CCSprite*)[bg getChildByTag:kBackgroundSpriteTag];
+    CCSprite* bg_sprite_bottom = (CCSprite*)[bg getChildByTag:kBackgroundSpriteBottomTag];
     [bg_sprite stopAllActions];
+    [bg_sprite_bottom stopAllActions];
     CCTintTo* fadeToNormalColor = [[CCTintTo alloc] initWithDuration:.06126 red:bg_sprite.color.r green:bg_sprite.color.g blue:bg_sprite.color.b];
     
     CCTintTo* fadeColor = [[CCTintTo alloc] initWithDuration:.125 red:red green:green blue:blue];
     CCSequence* sequence = [CCSequence actions:fadeColor, fadeToNormalColor, fadeColor, fadeToNormalColor, nil];
     [bg_sprite runAction:sequence];
+    [bg_sprite_bottom runAction:[sequence copy]];
 }
 
 
