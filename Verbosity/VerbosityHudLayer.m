@@ -12,6 +12,7 @@
 #import "VerbosityAlertManager.h"
 #import "VerbosityGameConstants.h"
 #import "GameOverLayer.h"
+#import "SimpleAudioEngine.h"
 
 @implementation VerbosityHudLayer
 
@@ -70,7 +71,6 @@
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     label.anchorPoint = ccp(.5,0);
     label.color = color;
-    
     
     
     if([_current_labels count] == kMaxAlertsToShow){ //remove the oldest alert
@@ -172,6 +172,7 @@
             CCLOG(@"Found rare word %@", word);
             [self _showNewAlert:[NSString stringWithFormat:@"Rare word! (%@)", word] andColor:ccc3(0, 255, 0)];
             
+            
             break;
         }
         case kDuplicateWord:
@@ -179,6 +180,7 @@
             CCLOG(@"Duplicate word.");
             NSString* word = (NSString*)alert.Data;
             [self _showNewAlert:[NSString stringWithFormat:@"Duplicate word! (%@)", word] andColor:ccc3(255, 0, 0)];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"already_got_word.wav"];
             break;
         }
         case kScoreIncreased:
@@ -189,6 +191,11 @@
             //change score label
             //particle effects
             //color of layer
+            NSString *score_increased_sound_file = @"Word_accept.wav";
+            if(arc4random()%2 == 0){
+                score_increased_sound_file = @"Word_accept-2.wav";
+            }
+             [[SimpleAudioEngine sharedEngine] playEffect:score_increased_sound_file];
             [self _flashBGtoRed:0 andGreen:255 andBlue:0];
         break;
             
@@ -197,12 +204,14 @@
             NSString* current_word = (NSString*)alert.Data;
             CCLOG(@"word attempt updated, it's now %@", current_word);
             //todo: play sound
+            [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
             
             break;
         }
         case kHotStreakStarted:{
             CCLOG(@"hot streak started");
             [self _showNewAlert:@"Hot streak!" andColor:ccc3(0, 255, 0)];
+            
             break; 
         }
         case kColdStreakEnded:
@@ -282,26 +291,33 @@
             [self runAction:seq];
         }
             break;
+        case kClearedAttempt:
+        {
+            CCLOG(@"swiped");
+            [[SimpleAudioEngine sharedEngine] playEffect:@"swipe_erase.wav"];
+            break;
+        }
         case kGreatScore:{
             
             NSNumber* current_word_score = (NSNumber*)alert.Data;
             CCLOG(@"great score! score was %d", [current_word_score intValue]);
             
-            [self _showNewAlert:[NSString stringWithFormat:@"Great score! %d points!", [current_word_score intValue]] andColor:ccc3(0, 255, 0)];        
+            [self _showNewAlert:[NSString stringWithFormat:@"Great score! %d points!", [current_word_score intValue]] andColor:ccc3(0, 255, 0)];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"Great_Score_1.wav"];
             break;
         }
         case kFastHands:{            
             NSNumber* seconds_per_letter = (NSNumber*)alert.Data;
             
             CCLOG(@"fast hands, %.2f seconds per letter", [seconds_per_letter floatValue]);
-
-           [self _showNewAlert:@"Fast hands!" andColor:ccc3(0, 255, 0)];
-           break;
+            [[SimpleAudioEngine sharedEngine] playEffect:@"fast_hands_2.wav"];
+            [self _showNewAlert:@"Fast hands!" andColor:ccc3(0, 255, 0)];
+            break;
         }
-
         case kFailedWordAttempt:{
             CCLOG(@"failed word attempt.");
             [self _flashBGtoRed:255 andGreen:0 andBlue:0];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"failed_word.wav"];
             break;
         }
         default:

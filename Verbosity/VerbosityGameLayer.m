@@ -42,10 +42,10 @@
     
     VerbosityHudLayer *hud = [VerbosityHudLayer node];
     CCLayerColor *bg = [CCLayerColor layerWithColor:ccc4(256,256,256,255)];
-    NSString* bg_name = @"DarkGrayBackground.jpg";
-    if(arc4random()%2 == 0){
-        bg_name = @"lightGrayBackground.jpg";
-    }
+    NSString* bg_name = @"lightGrayBackground.jpg";
+   // if(arc4random()%2 == 0){
+    //    bg_name = @"lightGrayBackground.jpg";
+   // }
     CCSprite* bg_sprite = [CCSprite spriteWithFile:bg_name];
     
     CCSprite* bg_sprite_bottom = [CCSprite spriteWithFile:randomBottomFilename];

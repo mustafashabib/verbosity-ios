@@ -17,6 +17,7 @@ static VerbosityGameState *sharedState = nil;
 
 
 @implementation VerbosityGameState
+@synthesize IsActive = _is_active;
 @synthesize CurrentWordsAndLetters = _current_words_and_letters;
 @synthesize TimeLeft = _time_left;
 @synthesize CurrentHotStreak = _current_hot_streak;
@@ -30,6 +31,7 @@ static VerbosityGameState *sharedState = nil;
 
 - (VerbosityGameState*) init{
     if(self = [super init]){
+        _is_active = YES;
         _current_game_state = kGameStateLoading;
         [[VerbosityAlertManager sharedAlertManager] resetAlerts];
         _stats = [[GameStat alloc] init];
@@ -58,11 +60,12 @@ static VerbosityGameState *sharedState = nil;
 
 -(BOOL) isGameActive
 {
-    return (_time_left > 0 && [_found_words count] < [[_current_words_and_letters Words] count]);
+    return (_is_active && _time_left > 0 && [_found_words count] < [[_current_words_and_letters Words] count]);
 }
 
 
 - (void) setupGame{
+    _is_active = YES;
     [[VerbosityAlertManager sharedAlertManager] resetAlerts];
     [_stats resetStats];
     _current_game_state = kGameStateLoading;
@@ -87,7 +90,7 @@ static VerbosityGameState *sharedState = nil;
 }
 
 - (void) update:(float)delta{
-    if(kGameStateReady){
+    if(kGameStateReady && _is_active){
         _time_left -= delta;
         if(_time_left < 10){
             VerbosityAlert* running_out_of_time_alert= [[VerbosityAlert alloc] initWithType:kTimeRunningOut andData:nil];
@@ -103,6 +106,7 @@ static VerbosityGameState *sharedState = nil;
             VerbosityAlert* time_done_alert= [[VerbosityAlert alloc] initWithType:kTimeOver andData:nil];
             [[VerbosityAlertManager sharedAlertManager] addAlert:time_done_alert];
             _current_game_state = kGameStateOver;
+            _is_active = NO;
         }
     
         if([_current_word_attempt length] == 0){

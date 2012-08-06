@@ -27,6 +27,7 @@
     NSString *_current_word_attempt;
     NSMutableArray* _selected_letters;
     int _current_game_state;
+    BOOL _is_active;
 }
 
 @property(nonatomic) GameStat* Stats;
@@ -39,6 +40,7 @@
 @property(nonatomic) NSMutableArray* SelectedLetters;
 @property(nonatomic) int CurrentColdStreak;
 @property(nonatomic) int CurrentGameState;
+@property(nonatomic) BOOL IsActive;
 
 + (VerbosityGameState *)sharedState;
 - (void) update:(float)delta;
