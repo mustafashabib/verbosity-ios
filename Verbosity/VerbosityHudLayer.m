@@ -14,58 +14,23 @@
 #import "GameOverLayer.h"
 #import "SimpleAudioEngine.h"
 
+@interface VerbosityHudLayer (hidden)
+    
+- (void) _showNewAlert:(NSString*)labelString andColor:(ccColor3B) color;
+-(void) _colorBottomForAlertType:(const int)alert_type;
+-(void) _tintBottomToRed:(int)red andGreen:(int)green andBlue:(int)blue;
+-(void) _flashBGtoRed:(int)red andGreen:(int)green andBlue:(int)blue;
+- (void)restartTapped:(id)sender ;
+-(void) _processAlertForDisplay:(VerbosityAlert *)alert;
+
+@end
 @implementation VerbosityHudLayer
 
 /*private methods*/
 -(void) _showNewAlert:(NSString*)labelString andColor:(ccColor3B) color{
-    /*
-    //old way with background
-    CCLayerColor* label_bg = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 128)];
-    
-    label_bg.ignoreAnchorPointForPosition = NO;
-    label_bg.anchorPoint = ccp(0,0);
-    
-   
-    CCLabelTTF* label = [[CCLabelTTF alloc] initWithString:labelString fontName:@"ArialRoundedMTBold" fontSize:12 ];
-    
-    label.anchorPoint = ccp(0,0);
-    
-    label.color = color;
-    label_bg.contentSize =  CGSizeMake(label.contentSize.width*1.25, label.contentSize.height*1.25);
-    
-    
-    [label_bg addChild:label];
-    
-    if([_current_labels count] == kMaxAlertsToShow){ //remove the oldest alert
-        CCLayerColor* last_label = (CCLayerColor*)[_current_labels objectAtIndex:0];
-        [self removeChild:last_label cleanup:YES];
-        [_current_labels removeObjectAtIndex:0];
-    }
-    
-    
-    [_current_labels addObject:label_bg];
-    int alpha_multiply = (int)(255.0f/kMaxAlertsToShow);
-    
-    for(int i = [_current_labels count]-1; i >= 0;i--){//start at newest
-        int age = [_current_labels count]-1 - i;
-        CCLayerColor* current_alert_label = [_current_labels objectAtIndex:i];
-        current_alert_label.opacity = 255 -(alpha_multiply*age);
-        for(int child = 0; child < [current_alert_label.children count]; child++){
-            CCNode* child_node = [current_alert_label.children objectAtIndex:child];
-            if([child_node isKindOfClass:[CCLabelTTF class]]){
-                CCLabelTTF* label = (CCLabelTTF*)child_node;
-                label.opacity = 255 - (alpha_multiply*age);
-            }
-        }
-        current_alert_label.position = ccp(0, age*current_alert_label.contentSize.height);
-        if(age==0){
-            [self addChild:current_alert_label];
-        }
-    }
-     */
+  
 
     //new way without background
-    //old way with background
         CCLabelTTF* label = [[CCLabelTTF alloc] initWithString:labelString fontName:@"ArialRoundedMTBold" fontSize:14 ];
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -112,20 +77,45 @@
     }
 }
 
+-(void) _colorBottomForAlertType:(const int)alert_type{
+    switch(alert_type){
+        case kColdStreakEnded:
+        case kHotStreakEnded:
+            [self _tintBottomToRed:255 andGreen:255 andBlue:255];
+            break;
+        case kColdStreakStarted:
+            [self _tintBottomToRed:0 andGreen:0 andBlue:255];
+            break;
+        case kHotStreakStarted:
+            [self _tintBottomToRed:255 andGreen:0 andBlue:0];
+            break;
+        default:
+            break;
+            
+    }
+}
+
+-(void) _tintBottomToRed:(int)red andGreen:(int)green andBlue:(int)blue{
+    CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
+    CCSprite* bg_sprite_bottom = (CCSprite*)[bg getChildByTag:kBackgroundSpriteBottomTag];
+    CCTintTo* tintColor = [[CCTintTo alloc] initWithDuration:.0625 red:red green:green blue:blue];
+    
+    [bg_sprite_bottom stopAllActions];
+    [bg_sprite_bottom runAction:tintColor];
+    
+}
 -(void) _flashBGtoRed:(int)red andGreen:(int)green andBlue:(int)blue
 {
     
     CCLayerColor* bg = (CCLayerColor*) [[self parent] getChildByTag:kBackgroundTag];
     CCSprite* bg_sprite = (CCSprite*)[bg getChildByTag:kBackgroundSpriteTag];
-    CCSprite* bg_sprite_bottom = (CCSprite*)[bg getChildByTag:kBackgroundSpriteBottomTag];
     [bg_sprite stopAllActions];
-    [bg_sprite_bottom stopAllActions];
     CCTintTo* fadeToNormalColor = [[CCTintTo alloc] initWithDuration:.06126 red:bg_sprite.color.r green:bg_sprite.color.g blue:bg_sprite.color.b];
     
     CCTintTo* fadeColor = [[CCTintTo alloc] initWithDuration:.125 red:red green:green blue:blue];
     CCSequence* sequence = [CCSequence actions:fadeColor, fadeToNormalColor, fadeColor, fadeToNormalColor, nil];
     [bg_sprite runAction:sequence];
-    [bg_sprite_bottom runAction:[sequence copy]];
+    
 }
 
 
@@ -164,7 +154,20 @@
 
 -(void) _processAlertForDisplay:(VerbosityAlert *)alert{
 
+    [self _colorBottomForAlertType:alert.AlertType];
     switch (alert.AlertType) {
+            
+        case kMaxWordLenFound:
+        {
+            NSString* alert_str = (NSString*)alert.Data;
+            
+            CCLOG(alert_str);
+            [self _showNewAlert:alert_str andColor:ccc3(0, 255, 0)];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"seven_letter.wav"];
+            
+            break;
+        }
+
         case kFoundRareWord:
         {
             NSString* word = (NSString*)alert.Data;
@@ -203,7 +206,6 @@
         case kWordAttemptUpdated:{
             NSString* current_word = (NSString*)alert.Data;
             CCLOG(@"word attempt updated, it's now %@", current_word);
-            //todo: play sound
             [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
             
             break;
@@ -235,7 +237,8 @@
         case kHotStreakEnded:{
             CCLOG(@"streak ended.");
             [self _showNewAlert:@"Hot streak ended!" andColor:ccc3(255, 0, 0)];
-       
+            [[SimpleAudioEngine sharedEngine] playEffect:@"hostreak_end.wav"];
+            
             break; 
         }
         case kTimeRunningOut:{

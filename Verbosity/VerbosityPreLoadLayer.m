@@ -23,7 +23,7 @@
     bg.anchorPoint = ccp(0,0);
     [layer addChild:bg];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CCLabelTTF* loading_label = [CCLabelTTF labelWithString:@"Loading..." fontName:@"ArialMT" fontSize:24];
+    CCLabelTTF* loading_label = [CCLabelTTF labelWithString:@"Loading..." fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:24];
     loading_label.color = ccc3(128, 128, 128);
     loading_label.position = ccp(winSize.width,0);
     loading_label.anchorPoint = ccp(1,0);
@@ -43,7 +43,11 @@
     [[CCTextureCache sharedTextureCache] addImage:  @"lightGrayBackground.jpg"];
     [[CCTextureCache sharedTextureCache] addImage:  @"tileblack.png"];
     [[CCTextureCache sharedTextureCache] addImage:  @"tilewhite.png"];
-    [[CCTextureCache sharedTextureCache] addImage:  @"title.png"];
+    [[CCTextureCache sharedTextureCache] addImage:  @"verbosityTitle.png"];
+    [[CCTextureCache sharedTextureCache] addImage:  @"menu_corner.png"];
+
+        
+
     
     CCLOG(@"Done Preloading images");
     
@@ -57,6 +61,10 @@
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"swipe_erase.wav"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"Word_accept-2.wav"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"Word_accept.wav"];
+        
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"hotstreak_end.wav"];
+        
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"seven_letter.wav"];
     
     CCLOG(@"Done Preloading sounds");
         

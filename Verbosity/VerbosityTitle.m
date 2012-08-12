@@ -37,12 +37,12 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         CCSprite* wave1 = [CCSprite spriteWithFile: @"GrayWave1.png"];
-        CCSprite* wave4 = [CCSprite spriteWithFile:@"GrayWave2.png"];
-        CCSprite* wave3 = [CCSprite spriteWithFile:@"GrayWave3.png"];
+        CCSprite* wave4 = [CCSprite spriteWithFile:@"Graywave2.png"];
+        CCSprite* wave3 = [CCSprite spriteWithFile:@"Graywave3.png"];
         CCSprite* wave2 = [CCSprite spriteWithFile:@"Graywave4.png"];
-        CCSprite* wave5 = [CCSprite spriteWithFile:@"Graywave5.png"];
+        CCSprite* wave5 = [CCSprite spriteWithFile:@"graywave5.png"];
         CCSprite* wave6 = [CCSprite spriteWithFile:@"Graywave6.png"];
-        CCSprite* title = [CCSprite spriteWithFile:@"title.png"];
+        CCSprite* title = [CCSprite spriteWithFile:@"verbosityTitle.png"];
         
         title.opacity = 0; //start invisible
         title.position = ccp(winSize.width/2, winSize.height/2);
@@ -75,14 +75,15 @@
         wave4.zOrder = 1;
         wave6.zOrder = 0;
         
-        
+        const int slow_down_factor = 5;
+        const float move_in_duration =slow_down_factor* .5;
         //bottoms moving into place to top
-        CCMoveTo* moveInBottom1 = [CCMoveTo actionWithDuration:.5 position:ccp(0, winSize.height - (.5*wave1.contentSize.height))];
-        CCMoveTo* moveInBottom2 = [CCMoveTo actionWithDuration:.5 position:ccp(0, winSize.height - (.5*wave1.contentSize.height) - (.5*wave3.contentSize.height))];
-        CCMoveTo* moveInBottom3 = [CCMoveTo actionWithDuration:.5 position:ccp(0, winSize.height - (.5*wave1.contentSize.height) - (.5*wave3.contentSize.height) - (.5*wave5.contentSize.height))];
-        CCMoveTo* moveInTop1 = [CCMoveTo actionWithDuration:.5 position:ccp(0,-.4*wave2.contentSize.height)];
-        CCMoveTo* moveInTop2 = [CCMoveTo actionWithDuration:.5 position:ccp(0,0)];
-        CCMoveTo* moveInTop3 = [CCMoveTo actionWithDuration:.5 position:ccp(0,.5*wave4.contentSize.height)];
+        CCMoveTo* moveInBottom1 = [CCMoveTo actionWithDuration:move_in_duration position:ccp(0, winSize.height - (.5*wave1.contentSize.height))];
+        CCMoveTo* moveInBottom2 = [CCMoveTo actionWithDuration:move_in_duration position:ccp(0, winSize.height - (.5*wave1.contentSize.height) - (.5*wave3.contentSize.height))];
+        CCMoveTo* moveInBottom3 = [CCMoveTo actionWithDuration:move_in_duration position:ccp(0, winSize.height - (.5*wave1.contentSize.height) - (.5*wave3.contentSize.height) - (.5*wave5.contentSize.height))];
+        CCMoveTo* moveInTop1 = [CCMoveTo actionWithDuration:move_in_duration position:ccp(0,-.4*wave2.contentSize.height)];
+        CCMoveTo* moveInTop2 = [CCMoveTo actionWithDuration:move_in_duration position:ccp(0,0)];
+        CCMoveTo* moveInTop3 = [CCMoveTo actionWithDuration:move_in_duration position:ccp(0,.5*wave4.contentSize.height)];
         CCCallBlock *moveFromBottomAnimations = [CCCallBlock actionWithBlock:^{
             [wave1 runAction:moveInBottom1];
             [wave3 runAction:moveInBottom2];
@@ -93,18 +94,18 @@
         }];
                   
              
-        CCFadeIn *fadeIn = [CCFadeIn actionWithDuration:.5];
+        CCFadeIn *fadeIn = [CCFadeIn actionWithDuration:move_in_duration];
         CCCallBlock *fadeInTitle = [CCCallBlock actionWithBlock:^{
             [title runAction:fadeIn];
         }];
         
-        CCDelayTime *delay3seconds = [CCDelayTime actionWithDuration:3];
+        CCDelayTime *delay = [CCDelayTime actionWithDuration:6];
         CCCallBlock* mainmenu_scene = [CCCallBlock actionWithBlock:^{
             CCLOG(@"Showing main menu");
             [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
         }];
         
-        CCSequence *showtitle = [CCSequence actions:fadeInTitle,delay3seconds,mainmenu_scene,nil];
+        CCSequence *showtitle = [CCSequence actions:fadeInTitle,delay,mainmenu_scene,nil];
         [self addChild:wave1];
         [self addChild:wave2];
         [self addChild:wave3];

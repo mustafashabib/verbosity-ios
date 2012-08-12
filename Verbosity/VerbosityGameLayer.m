@@ -28,8 +28,6 @@
 	CCScene *scene = [CCScene node];
 	NSArray* possibleBottoms = [NSArray arrayWithObjects:
                                 @"GrayWave1.png",
-                                @"GrayWave2.png",
-                                @"GrayWave1.png",
                                 @"Graywave2.png",
                                 @"Graywave3.png",
                                 @"Graywave4.png",
@@ -69,7 +67,7 @@
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init])) {
         _start_game = NO;
-        CCLabelTTF* loading = [CCLabelTTF labelWithString:@"Finding Letters..." fontName:@"ArialMT" fontSize:48];
+        CCLabelTTF* loading = [CCLabelTTF labelWithString:@"Finding Letters..." fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:48];
         CGSize winSize = [CCDirector sharedDirector].winSize;
         loading.ignoreAnchorPointForPosition = NO;
         loading.anchorPoint = ccp(.5,.5);
@@ -146,20 +144,31 @@
     VerbosityGameState* current_state = [VerbosityGameState sharedState];
     CGSize winSize = [CCDirector sharedDirector].winSize;
    // float widthSpacing = (winSize.width/current_state.Stats.CurrentLanguage.MaximumWordLength+1.0f)/(current_state.Stats.CurrentLanguage.MaximumWordLength+1.0f);
-    float widthSpacing = (.025f * winSize.width);
-
+    //dummy tile just to get size
+    
+    
+    LetterTile* dummy_tile = [[LetterTile alloc] initWithLetter:@"A"];
+    
+    
+    
+    CGSize tile_size = [dummy_tile getSize];
+    CCLOG(@"%f is winsize width", winSize.width);
+    
+    float widthSpacing =  (winSize.width - (current_state.Stats.CurrentLanguage.MaximumWordLength * tile_size.width)) / (current_state.Stats.CurrentLanguage.MaximumWordLength + 1);
+    
+    
     for(int i = 0; i < current_state.Stats.CurrentLanguage.MaximumWordLength; i++){
                 
         NSString* current_letter = (NSString*)[current_state.CurrentWordsAndLetters.Letters objectAtIndex:i];
         LetterTile* lt = [[LetterTile alloc] initWithLetter:current_letter];
         LetterSlot* ls = [[LetterSlot alloc] init];
-        CGSize letterSize = [lt getSize];
+        int tile_number = i +1;
         //position =
         //(widthSpacing + letterSize.width)*i + widthSpacing;
-        float x = ((widthSpacing + letterSize.width)*i + widthSpacing) + letterSize.width*.5;
-
+        //float x = ((widthSpacing + letterSize.width)*i + widthSpacing) + letterSize.width*.5;
+        float x = (tile_number*widthSpacing) + ((tile_number - 1)*tile_size.width) + (.5*tile_size.width);
         lt.position =  ccp(x, winSize.height*.75);
-        ls.position = ccp(x, winSize.height*.75 - letterSize.height*1.25);
+        ls.position = ccp(x, winSize.height*.75 - tile_size.height*1.25);
           
         
         [lt savePosition];
@@ -286,7 +295,7 @@
         if (!_shake_once) {
             _shake_once = true;
         }
-       // [self shakeLetters];
+        [self shakeLetters];
     }
     else {
         _shake_once = false;

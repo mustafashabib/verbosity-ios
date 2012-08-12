@@ -1,10 +1,11 @@
-static unsigned int const kGameTime = 90;
-static int const kLetterTileTagStart = 1000;
-static int const kLetterSlotTagStart = 5000;
-static int const kBackgroundTag = 102342234241;
-static int const kBackgroundSpriteTag = 234343432;
-static int const kBackgroundSpriteBottomTag = 234343433;
-
+#define kGameTime  90
+#define kLetterTileTagStart  1000
+#define kLetterSlotTagStart  5000
+#define kBackgroundTag  102342234241
+#define kBackgroundSpriteTag  234343432
+#define kBackgroundSpriteBottomTag  234343433
+#define kSFXSliderTag  3434342
+#define kFXVolumeKey @"FXVol"
 #define kGameStateReady 1
 #define kGameStateLoading 2
 #define kGameStateOver 3

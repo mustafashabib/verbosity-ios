@@ -67,7 +67,7 @@
         textView.text = [NSString stringWithFormat:@"%@\n---Words---\n%@", stats, word_list];
 
         textView.textColor = [UIColor colorWithWhite:1 alpha:1];
-        textView.font = [UIFont fontWithName:@"ArialMT" size:25.0];
+        textView.font = [UIFont fontWithName:@"AmerTypewriterITCbyBT-Medium" size:25.0];
         textView.backgroundColor = [UIColor grayColor];
 
         CCUIViewWrapper* wrapper = [CCUIViewWrapper wrapperForUIView:textView];

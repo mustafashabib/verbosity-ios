@@ -31,7 +31,6 @@ static int letterID = 0;
     
     CCSprite* sprite = [CCSprite spriteWithFile:@"tilewhite.png"];
     CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:letter dimensions:sprite.contentSize hAlignment:kCCTextAlignmentCenter fontName:[VerbosityGameState sharedState].Stats.CurrentLanguage.Font fontSize:40];
-   // CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:letter dimensions:sprite.contentSize hAlignment:kCCTextAlignmentRight fontName:@"ArialMT" fontSize:40];
     
     currentLetter.color = ccc3(0, 0, 0);
     
@@ -55,7 +54,7 @@ static int letterID = 0;
 {
     CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
     NSAssert([sprite isKindOfClass:[CCSprite class]], @"Letter - child with tag %d is not sprite", _letterID);
-    return sprite.boundingBox.size;
+    return sprite.contentSize;
 }
 
 +(id) letterWithLetter:(NSString*)letter

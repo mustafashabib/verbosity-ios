@@ -68,7 +68,7 @@
         }else{
             textView.text = @"You haven't played any games yet.";
         }
-        textView.font = [UIFont fontWithName:@"ArialMT" size:25.0];
+        textView.font = [UIFont fontWithName:@"AmerTypewriterITCbyBT-Medium" size:25.0];
         textView.backgroundColor = [UIColor grayColor];
         
         CCUIViewWrapper* wrapper = [CCUIViewWrapper wrapperForUIView:textView];

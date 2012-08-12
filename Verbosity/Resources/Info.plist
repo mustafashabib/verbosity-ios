@@ -37,6 +37,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>beatles.ttf</string>
 		<string>AmerType Md BT.ttf</string>
 	</array>
 	<key>UIPrerenderedIcon</key>

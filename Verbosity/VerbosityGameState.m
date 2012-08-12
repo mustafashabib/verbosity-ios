@@ -158,9 +158,9 @@ static VerbosityGameState *sharedState = nil;
         float time_to_enter_word = _word_attempt_start_time - (int) _time_left;
         float seconds_per_letter = time_to_enter_word/[_current_word_attempt length];
         int speed_multiplier = 1;
-        if(seconds_per_letter < .5){
+        if(seconds_per_letter < .125){
                 speed_multiplier = 3;
-        }else if(seconds_per_letter >= 1 && seconds_per_letter < 2){
+        }else if(seconds_per_letter > .125 && seconds_per_letter < .5){
                 speed_multiplier = 2;
         }
         
@@ -178,6 +178,11 @@ static VerbosityGameState *sharedState = nil;
             _stats.RareWordsFound++;
             VerbosityAlert* rare_word_found_alert = [[VerbosityAlert alloc] initWithType:kFoundRareWord andData:_current_word_attempt];
             [[VerbosityAlertManager sharedAlertManager] addAlert:rare_word_found_alert];            
+        }
+        
+        if(length ==_stats.CurrentLanguage.MaximumWordLength){
+            VerbosityAlert* max_word_len_found = [[VerbosityAlert alloc] initWithType:kMaxWordLenFound andData:[NSString stringWithFormat:@"%d Letter Word Found!", length]];
+             [[VerbosityAlertManager sharedAlertManager] addAlert:max_word_len_found];
         }
         
         int current_word_score = (_current_hot_streak * speed_multiplier * popularity_multiplier * length) * 100;

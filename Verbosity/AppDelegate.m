@@ -11,6 +11,9 @@
 #import "AppDelegate.h"
 #import "VerbosityPreLoadLayer.h"
 #import "VerbosityGameState.h"
+#import "TestFlight.h"
+#import "SimpleAudioEngine.h"
+#import "VerbosityGameConstants.h"
 
 @implementation AppController
 
@@ -87,6 +90,17 @@
 
     // initialize random seed
     srandom(time(NULL));
+    
+    //set menu item font
+    [CCMenuItemFont setFontName:@"AmerTypewriterITCbyBT-Medium"];
+    
+    //set volume
+    float fxVolume = 1.0f;
+    if([[NSUserDefaults standardUserDefaults] objectForKey:kFXVolumeKey] != nil){
+        fxVolume = [(NSNumber*)[[NSUserDefaults standardUserDefaults] objectForKey:kFXVolumeKey] floatValue];
+    }
+    
+    [[SimpleAudioEngine sharedEngine] setEffectsVolume:fxVolume];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
     
