@@ -13,6 +13,7 @@
 #import "VerbosityFBConnectLayer.h"
 #import "VerbosityHowToPlayLayer.h"
 #import "VerbositySettingsLayer.h"
+#import "SimpleAudioEngine.h"
 
 @implementation MainMenu
 +(CCScene *) scene
@@ -55,21 +56,26 @@
 
         // Reset Button
         CCMenuItem *start = [CCMenuItemFont itemWithString:@"Start" block:^(id sender){
+            [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
             [[CCDirector sharedDirector] replaceScene: [VerbosityGameLayer scene]];
         }];
         CCMenuItem *stats =   [CCMenuItemFont itemWithString:@"Lifetime Stats" block:^(id sender){
+            [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
             [[CCDirector sharedDirector] replaceScene: [GameStatsLayer scene]];
         }];
 
         CCMenuItem *settings =   [CCMenuItemFont itemWithString:@"Settings" block:^(id sender){
+            [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
             [[CCDirector sharedDirector] replaceScene: [VerbositySettingsLayer scene]];
         }];
         
         CCMenuItem *how_to_play = [CCMenuItemFont itemWithString:@"How To Play" block:^(id sender){
+            [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
             [[CCDirector sharedDirector] replaceScene: [VerbosityHowToPlayLayer scene]];
         }];
         
         CCMenuItem *fb = [CCMenuItemFont itemWithString:@"Facebook Connect" block:^(id sender){
+            [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
             [[CCDirector sharedDirector] replaceScene: [VerbosityFBConnectLayer scene]];
         }];
       

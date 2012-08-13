@@ -24,6 +24,7 @@ typedef enum {
 @private 
     NSString* _letter;
     CGPoint _old_position;
+    CGPoint _original_position;
 }
 -(CGSize) getSize;
 @property(nonatomic) int LetterTag;

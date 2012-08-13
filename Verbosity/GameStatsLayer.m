@@ -10,6 +10,7 @@
 #import "GameStatsLayer.h"
 #import "GameStat.h"
 #import "VerbosityRepository.h"
+#import "SimpleAudioEngine.h"
 #import "CCUIViewWrapper.h"
 
 @implementation GameStatsLayer
@@ -31,10 +32,12 @@
     if(self){
         self.isTouchEnabled=YES;
         // Default font size will be 22 points.
-        [CCMenuItemFont setFontSize:22];
+        [CCMenuItemFont setFontSize:18];
         
         // Reset Button
-        CCMenuItemLabel *back = [CCMenuItemFont itemWithString:@"Back" block:^(id sender){
+        CCMenuItemLabel *back = [CCMenuItemFont itemWithString:@"Go Back" block:^(id sender){
+            [[SimpleAudioEngine sharedEngine] playEffect:@"swipe_erase.wav"];
+            
             [[CCDirector sharedDirector] replaceScene: [MainMenu scene]];
         }];
         

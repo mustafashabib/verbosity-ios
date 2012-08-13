@@ -34,6 +34,8 @@
 -(id) init{
     self = [super init];
     if(self){
+        [CCMenuItemFont setFontSize:18];
+        
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         float fxVolumeSaved = 1.0f;
         if([[NSUserDefaults standardUserDefaults] objectForKey:kFXVolumeKey] != nil){
@@ -53,6 +55,7 @@
         [fx_volume_label setPosition:ccp(winSize.width/2,winSize.height/2)];
         
         CCMenuItem *go_back = [CCMenuItemFont itemWithString:@"Go Back" block:^(id sender){
+             [[SimpleAudioEngine sharedEngine] playEffect:@"swipe_erase.wav"];
             [[CCDirector sharedDirector] replaceScene: [MainMenu scene]];
         }];
         CCMenu *menu = [CCMenu menuWithItems: go_back, nil];
@@ -84,6 +87,7 @@
         CCLOG(@"Setting sfx volume to %f from %f", value, prevValue);
         [[SimpleAudioEngine sharedEngine] setEffectsVolume:value];
         [[NSUserDefaults standardUserDefaults] setFloat:value forKey:kFXVolumeKey];
+        [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
     }
 }
 

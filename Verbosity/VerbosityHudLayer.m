@@ -13,6 +13,8 @@
 #import "VerbosityGameConstants.h"
 #import "GameOverLayer.h"
 #import "SimpleAudioEngine.h"
+#import "PauseGameLayer.h"
+#import "CCLabelButton.h"
 
 @interface VerbosityHudLayer (hidden)
     
@@ -87,7 +89,8 @@
             [self _tintBottomToRed:0 andGreen:0 andBlue:255];
             break;
         case kHotStreakStarted:
-            [self _tintBottomToRed:255 andGreen:0 andBlue:0];
+            //orange
+            [self _tintBottomToRed:255 andGreen:127 andBlue:0];
             break;
         default:
             break;
@@ -123,22 +126,61 @@
 -(id) init {
     if( (self=[super init]))
     {
-
+        
         CGSize winSize = [CCDirector sharedDirector].winSize;
         VerbosityGameState* current_state = [VerbosityGameState sharedState];
         _current_labels = [[NSMutableArray alloc] init];
-        _timeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%f", current_state.TimeLeft] fontName:@"ArialRoundedMTBold" fontSize:20];
+        _timeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", (int)current_state.TimeLeft] fontName:@"ArialRoundedMTBold" fontSize:24];
         _timeLabel.position = CGPointMake(winSize.width/2, winSize.height);
         _timeLabel.anchorPoint = CGPointMake(.5f, 1.0f);
     
         _yourScore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %ld", current_state.Stats.Score] fontName:@"ArialRoundedMTBold" fontSize:12];
         _yourScore.position = CGPointMake(0, winSize.height);
         _yourScore.anchorPoint = ccp(0,1);
-    
+        _yourWords = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Words Found: %d", current_state.Stats.TotalWordsFound] fontName:@"ArialRoundedMTBold" fontSize:12];
+        _yourWords.position = CGPointMake(0, winSize.height - _yourScore.contentSize.height*1.1);
+        _yourWords.anchorPoint = ccp(0,1);
+        
+        
+        //pause button
+        
+        CCLabelButton *pause = [[CCLabelButton alloc] initWithString:@"Pause" andFontName:@"ArialRoundedMTBold" andFontSize:12 andTouchesEndBlock:^{
+            [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
+            [VerbosityGameState sharedState].CurrentGameState = kGameStatePaused;
+            [[CCDirector sharedDirector] pushScene: [CCTransitionMoveInT transitionWithDuration:.25f scene:[PauseGameLayer scene]]];
+        }];
+        [pause setAnchorPoint:ccp(1,1)];
+        [pause setPosition:ccp(winSize.width,winSize.height)];
+        [pause setVisible:NO];
+        [self addChild:pause z:2 tag:kPauseButtonTag];
+        
+        /*
+        [CCMenuItemFont setFontSize:12];
+        [CCMenuItemFont setFontName:@"ArialRoundedMTBold"];
+        // Reset Button
+        CCMenuItemLabel *pause = [CCMenuItemFont itemWithString:@"Pause" block:^(id sender){
+            [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
+            [VerbosityGameState sharedState].CurrentGameState = kGameStatePaused;
+            [[CCDirector sharedDirector] pushScene: [CCTransitionMoveInT transitionWithDuration:1.0f scene:[PauseGameLayer scene]]];
+        }];
+        
+        [pause setAnchorPoint:ccp(0,0)];
+        CCMenu *menu = [CCMenu menuWithItems: pause, nil];
+        [menu setContentSize:CGSizeMake(pause.contentSize.width, pause.contentSize.height)];
+        menu.isTouchEnabled = YES;
+        [menu alignItemsHorizontally];
+        menu.ignoreAnchorPointForPosition = NO;
+        [menu setAnchorPoint:ccp(0,0)];
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        [menu setPosition:ccp(winSize.width,winSize.height)];
+        
+        [self addChild: menu z:0];
+        */
+        
         
         [self addChild:_timeLabel z:1];
         [self addChild:_yourScore z:1];
-    
+        [self addChild:_yourWords z:1];
         [self scheduleUpdate];
     }
     return self;
@@ -174,8 +216,7 @@
             
             CCLOG(@"Found rare word %@", word);
             [self _showNewAlert:[NSString stringWithFormat:@"Rare word! (%@)", word] andColor:ccc3(0, 255, 0)];
-            
-            
+            [[SimpleAudioEngine sharedEngine] playEffect:@"ding.wav"];            
             break;
         }
         case kDuplicateWord:
@@ -212,13 +253,15 @@
         }
         case kHotStreakStarted:{
             CCLOG(@"hot streak started");
-            [self _showNewAlert:@"Hot streak!" andColor:ccc3(0, 255, 0)];
+            [self _showNewAlert:@"Hot streak!" andColor:ccORANGE];
             
             break; 
         }
         case kColdStreakEnded:
         {
             CCLOG(@"cold streak ended.");
+            [[SimpleAudioEngine sharedEngine] playEffect:@"icebreak.wav"];
+            
             [self _showNewAlert:@"Cold streak ended!" andColor:ccc3(255, 255, 255)];
             
             break; 
@@ -236,8 +279,8 @@
         }
         case kHotStreakEnded:{
             CCLOG(@"streak ended.");
-            [self _showNewAlert:@"Hot streak ended!" andColor:ccc3(255, 0, 0)];
-            [[SimpleAudioEngine sharedEngine] playEffect:@"hostreak_end.wav"];
+            [self _showNewAlert:@"Hot streak ended!" andColor:ccRED];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"hotstreak_end.wav"];
             
             break; 
         }
@@ -329,9 +372,14 @@
     
 }
 -(void)update:(ccTime)delta{
-   
-    [_timeLabel setString:[NSString stringWithFormat:@"%f", [VerbosityGameState sharedState].TimeLeft]];
-    [_yourScore setString:[NSString stringWithFormat:@"Score: %ld/%d words",[VerbosityGameState sharedState].Stats.Score,[[VerbosityGameState sharedState].FoundWords count]]];
+    
+    [_timeLabel setString:[NSString stringWithFormat:@"%d", (int)[VerbosityGameState sharedState].TimeLeft]];
+    [_yourScore setString:[NSString stringWithFormat:@"Score: %ld",[VerbosityGameState sharedState].Stats.Score]];
+    [_yourWords setString:[NSString stringWithFormat:@"Found: %d words", [VerbosityGameState sharedState].Stats.TotalWordsFound]];
+    CCLabelButton* pause =(CCLabelButton*)[self getChildByTag:kPauseButtonTag];
+    if([[VerbosityGameState sharedState] isGameActive] && !pause.visible){
+        [pause setVisible:YES];
+    }
     
     if(![[VerbosityGameState sharedState] isGameActive]){
         [self showRestartMenu];        

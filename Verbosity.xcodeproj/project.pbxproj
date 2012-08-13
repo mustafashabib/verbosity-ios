@@ -183,6 +183,8 @@
 		7123FD3615BCBBD1004D9E57 /* HistoricalGameStat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7123FD3415BCBBD1004D9E57 /* HistoricalGameStat.m */; };
 		7124EF3715AD3A4700AE6542 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124EF3615AD3A4700AE6542 /* GameOverLayer.m */; };
 		7124EF3B15AD3C6100AE6542 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124EF3A15AD3C6100AE6542 /* CCUIViewWrapper.m */; };
+		712699F115D79AF4004D039E /* CCLabelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 712699F015D79AF4004D039E /* CCLabelButton.m */; };
+		712699F215D79AF4004D039E /* CCLabelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 712699F015D79AF4004D039E /* CCLabelButton.m */; };
 		71444E48159ADF510045EC44 /* verbosity.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 71444E47159ADF510045EC44 /* verbosity.sqlite3 */; };
 		71444E4A159ADFAE0045EC44 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 71444E49159ADFAE0045EC44 /* libsqlite3.dylib */; };
 		71444E4D159AE00C0045EC44 /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 71444E4C159AE00C0045EC44 /* Language.m */; };
@@ -193,6 +195,12 @@
 		714D2F2415A64789005042C5 /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D2F2315A64789005042C5 /* CCNode+SFGestureRecognizers.m */; };
 		714E7E0715A78A8900F7F316 /* LetterSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 714E7E0615A78A8900F7F316 /* LetterSlot.m */; };
 		716E289C15A4AD560013648B /* GameCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 716E289B15A4AD560013648B /* GameCache.m */; };
+		7179BDF715D78A9D00D28A04 /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7179BDF615D78A9D00D28A04 /* ding.wav */; };
+		7179BDF815D78A9D00D28A04 /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7179BDF615D78A9D00D28A04 /* ding.wav */; };
+		7179BDFA15D78CC200D28A04 /* icebreak.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7179BDF915D78CC200D28A04 /* icebreak.wav */; };
+		7179BDFB15D78CC200D28A04 /* icebreak.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7179BDF915D78CC200D28A04 /* icebreak.wav */; };
+		7179BDFE15D7925700D28A04 /* PauseGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7179BDFD15D7925600D28A04 /* PauseGameLayer.m */; };
+		7179BDFF15D7925700D28A04 /* PauseGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7179BDFD15D7925600D28A04 /* PauseGameLayer.m */; };
 		718D144315CF798900264F7C /* VerbosityTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 718D144215CF798900264F7C /* VerbosityTitle.m */; };
 		718D144415CF798900264F7C /* VerbosityTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 718D144215CF798900264F7C /* VerbosityTitle.m */; };
 		71921EE015929D5000CD3A77 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71921EDF15929D5000CD3A77 /* QuartzCore.framework */; };
@@ -600,6 +608,8 @@
 		7124EF3615AD3A4700AE6542 /* GameOverLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		7124EF3915AD3C6100AE6542 /* CCUIViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUIViewWrapper.h; sourceTree = "<group>"; };
 		7124EF3A15AD3C6100AE6542 /* CCUIViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUIViewWrapper.m; sourceTree = "<group>"; };
+		712699EF15D79AF4004D039E /* CCLabelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLabelButton.h; sourceTree = "<group>"; };
+		712699F015D79AF4004D039E /* CCLabelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLabelButton.m; sourceTree = "<group>"; };
 		71444E47159ADF510045EC44 /* verbosity.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = verbosity.sqlite3; path = Resources/verbosity.sqlite3; sourceTree = "<group>"; };
 		71444E49159ADFAE0045EC44 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		71444E4B159AE00B0045EC44 /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
@@ -618,6 +628,10 @@
 		714E7E0615A78A8900F7F316 /* LetterSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterSlot.m; sourceTree = "<group>"; };
 		716E289A15A4AD560013648B /* GameCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCache.h; sourceTree = "<group>"; };
 		716E289B15A4AD560013648B /* GameCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCache.m; sourceTree = "<group>"; };
+		7179BDF615D78A9D00D28A04 /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ding.wav; path = Resources/ding.wav; sourceTree = "<group>"; };
+		7179BDF915D78CC200D28A04 /* icebreak.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = icebreak.wav; path = Resources/icebreak.wav; sourceTree = "<group>"; };
+		7179BDFC15D7925500D28A04 /* PauseGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseGameLayer.h; sourceTree = "<group>"; };
+		7179BDFD15D7925600D28A04 /* PauseGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseGameLayer.m; sourceTree = "<group>"; };
 		718D144115CF798900264F7C /* VerbosityTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityTitle.h; sourceTree = "<group>"; };
 		718D144215CF798900264F7C /* VerbosityTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityTitle.m; sourceTree = "<group>"; };
 		71921EDB15929D5000CD3A77 /* Verbosity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Verbosity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -965,6 +979,8 @@
 		7106127015CB34FF00610049 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				7179BDF915D78CC200D28A04 /* icebreak.wav */,
+				7179BDF615D78A9D00D28A04 /* ding.wav */,
 				711B690B15D72FC200ACD40F /* failed_word.wav */,
 				711B690515D72D5300ACD40F /* hotstreak_end.wav */,
 				711B690615D72D5300ACD40F /* seven_letter.wav */,
@@ -1044,6 +1060,8 @@
 				7123FD3015BCB892004D9E57 /* GameStatsLayer.m */,
 				71121B8515CF6BF0001AA0ED /* VerbosityPreLoadLayer.h */,
 				71121B8615CF6BF0001AA0ED /* VerbosityPreLoadLayer.m */,
+				7179BDFC15D7925500D28A04 /* PauseGameLayer.h */,
+				7179BDFD15D7925600D28A04 /* PauseGameLayer.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1069,6 +1087,8 @@
 				7124EF3A15AD3C6100AE6542 /* CCUIViewWrapper.m */,
 				71A463F015B4E606001B4B31 /* NSMutableArray+Stack.h */,
 				71A463F115B4E606001B4B31 /* NSMutableArray+Stack.m */,
+				712699EF15D79AF4004D039E /* CCLabelButton.h */,
+				712699F015D79AF4004D039E /* CCLabelButton.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1899,6 +1919,8 @@
 				711B690715D72D5300ACD40F /* hotstreak_end.wav in Resources */,
 				711B690915D72D5300ACD40F /* seven_letter.wav in Resources */,
 				711B690C15D72FC200ACD40F /* failed_word.wav in Resources */,
+				7179BDF715D78A9D00D28A04 /* ding.wav in Resources */,
+				7179BDFA15D78CC200D28A04 /* icebreak.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1993,6 +2015,8 @@
 				711B690815D72D5300ACD40F /* hotstreak_end.wav in Resources */,
 				711B690A15D72D5300ACD40F /* seven_letter.wav in Resources */,
 				711B690D15D72FC200ACD40F /* failed_word.wav in Resources */,
+				7179BDF815D78A9D00D28A04 /* ding.wav in Resources */,
+				7179BDFB15D78CC200D28A04 /* icebreak.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2033,6 +2057,8 @@
 				711B676C15D7163E00ACD40F /* VerbosityHowToPlayLayer.m in Sources */,
 				711B676E15D7163E00ACD40F /* VerbositySettingsLayer.m in Sources */,
 				711B688115D71C3B00ACD40F /* CCSlider.m in Sources */,
+				7179BDFE15D7925700D28A04 /* PauseGameLayer.m in Sources */,
+				712699F115D79AF4004D039E /* CCLabelButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2070,6 +2096,8 @@
 				711B676D15D7163E00ACD40F /* VerbosityHowToPlayLayer.m in Sources */,
 				711B676F15D7163E00ACD40F /* VerbositySettingsLayer.m in Sources */,
 				711B68EC15D71C5200ACD40F /* CCSlider.m in Sources */,
+				7179BDFF15D7925700D28A04 /* PauseGameLayer.m in Sources */,
+				712699F215D79AF4004D039E /* CCLabelButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2233,6 +2261,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					arm6,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2261,6 +2293,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					arm6,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2285,6 +2321,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					arm6,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -2316,6 +2356,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					arm6,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;

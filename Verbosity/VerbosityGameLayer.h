@@ -17,6 +17,7 @@
     CCArray *_otherScores;
     BOOL _shake_once;
     BOOL _start_game;
+    CCArray* _letter_positions;
     
 }
 // returns a CCScene that contains the HelloWorldLayer as the only child

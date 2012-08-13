@@ -8,6 +8,7 @@
 
 #import "VerbosityFBConnectLayer.h"
 #import "MainMenu.h"
+#import "SimpleAudioEngine.h"
 
 @implementation VerbosityFBConnectLayer
 
@@ -32,6 +33,8 @@
 -(id)init{
     self = [super init];
     if(self){
+        [CCMenuItemFont setFontSize:18];
+        
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         
@@ -39,6 +42,7 @@
         [bg setAnchorPoint:ccp(0,0)];
         [self addChild:bg z:0];
         CCMenuItem *go_back = [CCMenuItemFont itemWithString:@"Go Back" block:^(id sender){
+            [[SimpleAudioEngine sharedEngine] playEffect:@"swipe_erase.wav"];
             [[CCDirector sharedDirector] replaceScene: [MainMenu scene]];
         }];
         

@@ -8,6 +8,7 @@
 
 #import "VerbosityHowToPlayLayer.h"
 #import "MainMenu.h"
+#import "SimpleAudioEngine.h"
 
 @implementation VerbosityHowToPlayLayer
 
@@ -69,6 +70,7 @@
         [instructions setPosition:ccp(0,winSize.height)];
         [self addChild:instructions];
         CCMenuItem *go_back = [CCMenuItemFont itemWithString:@"Go Back" block:^(id sender){
+             [[SimpleAudioEngine sharedEngine] playEffect:@"swipe_erase.wav"];
             [[CCDirector sharedDirector] replaceScene: [MainMenu scene]];
         }];
         CCMenu *menu = [CCMenu menuWithItems: go_back, nil];

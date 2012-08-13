@@ -14,8 +14,8 @@
 
 @interface VerbosityHudLayer : CCLayer {
     CCLabelTTF *_yourScore;
+    CCLabelTTF *_yourWords;
     CCLabelTTF *_timeLabel;
-    CCSprite *_pauseButton;
     NSMutableArray *_current_labels;
 }
 

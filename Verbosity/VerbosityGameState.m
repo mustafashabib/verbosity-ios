@@ -158,9 +158,9 @@ static VerbosityGameState *sharedState = nil;
         float time_to_enter_word = _word_attempt_start_time - (int) _time_left;
         float seconds_per_letter = time_to_enter_word/[_current_word_attempt length];
         int speed_multiplier = 1;
-        if(seconds_per_letter < .125){
+        if(seconds_per_letter < .25){
                 speed_multiplier = 3;
-        }else if(seconds_per_letter > .125 && seconds_per_letter < .5){
+        }else if(seconds_per_letter > .25 && seconds_per_letter < .5){
                 speed_multiplier = 2;
         }
         

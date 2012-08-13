@@ -13,6 +13,7 @@
 #import "VerbosityRepository.h"
 #import "Word.h"
 #import "MainMenu.h"
+#import "SimpleAudioEngine.h"
 
 @implementation GameOverLayer
 +(CCScene *) scene
@@ -79,9 +80,12 @@
         
         // Reset Button
         CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Play Again" block:^(id sender){
+            [[SimpleAudioEngine sharedEngine] playEffect:@"Great_Score_1.wav"];
             [[CCDirector sharedDirector] replaceScene: [VerbosityGameLayer scene]];
         }];
         CCMenuItemLabel *main_menu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
+            [[SimpleAudioEngine sharedEngine] playEffect:@"swipe_erase.wav"];
+            
             [[CCDirector sharedDirector] replaceScene: [MainMenu scene]];
         }];
         CCMenu *menu = [CCMenu menuWithItems: reset, main_menu, nil];
@@ -90,7 +94,7 @@
         
         CGSize size = [[CCDirector sharedDirector] winSize];
         
-        [menu setPosition:ccp( size.width/2 + 50, size.height/2)];
+        [menu setPosition:ccp( size.width*.75, size.height/2)];
         
         
         [self addChild: menu];	

@@ -37,7 +37,6 @@
     NSString *randomBottomFilename = [possibleBottoms objectAtIndex:randomIndex];
   	// 'layer' is an autorelease object.
 	VerbosityGameLayer *layer = [VerbosityGameLayer node];
-    
     VerbosityHudLayer *hud = [VerbosityHudLayer node];
     CCLayerColor *bg = [CCLayerColor layerWithColor:ccc4(256,256,256,255)];
     NSString* bg_name = @"lightGrayBackground.jpg";
@@ -66,6 +65,7 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init])) {
+        
         _start_game = NO;
         CCLabelTTF* loading = [CCLabelTTF labelWithString:@"Finding Letters..." fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:48];
         CGSize winSize = [CCDirector sharedDirector].winSize;
@@ -88,15 +88,17 @@
                 swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
                 swipeGestureRecognizer.delegate = self;
                 
+                UISwipeGestureRecognizer *swipeGestureRecognizerForShuffle = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleShuffle:)];
+                [self addGestureRecognizer:swipeGestureRecognizerForShuffle];
+                swipeGestureRecognizerForShuffle.direction = UISwipeGestureRecognizerDirectionDown | UISwipeGestureRecognizerDirectionUp;
+                swipeGestureRecognizerForShuffle.delegate = self;
+                
                 UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestureRecognizer:)];
                 [self addGestureRecognizer:tapGestureRecognizer];
                 tapGestureRecognizer.numberOfTapsRequired = 1;
                 tapGestureRecognizer.numberOfTouchesRequired = 2; //touch once with two fingers
                 tapGestureRecognizer.delegate = self;
-                /*
-                 UILongPressGestureRecognizer *longrec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-                 [self addGestureRecognizer:longrec];
-                 */
+                
                 /*add shake gesture handler*/
                 [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1/60];
                 _shake_once = false;
@@ -150,7 +152,7 @@
     LetterTile* dummy_tile = [[LetterTile alloc] initWithLetter:@"A"];
     
     
-    
+    _letter_positions = [[CCArray alloc] initWithCapacity:current_state.Stats.CurrentLanguage.MaximumWordLength];
     CGSize tile_size = [dummy_tile getSize];
     CCLOG(@"%f is winsize width", winSize.width);
     
@@ -168,8 +170,9 @@
         //float x = ((widthSpacing + letterSize.width)*i + widthSpacing) + letterSize.width*.5;
         float x = (tile_number*widthSpacing) + ((tile_number - 1)*tile_size.width) + (.5*tile_size.width);
         lt.position =  ccp(x, winSize.height*.75);
+        
         ls.position = ccp(x, winSize.height*.75 - tile_size.height*1.25);
-          
+        [_letter_positions addObject:[NSValue valueWithCGPoint:lt.position]];
         
         [lt savePosition];
         [self addChild:lt z:1 tag:kLetterTileTagStart+i];
@@ -197,14 +200,17 @@
 
 
 /* gesture recognizer handlers*/
-/*
-- (void)handleLongPress:(UILongPressGestureRecognizer*)aGestureRecognizer{
-    if(aGestureRecognizer.state == UIGestureRecognizerStateEnded){
-        CCLOG(@"Got long touch.");
-        [self shakeLetters];
+
+- (void)handleShuffle:(UISwipeGestureRecognizer*)aGestureRecognizer
+{
+    if([VerbosityGameState sharedState].CurrentGameState != kGameStateReady){
+        return;
     }
+    CCLOG(@"Shaking Letters");
+    [self shakeLetters];
 }
- */
+
+
 - (void)handleCancelWordAttemptGestureRecognizer:(UISwipeGestureRecognizer*)aGestureRecognizer
 {
     if([VerbosityGameState sharedState].CurrentGameState != kGameStateReady){
@@ -220,6 +226,7 @@
         LetterTile* current_letter_tile = (LetterTile*)[self getChildByTag:current_tag];
         [current_letter_tile resetState];
     }
+    
     [[VerbosityGameState sharedState] clearWordAttempt];
 }
 
@@ -254,33 +261,40 @@
 }
 
 -(void) shakeLetters{
-    
-    CCArray* shakeable_letters = [[CCArray alloc] init];
-    NSMutableArray* shakeable_positions = [[NSMutableArray alloc] init];
-    
+    if([VerbosityGameState sharedState].CurrentGameState != kGameStateReady){
+        return;
+    }
+    CCArray* shakeable_letters = [[CCArray alloc] initWithCapacity:[VerbosityGameState sharedState].Stats.CurrentLanguage.MaximumWordLength];
     for(int i =0; i < [VerbosityGameState sharedState].Stats.CurrentLanguage.MaximumWordLength; i++){
+        
         int current_tag = kLetterTileTagStart + i;
         
         LetterTile* current_letter_tile = (LetterTile*)[self getChildByTag:current_tag];
        
-        [current_letter_tile instantResetState:NO];
-        [[VerbosityGameState sharedState] clearWordAttempt];
-        
-        [shakeable_positions addObject:[NSValue valueWithCGPoint:current_letter_tile.position]];
+        CCLOG(@"Adding position %f,%f as shakeable position", current_letter_tile.position.x, current_letter_tile.position.y);
         [shakeable_letters addObject:current_letter_tile];
+        [current_letter_tile instantResetState:NO];
     }
-    
+    NSMutableArray* shakeable_positions = [[NSMutableArray alloc] initWithCapacity: [VerbosityGameState sharedState].Stats.CurrentLanguage.MaximumWordLength];
+    for(int i = 0; i < [_letter_positions count]; i++){
+        [shakeable_positions addObject:[_letter_positions objectAtIndex:i]];
+    } 
     [shakeable_positions shuffle];
-    
-    for(int i = 0; i < [shakeable_letters count]; i++)
+
+    for(int i = 0; i < [shakeable_positions count]; i++)
     {
         CGPoint new_position = [(NSValue*)[shakeable_positions objectAtIndex:i] CGPointValue];
-        CCMoveTo* shuffle_action = [[CCMoveTo alloc] initWithDuration:.125 position:new_position];
+        CCMoveTo* shuffle_action = [[CCMoveTo alloc] initWithDuration:.0625 position:new_position];
+        CCCallBlockN* save_position = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+            //code
+            [((LetterTile*)node) savePosition];
+        }];
+        CCSequence* seq = [CCSequence actions:shuffle_action,save_position, nil];
         LetterTile* current_tile = (LetterTile*)[shakeable_letters objectAtIndex:i];
-        [current_tile runAction:shuffle_action];
+        [current_tile runAction:seq];
     }
-     
 }
+
 
 -(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
     if([VerbosityGameState sharedState].CurrentGameState != kGameStateReady){

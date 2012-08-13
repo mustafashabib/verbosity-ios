@@ -60,11 +60,11 @@
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"Letter_click.wav"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"swipe_erase.wav"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"Word_accept-2.wav"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"Word_accept.wav"];
-        
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"hotstreak_end.wav"];
-        
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"seven_letter.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Word_accept.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"icebeak.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"hotstreak_end.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"ding.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"seven_letter.wav"];
     
     CCLOG(@"Done Preloading sounds");
         

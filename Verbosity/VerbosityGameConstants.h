@@ -9,3 +9,5 @@
 #define kGameStateReady 1
 #define kGameStateLoading 2
 #define kGameStateOver 3
+#define kGameStatePaused 4
+#define kPauseButtonTag 13419999
