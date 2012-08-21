@@ -24,7 +24,7 @@
     [layer addChild:bg];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     CCLabelTTF* loading_label = [CCLabelTTF labelWithString:@"Loading..." fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:24];
-    loading_label.color = ccc3(128, 128, 128);
+    loading_label.color = ccc3(255, 247, 0);
     loading_label.position = ccp(winSize.width,0);
     loading_label.anchorPoint = ccp(1,0);
     

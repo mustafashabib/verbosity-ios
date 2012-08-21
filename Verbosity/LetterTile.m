@@ -40,14 +40,14 @@ static int letterID = 0;
     [sprite addChild:currentLetter];
     [self addChild:sprite z:0 tag:_letterID];
     _state = kLetterStateUntouched;
-    _original_position = self.position;
-    
+    [self scheduleUpdate];
     return self;
 
 }
 
--(void)savePosition{
-    _old_position = position_;
+
+-(void)setStartPosition:(CGPoint)position{
+    _start_position = position;
 }
 
 -(CGSize) getSize
@@ -75,7 +75,7 @@ static int letterID = 0;
     CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
     [sprite setColor:ccc3(255, 255, 255)];
     
-    [self setPosition:_old_position];
+    [self setPosition:_start_position];
     if(should_disable){
         _state = kLetterStateDisabled;
     }
@@ -83,27 +83,19 @@ static int letterID = 0;
         _state = kLetterStateUntouched;
     }
     [VerbosityGameState sharedState].CurrentWordAttempt = @"";
-    
-    
-    
 }
+
 -(void)setState:(LetterState)state{
     _state = state;
 }
 -(void)resetState{
-    if(_state == kLetterStateUsed){
         
-        CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
-        [sprite setColor:ccc3(255, 255, 255)];
-        [sprite setScale:1.0];
-    
-        CCMoveTo *moveToOriginalSlotAction = [[CCMoveTo alloc] initWithDuration:.125 position:_old_position];
+        CCMoveTo *moveToOriginalSlotAction = [[CCMoveTo alloc] initWithDuration:.125 position:_start_position];
         CCCallBlockN *reset_state =  [CCCallBlockN actionWithBlock:^(CCNode *node) {
             [((LetterTile*)node) setState:kLetterStateUntouched];
         }];
         CCSequence* seq = [CCSequence actions:moveToOriginalSlotAction,reset_state, nil];
         [self runAction:seq];
-    }
 }
 
 -(BOOL)containsTouchLocation:(UITouch*)touch{
@@ -113,12 +105,6 @@ static int letterID = 0;
 }
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    
-    //bug fix? lame but i think it works. check if the Y coord of the tile is the same as the original Y position
-    //when it was first created - if so then the state MUST be kLetterStateUntouched
-    if(position_.y == _original_position.y){
-        _state = kLetterStateUntouched;
-    }
     
     if (_state != kLetterStateUntouched && _state != kLetterStateUsed) return NO;
     if ( ![self containsTouchLocation:touch] ) return NO;
@@ -159,6 +145,16 @@ static int letterID = 0;
     
 }
 
+-(void) update:(ccTime)delta{
+    
+    //get y position of a letterslot
+    LetterSlot* slot = (LetterSlot*)[[self parent] getChildByTag:kLetterSlotID];
+        
+    if(position_.y == slot.position.y){
+        _state = kLetterStateUsed;
+    }
+    
+}
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     
@@ -172,7 +168,7 @@ static int letterID = 0;
         _state = _startTouchState;//reset state back to what it was
         
     }else if(_startTouchState == kLetterStateUntouched){//about to move into a slot
-        _old_position = self.position;//save old position
+        _start_position = position_;//save old position
         _state = kLetterStateUsed;//set state to used
         
         [[VerbosityGameState sharedState] updateWordAttempt:_letter withData:self];//modify word attempt

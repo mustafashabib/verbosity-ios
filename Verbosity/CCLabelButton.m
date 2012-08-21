@@ -34,10 +34,10 @@
 - (CGRect)rect
 {
     CGSize s = [self.texture contentSize];
-    return CGRectMake(-s.width / 2, -s.height / 2, s.width, s.height);
+    return CGRectMake(0, 0, s.width, s.height);
 }
 -(BOOL)containsTouchLocation:(UITouch*)touch{
-//    return YES;
+
     return CGRectContainsPoint([self rect], [self convertTouchToNodeSpace:touch]);
 }
 

@@ -50,12 +50,14 @@
     bg_sprite.anchorPoint = ccp(0,0);
     bg_sprite_bottom.position = ccp(winSize.width/2, 0);
     [bg addChild:bg_sprite z:0 tag:kBackgroundSpriteTag];
+    bg_sprite_bottom.color = ccc3(kBottomWaveColorR,kBottomWaveColorG,kBottomWaveColorB);
     [bg addChild:bg_sprite_bottom z:0 tag:kBackgroundSpriteBottomTag];
     [scene addChild:bg z:0 tag:kBackgroundTag];
 	// add layer as a child to scene
 	[scene addChild: layer z:0];
 	[scene addChild: hud z:1];
 	// return the scene
+    scene.userData = (__bridge void *)(kGameLayerData);
 	return scene;
 }
 
@@ -174,7 +176,7 @@
         ls.position = ccp(x, winSize.height*.75 - tile_size.height*1.25);
         [_letter_positions addObject:[NSValue valueWithCGPoint:lt.position]];
         
-        [lt savePosition];
+        [lt setStartPosition:lt.position];
         [self addChild:lt z:1 tag:kLetterTileTagStart+i];
         [self addChild:ls z:0 tag:kLetterSlotID+i];
     }
@@ -192,6 +194,7 @@
                 
             }
             [[VerbosityGameState sharedState] clearWordAttempt];
+              [VerbosityGameState sharedState].CurrentGameState = kGameStateReady;
             [self unscheduleUpdate];
             _start_game = NO;
         }
@@ -287,7 +290,7 @@
         CCMoveTo* shuffle_action = [[CCMoveTo alloc] initWithDuration:.0625 position:new_position];
         CCCallBlockN* save_position = [CCCallBlockN actionWithBlock:^(CCNode *node) {
             //code
-            [((LetterTile*)node) savePosition];
+            [((LetterTile*)node) setStartPosition:new_position];
         }];
         CCSequence* seq = [CCSequence actions:shuffle_action,save_position, nil];
         LetterTile* current_tile = (LetterTile*)[shakeable_letters objectAtIndex:i];

@@ -11,8 +11,10 @@
 #import "AppDelegate.h"
 #import "VerbosityPreLoadLayer.h"
 #import "VerbosityGameState.h"
+#import "VerbosityGameLayer.h"
 #import "TestFlight.h"
 #import "SimpleAudioEngine.h"
+#import "PauseGameLayer.h"
 #import "VerbosityGameConstants.h"
 
 @implementation AppController
@@ -121,6 +123,7 @@
 -(void) applicationWillResignActive:(UIApplication *)application
 {
     [VerbosityGameState sharedState].IsActive = NO;
+    
    	if( [navController_ visibleViewController] == director_ )
 		[director_ pause];
 }
@@ -136,6 +139,12 @@
 -(void) applicationDidEnterBackground:(UIApplication*)application
 {
     [VerbosityGameState sharedState].IsActive = NO;
+    
+    if( [[CCDirector sharedDirector] runningScene].userData != nil &&
+        [(NSString*)[[CCDirector sharedDirector] runningScene].userData isEqualToString:kGameLayerData]){
+            [[CCDirector sharedDirector] pushScene: [PauseGameLayer scene]];
+    }
+   	
 	if( [navController_ visibleViewController] == director_ )
 		[director_ stopAnimation];
 }
@@ -143,6 +152,7 @@
 -(void) applicationWillEnterForeground:(UIApplication*)application
 {
     [VerbosityGameState sharedState].IsActive = YES;
+    
 	if( [navController_ visibleViewController] == director_ )
 		[director_ startAnimation];
 }

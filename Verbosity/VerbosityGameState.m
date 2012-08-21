@@ -198,7 +198,7 @@ static VerbosityGameState *sharedState = nil;
         
         if(current_word_score > 50000){
             VerbosityAlert* great_score_alert = [[VerbosityAlert alloc] initWithType:kGreatScore andData:[NSNumber numberWithInt:current_word_score]];
-            [[VerbosityAlertManager sharedAlertManager] addAlert:great_score_alert];  
+            [[VerbosityAlertManager sharedAlertManager] addAlert:great_score_alert];
         }
         NSNumber* oldVal = (NSNumber*)[_words_found_of_length objectAtIndex:length-1];
         NSNumber* newVal = [NSNumber numberWithInt:[oldVal intValue] + 1];
@@ -214,7 +214,7 @@ static VerbosityGameState *sharedState = nil;
             VerbosityAlert* duplicate_word = [[VerbosityAlert alloc] initWithType:kDuplicateWord andData:_current_word_attempt];
             [[VerbosityAlertManager sharedAlertManager] addAlert:duplicate_word]; 
         }
-        if(_current_hot_streak > 3){//you missed a word and your streak was greater than 3 (hot streak)
+        if(_current_hot_streak >= 3){//you missed a word and your streak was greater than 3 (hot streak)
             VerbosityAlert* streak_ended = [[VerbosityAlert alloc] initWithType:kHotStreakEnded andData:nil];
             [[VerbosityAlertManager sharedAlertManager] addAlert:streak_ended];  
         }
