@@ -16,6 +16,7 @@
     CCLabelTTF *_yourScore;
     CCLabelTTF *_yourWords;
     CCLabelTTF *_timeLabel;
+    CCLabelTTF *_yourStreak;
     NSMutableArray *_current_labels;
 }
 

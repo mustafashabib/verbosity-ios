@@ -20,3 +20,6 @@
 #define kBottomWaveColorR 132
 #define kBottomWaveColorG 108
 #define kBottomWaveColorB 166
+
+
+int VERBOSITYFONTSIZE(int num); 

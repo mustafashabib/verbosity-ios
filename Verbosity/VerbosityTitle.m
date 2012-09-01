@@ -32,7 +32,7 @@
 -(id)init{
     self = [super init];
     if(self){
-        
+        self.isTouchEnabled = YES;
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
@@ -120,5 +120,11 @@
         [title runAction:showtitle];
     }
     return self;
+}
+
+- (void)ccTouchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    [self stopAllActions];
+    [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
 }
 @end

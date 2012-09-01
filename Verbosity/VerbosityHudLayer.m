@@ -33,7 +33,7 @@
   
 
     //new way without background
-        CCLabelTTF* label = [[CCLabelTTF alloc] initWithString:labelString fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:14 ];
+        CCLabelTTF* label = [[CCLabelTTF alloc] initWithString:labelString fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(14) ];
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     label.anchorPoint = ccp(.5,0);
@@ -132,25 +132,25 @@
         CGSize winSize = [CCDirector sharedDirector].winSize;
         VerbosityGameState* current_state = [VerbosityGameState sharedState];
         _current_labels = [[NSMutableArray alloc] init];
-        _timeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d sec.", (int)current_state.TimeLeft] fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:28];
+        _timeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d sec.", (int)current_state.TimeLeft] fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(28)];
         _timeLabel.position = CGPointMake(winSize.width/2, winSize.height);
         _timeLabel.anchorPoint = CGPointMake(.5f, 1.0f);
     
         _timeLabel.color = kTimerColor;
         
-        _yourScore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"score: %ld", current_state.Stats.Score] fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:14];
+        _yourScore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"score: %ld", current_state.Stats.Score] fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(14)];
         _yourScore.position = CGPointMake(5, winSize.height - 5);
         _yourScore.anchorPoint = ccp(0,1);
-        _yourWords = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"found: %d words", current_state.Stats.TotalWordsFound] fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:14];
+        _yourWords = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"found: %d words", current_state.Stats.TotalWordsFound] fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(14)];
         _yourWords.position = CGPointMake(5, winSize.height - _yourScore.contentSize.height - 10);
         _yourWords.anchorPoint = ccp(0,1);
       
-          _yourScore.color = kScoreColor;
+                 _yourScore.color = kScoreColor;
           _yourWords.color = kScoreColor;
-        
+    
         //pause button
         
-        CCLabelButton *pause = [[CCLabelButton alloc] initWithString:@"pause" andFontName:@"AmerTypewriterITCbyBT-Medium" andFontSize:14 andTouchesEndBlock:^{
+        CCLabelButton *pause = [[CCLabelButton alloc] initWithString:@"pause" andFontName:@"AmerTypewriterITCbyBT-Medium" andFontSize:VERBOSITYFONTSIZE(14) andTouchesEndBlock:^{
             [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
             [VerbosityGameState sharedState].CurrentGameState = kGameStatePaused;
             [[CCDirector sharedDirector] pushScene: [CCTransitionMoveInT transitionWithDuration:.25f scene:[PauseGameLayer scene]]];
@@ -161,33 +161,18 @@
         [pause setVisible:NO];
         [self addChild:pause z:2 tag:kPauseButtonTag];
         
-        /*
-        [CCMenuItemFont setFontSize:12];
-        [CCMenuItemFont setFontName:@"ArialRoundedMTBold"];
-        // Reset Button
-        CCMenuItemLabel *pause = [CCMenuItemFont itemWithString:@"Pause" block:^(id sender){
-            [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
-            [VerbosityGameState sharedState].CurrentGameState = kGameStatePaused;
-            [[CCDirector sharedDirector] pushScene: [CCTransitionMoveInT transitionWithDuration:1.0f scene:[PauseGameLayer scene]]];
-        }];
-        
-        [pause setAnchorPoint:ccp(0,0)];
-        CCMenu *menu = [CCMenu menuWithItems: pause, nil];
-        [menu setContentSize:CGSizeMake(pause.contentSize.width, pause.contentSize.height)];
-        menu.isTouchEnabled = YES;
-        [menu alignItemsHorizontally];
-        menu.ignoreAnchorPointForPosition = NO;
-        [menu setAnchorPoint:ccp(0,0)];
-        CGSize size = [[CCDirector sharedDirector] winSize];
-        [menu setPosition:ccp(winSize.width,winSize.height)];
-        
-        [self addChild: menu z:0];
-        */
-        
+              
+        _yourStreak = [CCLabelTTF labelWithString:@"streak:" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(14)];
+        [_yourStreak setPosition:ccp(winSize.width-5, winSize.height-5 - pause.contentSize.height)];
+        _yourStreak.anchorPoint = ccp(1,1);
+        _yourStreak.color = kScoreColor;
+        [_yourStreak setVisible:NO];
+
         
         [self addChild:_timeLabel z:1];
         [self addChild:_yourScore z:1];
         [self addChild:_yourWords z:1];
+        [self addChild:_yourStreak z:1];
         [self scheduleUpdate];
     }
     return self;
@@ -288,7 +273,7 @@
             CCLOG(@"streak ended.");
             [self _showNewAlert:@"Hot streak ended!" andColor:ccRED];
             [[SimpleAudioEngine sharedEngine] playEffect:@"hotstreak_end.wav"];
-            
+            [_yourStreak setColor:ccRED];
             break; 
         }
         case kTimeRunningOut:{
@@ -340,7 +325,7 @@
                 [[CCDirector sharedDirector] replaceScene:[GameOverLayer scene]];
 
             }];
-            CCSequence *seq = [CCSequence actions:[CCDelayTime actionWithDuration:.75],  showGameOver, nil];
+            CCSequence *seq = [CCSequence actions:[CCDelayTime actionWithDuration:1.25],  showGameOver, nil];
             [self runAction:seq];
         }
             break;
@@ -382,6 +367,13 @@
     
     [_timeLabel setString:[NSString stringWithFormat:@"%d sec.", (int)[VerbosityGameState sharedState].TimeLeft]];
     [_yourScore setString:[NSString stringWithFormat:@"score: %ld",[VerbosityGameState sharedState].Stats.Score]];
+    if([VerbosityGameState sharedState].CurrentHotStreak > 1){
+        [_yourStreak setVisible:YES];
+        [_yourStreak setString:[NSString stringWithFormat:@"streak: x%d",[VerbosityGameState sharedState].CurrentHotStreak]];
+    }else{
+        [_yourStreak setVisible:NO];
+    }
+
     [_yourWords setString:[NSString stringWithFormat:@"found: %d words", [VerbosityGameState sharedState].Stats.TotalWordsFound]];
     CCLabelButton* pause =(CCLabelButton*)[self getChildByTag:kPauseButtonTag];
     if([[VerbosityGameState sharedState] isGameActive] && !pause.visible){
@@ -404,7 +396,7 @@
     [self addChild:dark_overlay z:NSIntegerMax-1];
     CGSize winSize = [CCDirector sharedDirector].winSize;
     
-    CCLabelTTF *end_game = [CCLabelTTF labelWithString:@"Time's Up!" fontName:@"ArialRoundedMTBold" fontSize:40.0];
+    CCLabelTTF *end_game = [CCLabelTTF labelWithString:@"Time's Up!" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(40)];
     end_game.position = ccp(winSize.width/2, winSize.height/2);
     end_game.anchorPoint = ccp(.5,.5);
     

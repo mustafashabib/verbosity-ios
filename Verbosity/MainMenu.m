@@ -14,6 +14,7 @@
 #import "VerbosityHowToPlayLayer.h"
 #import "VerbositySettingsLayer.h"
 #import "SimpleAudioEngine.h"
+#import "VerbosityGameConstants.h"
 
 @implementation MainMenu
 +(CCScene *) scene
@@ -34,25 +35,13 @@
     if(self){
         self.isTouchEnabled=YES;
         
-        /*CGSize label = CGSizeMake(160., 45.);
-         CCLabelTTF *label1 = [CCLabelTTF labelWithString:@"Option1 for example"
-         dimensions:size
-         alignment:UITextAlignmentLeft
-         fontName:@"pickYourOwnFont" fontSize:16.];
-         
-         CCLabelTTF *label2 = [CCLabelTTF labelWithString:@"Option2 below option 1"
-         dimensions:size
-         alignment:UITextAlignmentLeft
-         fontName:@"pickYourOwnFont" fontSize:16.];
-         CCMenuItem * item1 = [CCMenuItemLabel itemWithLabel:label1];
-         CCMenuItem * item2 = [CCMenuItemLabel itemWithLabel:label2];
-         CCMenu * leftAlignedMenu=[CCMenu menuWithItems:item1,item2,nil];*/
+        
          
         CGSize size = [[CCDirector sharedDirector] winSize];
 #define kNumberMainMenuOptions 5
         
-       
-        [CCMenuItemFont setFontSize:36];
+        [CCMenuItemFont setFontName:@"YellowSubmarine"];
+        [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(40)];
 
         // Reset Button
         CCMenuItem *start = [CCMenuItemFont itemWithString:@"Start" block:^(id sender){
@@ -74,7 +63,7 @@
             [[CCDirector sharedDirector] replaceScene: [VerbosityHowToPlayLayer scene]];
         }];
         
-        CCMenuItem *fb = [CCMenuItemFont itemWithString:@"Facebook Connect" block:^(id sender){
+        CCMenuItem *fb = [CCMenuItemFont itemWithString:@"Multiplayer" block:^(id sender){
             [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
             [[CCDirector sharedDirector] replaceScene: [VerbosityFBConnectLayer scene]];
         }];
@@ -87,10 +76,10 @@
         how_to_play.anchorPoint = ccp(0,.5);
         CCMenu *menu = [CCMenu menuWithItems: start,settings,stats,how_to_play,fb, nil];
         
-        float padding = (size.height/[menu children].count)*.1;
+        float padding = (size.height/[menu children].count)*.125;
         [menu alignItemsVerticallyWithPadding:padding];
        
-        [menu setPosition:ccp(0, size.height/2)];
+        [menu setPosition:ccp(10, size.height/2)];
         
         CCSprite* menu_bg = [CCSprite spriteWithFile:@"menu_corner.png"];
         [menu_bg setAnchorPoint:ccp(0,0)];
@@ -122,7 +111,8 @@
         [self addChild:menu_bg z:1];
         [self addChild: menu z:2];
         
-        //blue,green,purple,roy,orange,yellow
+        //set font back to typewriter for everything else
+        [CCMenuItemFont setFontName:@"AmerTypewriterITCbyBT-Medium"];
         
         
     }

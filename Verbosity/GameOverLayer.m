@@ -14,6 +14,7 @@
 #import "Word.h"
 #import "MainMenu.h"
 #import "SimpleAudioEngine.h"
+#import "VerbosityGameConstants.h"
 
 @implementation GameOverLayer
 +(CCScene *) scene
@@ -76,7 +77,7 @@
 
         [self addChild:wrapper];
         // Default font size will be 22 points.
-        [CCMenuItemFont setFontSize:22];
+        [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(22)];
         
         // Reset Button
         CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Play Again" block:^(id sender){

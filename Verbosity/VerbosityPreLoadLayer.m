@@ -9,6 +9,7 @@
 #import "VerbosityPreLoadLayer.h"
 #import "VerbosityTitle.h"
 #import "SimpleAudioEngine.h"
+#import "VerbosityGameConstants.h"
 
 @implementation VerbosityPreLoadLayer
 +(CCScene *) scene
@@ -23,14 +24,16 @@
     bg.anchorPoint = ccp(0,0);
     [layer addChild:bg];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CCLabelTTF* loading_label = [CCLabelTTF labelWithString:@"Loading..." fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:24];
-    loading_label.color = ccc3(255, 247, 0);
+    CCLabelTTF* loading_label = [CCLabelTTF labelWithString:@"Loading..." fontName:@"YellowSubmarine" fontSize:VERBOSITYFONTSIZE(28)];
+    loading_label.color = ccGRAY;
     loading_label.position = ccp(winSize.width,0);
     loading_label.anchorPoint = ccp(1,0);
     
     /*preload images*/
     CCCallBlock *preload = [CCCallBlock actionWithBlock:^{
     CCLOG(@"Preloading images");
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"textures.plist"];
+        /*
     [[CCTextureCache sharedTextureCache] addImage: @"DarkGrayBackground.jpg"];
     [[CCTextureCache sharedTextureCache] addImage: @"GrayWave1.png"];
     [[CCTextureCache sharedTextureCache] addImage:  @"GrayWave2.png"];
@@ -44,7 +47,7 @@
     [[CCTextureCache sharedTextureCache] addImage:  @"tileblack.png"];
     [[CCTextureCache sharedTextureCache] addImage:  @"tilewhite.png"];
     [[CCTextureCache sharedTextureCache] addImage:  @"verbosityTitle.png"];
-    [[CCTextureCache sharedTextureCache] addImage:  @"menu_corner.png"];
+    [[CCTextureCache sharedTextureCache] addImage:  @"menu_corner.png"];*/
 
         
 

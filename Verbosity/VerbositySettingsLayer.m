@@ -34,7 +34,7 @@
 -(id) init{
     self = [super init];
     if(self){
-        [CCMenuItemFont setFontSize:18];
+        [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(18)];
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         float fxVolumeSaved = 1.0f;
@@ -50,7 +50,7 @@
         [fxVolume addObserver:self forKeyPath:@"value" options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context: nil];
         [fxVolume setPosition:ccp(winSize.width/2 + (.15*winSize.width), winSize.height/2)];
         
-        CCLabelTTF* fx_volume_label = [CCLabelTTF labelWithString:@"Volume" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:36];
+        CCLabelTTF* fx_volume_label = [CCLabelTTF labelWithString:@"Volume" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(36)];
         [fx_volume_label setAnchorPoint:ccp(1,.5)];
         [fx_volume_label setPosition:ccp(winSize.width/2,winSize.height/2)];
         

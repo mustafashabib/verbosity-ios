@@ -9,6 +9,7 @@
 #import "VerbosityHowToPlayLayer.h"
 #import "MainMenu.h"
 #import "SimpleAudioEngine.h"
+#import "VerbosityGameConstants.h"
 
 @implementation VerbosityHowToPlayLayer
 
@@ -42,13 +43,13 @@
 
          
         // Set the font size for the label text
-        float fontSize = 18;
+        float fontSize = VERBOSITYFONTSIZE(18);
         
         // Set the font type for the label text
         NSString *fontType = @"AmerTypewriterITCbyBT-Medium";
         
         // Create the text
-        NSString *text = @"Make as many words as you can before time runs out by touching the letters.\n\nSubmit your word attempt by touching the screen with two fingers at the same time.\n\nSwipe in either direction to cancel your attempt.\n\nBuild up your score by getting on hot streaks and by finding rare words!";
+        NSString *text = @"Make as many words as you can before time runs out by touching the letters.\n\nSubmit your word attempt by touching the screen with two fingers at the same time.\n\nSwipe to the left or right to cancel your attempt.\n\nShake your device or swipe downwards to shuffle your letters.\n\nBuild up your score by getting on hot streaks and by finding rare words!";
         
         
         

@@ -12,6 +12,7 @@
 #import "VerbosityRepository.h"
 #import "SimpleAudioEngine.h"
 #import "CCUIViewWrapper.h"
+#import "VerbosityGameConstants.h"
 
 @implementation GameStatsLayer
 +(CCScene *) scene
@@ -31,8 +32,8 @@
     self = [super init];
     if(self){
         self.isTouchEnabled=YES;
-        // Default font size will be 22 points.
-        [CCMenuItemFont setFontSize:18];
+        // Default font size will be 18 points.
+        [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(18)];
         
         // Reset Button
         CCMenuItemLabel *back = [CCMenuItemFont itemWithString:@"Go Back" block:^(id sender){

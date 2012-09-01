@@ -35,11 +35,11 @@
         [bg setAnchorPoint:ccp(0,0)];
         [self addChild:bg z:0];
         
-        CCLabelTTF* pause = [CCLabelTTF labelWithString:@"Paused" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:36];
+        CCLabelTTF* pause = [CCLabelTTF labelWithString:@"Paused" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(36)];
         [pause setPosition:ccp(size.width/2,size.height/2)];
         [self addChild:pause];
         
-        [CCMenuItemFont setFontSize:18];
+        [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(18)];
         
         // Reset Button
         CCMenuItemLabel *back = [CCMenuItemFont itemWithString:@"Go Back" block:^(id sender){

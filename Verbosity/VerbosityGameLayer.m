@@ -69,7 +69,7 @@
 	if( (self=[super init])) {
         
         _start_game = NO;
-        CCLabelTTF* loading = [CCLabelTTF labelWithString:@"Finding Letters..." fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:48];
+        CCLabelTTF* loading = [CCLabelTTF labelWithString:@"Finding Letters..." fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(48)];
         CGSize winSize = [CCDirector sharedDirector].winSize;
         loading.ignoreAnchorPointForPosition = NO;
         loading.anchorPoint = ccp(.5,.5);

@@ -9,6 +9,7 @@
 #import "VerbosityFBConnectLayer.h"
 #import "MainMenu.h"
 #import "SimpleAudioEngine.h"
+#import "VerbosityGameConstants.h"
 
 @implementation VerbosityFBConnectLayer
 
@@ -33,7 +34,7 @@
 -(id)init{
     self = [super init];
     if(self){
-        [CCMenuItemFont setFontSize:18];
+        [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(18)];
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
