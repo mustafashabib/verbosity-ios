@@ -43,7 +43,6 @@
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    CCLOG(@"touch began for button with text %@", string_);
     BOOL containsTouch = [self containsTouchLocation:touch];
     if(containsTouch){
         CCLOG(@"Contains touch for text %@", string_);
@@ -54,8 +53,12 @@
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    
-    CCLOG(@"touch moved for %@", string_);
+    BOOL containsTouch = [self containsTouchLocation:touch];
+    if(containsTouch){
+        CCLOG(@"touch moved for %@", string_);
+    }
+
+   
   
     return;
     

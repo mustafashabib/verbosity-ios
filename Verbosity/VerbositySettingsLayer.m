@@ -53,6 +53,7 @@
         CCLabelTTF* fx_volume_label = [CCLabelTTF labelWithString:@"Volume" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(36)];
         [fx_volume_label setAnchorPoint:ccp(1,.5)];
         [fx_volume_label setPosition:ccp(winSize.width/2,winSize.height/2)];
+        [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(18)];
         
         CCMenuItem *go_back = [CCMenuItemFont itemWithString:@"Go Back" block:^(id sender){
              [[SimpleAudioEngine sharedEngine] playEffect:@"swipe_erase.wav"];

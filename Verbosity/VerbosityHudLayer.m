@@ -163,6 +163,7 @@
         
               
         _yourStreak = [CCLabelTTF labelWithString:@"streak:" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(14)];
+        
         [_yourStreak setPosition:ccp(winSize.width-5, winSize.height-5 - pause.contentSize.height)];
         _yourStreak.anchorPoint = ccp(1,1);
         _yourStreak.color = kScoreColor;
@@ -367,7 +368,8 @@
     
     [_timeLabel setString:[NSString stringWithFormat:@"%d sec.", (int)[VerbosityGameState sharedState].TimeLeft]];
     [_yourScore setString:[NSString stringWithFormat:@"score: %ld",[VerbosityGameState sharedState].Stats.Score]];
-    if([VerbosityGameState sharedState].CurrentHotStreak > 1){
+    if([VerbosityGameState sharedState].CurrentHotStreak > 1 && [[VerbosityGameState sharedState] isGameActive]){
+        [_yourStreak setColor:kScoreColor];
         [_yourStreak setVisible:YES];
         [_yourStreak setString:[NSString stringWithFormat:@"streak: x%d",[VerbosityGameState sharedState].CurrentHotStreak]];
     }else{

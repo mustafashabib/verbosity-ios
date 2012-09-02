@@ -43,7 +43,7 @@
 
          
         // Set the font size for the label text
-        float fontSize = VERBOSITYFONTSIZE(18);
+        float fontSize = VERBOSITYFONTSIZE(16);
         
         // Set the font type for the label text
         NSString *fontType = @"AmerTypewriterITCbyBT-Medium";
@@ -68,8 +68,10 @@
                                                 fontSize:fontSize];
         
         [instructions setAnchorPoint:ccp(0,1)];
-        [instructions setPosition:ccp(0,winSize.height)];
+        [instructions setPosition:ccp(5,winSize.height-5)];
         [self addChild:instructions];
+        [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(18)];
+        
         CCMenuItem *go_back = [CCMenuItemFont itemWithString:@"Go Back" block:^(id sender){
              [[SimpleAudioEngine sharedEngine] playEffect:@"swipe_erase.wav"];
             [[CCDirector sharedDirector] replaceScene: [MainMenu scene]];

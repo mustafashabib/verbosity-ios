@@ -160,7 +160,6 @@ static int letterID = 0;
     
     CCLOG(@"touch ended for %@ with state %d", _letter, _state);
     
-    NSAssert(_state == kLetterStateTouched || _state == kLetterStateUsed, @"Letter - Unexpected state!");  
     CCSprite* sprite = (CCSprite*)[self getChildByTag:_letterID];
     NSAssert([sprite isKindOfClass:[CCSprite class]], @"Letter -child with tag %d is not sprite", _letterID);
 

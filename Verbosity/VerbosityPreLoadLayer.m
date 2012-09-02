@@ -32,8 +32,6 @@
     /*preload images*/
     CCCallBlock *preload = [CCCallBlock actionWithBlock:^{
     CCLOG(@"Preloading images");
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"textures.plist"];
-        /*
     [[CCTextureCache sharedTextureCache] addImage: @"DarkGrayBackground.jpg"];
     [[CCTextureCache sharedTextureCache] addImage: @"GrayWave1.png"];
     [[CCTextureCache sharedTextureCache] addImage:  @"GrayWave2.png"];
@@ -47,9 +45,7 @@
     [[CCTextureCache sharedTextureCache] addImage:  @"tileblack.png"];
     [[CCTextureCache sharedTextureCache] addImage:  @"tilewhite.png"];
     [[CCTextureCache sharedTextureCache] addImage:  @"verbosityTitle.png"];
-    [[CCTextureCache sharedTextureCache] addImage:  @"menu_corner.png"];*/
-
-        
+    [[CCTextureCache sharedTextureCache] addImage:  @"menu_corner.png"];
 
     
     CCLOG(@"Done Preloading images");

@@ -37,6 +37,7 @@
         [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(18)];
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
+        [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(18)];
         
         
         CCSprite* bg = [CCSprite spriteWithFile:@"DarkGrayBackground.jpg"];
