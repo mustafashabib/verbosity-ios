@@ -10,8 +10,6 @@ A simple word game for the iOS. Make as many words as possible. Uses cocos- 2.0 
 * sound
 * settings
 * share on facebook
-* title screen
-* stats
 
 #### Mid Priority
 * multiplayer 
