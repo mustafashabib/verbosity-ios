@@ -16,3 +16,7 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+bin/
+obj/
+*.suo
+*.user
