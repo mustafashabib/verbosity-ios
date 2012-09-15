@@ -8,21 +8,28 @@ namespace Verbosity.Domain.Services
     public sealed class GameService
     {
         private Domain.Repositories.IGameRepository _game_repo;
-        public GameService(Domain.Repositories.IGameRepository game_repo)
+        private Domain.Repositories.IPlayerRepository _player_repo;
+        public GameService(Domain.Repositories.IGameRepository game_repo, Domain.Repositories.IPlayerRepository player_repo)
         {
             _game_repo = game_repo;
+            _player_repo = player_repo;
         }
         Domain.Entities.Game CreateGame(string username1, string username2, List<string> letters, List<string> words)
         {
             try
             {
+                 if (string.IsNullOrWhiteSpace(username1) || string.IsNullOrWhiteSpace(username2){
+                     throw new Domain.Exceptions.ArgumentException("Username's cannot be empty when starting a game.");
+                 }
                 username2 = username2.ToLower();
                 username1 = username1.ToLower();
-                if (string.IsNullOrWhiteSpace(username1) || string.IsNullOrWhiteSpace(username2) || username2 == username1
+               if( username2 == username1
                     || letters == null || words == null || letters.Count <= 1 || words.Count == 0)
                 {
-                    throw new Domain.Exceptions.ArgumentException("Username's cannot be empty or the same, there must be at least one letter and word to start a game.");
+                    throw new Domain.Exceptions.ArgumentException(
+                        @"Username's cannot be empty or the same, there must be at least one letter and word to start a game.");
                 }
+                
                 return _game_repo.CreateGame(username1, username2, letters, words);
             }
             catch (Domain.Exceptions.Exception)
@@ -39,6 +46,7 @@ namespace Verbosity.Domain.Services
         {
             try
             {
+                username = username.ToLower();
                 throw new NotImplementedException();
             }
             catch (Domain.Exceptions.Exception)
