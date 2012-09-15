@@ -49,7 +49,7 @@ namespace Verbosity.AzureTableRepository.Repositories
             }
         }
 
-        public Domain.Entities.Player CreatePlayerWithFacebookID(string username, string facebook_id, string device_id)
+        public Domain.Entities.Player CreatePlayerWithFacebookID(string username, string facebook_id, string device_id = null)
         {
             
             bool created_player = false;
@@ -64,7 +64,7 @@ namespace Verbosity.AzureTableRepository.Repositories
             try{
                 if (IsUsernameAvailable(username) && IsFacebookIDAvailable(facebook_id))
                 {
-                    player = new Domain.Entities.Player(username);
+                    player = new Domain.Entities.Player(username, facebook_id);
                     player.DeviceID = device_id;
                     service_context.AddObject(_table_name, player);
                     service_context.SaveChanges();
@@ -109,7 +109,7 @@ namespace Verbosity.AzureTableRepository.Repositories
             }
         }
 
-        public Domain.Entities.Player CreatePlayerWithPassword(string username, string password, string device_id)
+        public Domain.Entities.Player CreatePlayerWithPassword(string username, string password, string device_id = null)
         {
             bool created_player = false;
             bool created_player_pass_link = false;
@@ -293,6 +293,8 @@ namespace Verbosity.AzureTableRepository.Repositories
             {
                 TableServiceContext service_context = _client.GetDataServiceContext();
                 var fb_p_query = service_context.CreateQuery<Domain.Entities.FacebookPlayer>(_facebook_player_table_name);
+                var player_query = service_context.CreateQuery<Domain.Entities.Player>(_table_name);
+                
                 string username_of_player_with_fbid = (from fbp in fb_p_query where fbp.PartitionKey == facebook_id.ToLower() && fbp.RowKey == facebook_id.ToLower() select fbp.Username.ToLower()).SingleOrDefault();
                 if (!string.IsNullOrWhiteSpace(username_of_player_with_fbid) && username.ToLower() !=username_of_player_with_fbid) //this facebook id was once tied to a username
                 {
@@ -302,6 +304,15 @@ namespace Verbosity.AzureTableRepository.Repositories
                 {
                     return true; //already linked
                 }
+
+                Domain.Entities.Player original_player_to_update = (from p in player_query where p.PartitionKey == username.Substring(0, 1).ToUpper() && p.RowKey == username.ToLower() select p).SingleOrDefault();
+                if (original_player_to_update == null)
+                {
+                    return false;
+                }
+                original_player_to_update.FacebookID = facebook_id.ToLower();
+                service_context.UpdateObject(original_player_to_update);
+                service_context.SaveChanges();
 
                 Domain.Entities.FacebookPlayer fb_player = new Domain.Entities.FacebookPlayer(facebook_id, username.ToLower());
                 service_context.AddObject(_facebook_player_table_name, fb_player);

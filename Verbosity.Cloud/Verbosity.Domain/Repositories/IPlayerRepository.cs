@@ -8,8 +8,8 @@ namespace Verbosity.Domain.Repositories
     public interface IPlayerRepository
     {
         bool IsUsernameAvailable(string username);
-        Domain.Entities.Player CreatePlayerWithFacebookID(string username, string facebookid, string device_id);
-        Domain.Entities.Player CreatePlayerWithPassword(string username, string password, string device_id);
+        Domain.Entities.Player CreatePlayerWithFacebookID(string username, string facebookid, string device_id = null);
+        Domain.Entities.Player CreatePlayerWithPassword(string username, string password, string device_id = null);
         Domain.Entities.Player GetPlayerByFacebookID(string facebook_id);
         Domain.Entities.Player GetPlayerByUsername(string username);
         Domain.Entities.Player GetPlayerByUsernameAndPassword(string username,string password);
