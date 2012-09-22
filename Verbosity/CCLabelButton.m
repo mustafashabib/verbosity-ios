@@ -38,11 +38,14 @@
 }
 -(BOOL)containsTouchLocation:(UITouch*)touch{
 
-    return CGRectContainsPoint([self rect], [self convertTouchToNodeSpace:touch]);
+    return visible_ && CGRectContainsPoint([self rect], [self convertTouchToNodeSpace:touch]);
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    if(!visible_){
+        return NO;
+    }
     BOOL containsTouch = [self containsTouchLocation:touch];
     if(containsTouch){
         CCLOG(@"Contains touch for text %@", string_);
@@ -53,6 +56,9 @@
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    if(!visible_){
+        return;
+    }
     BOOL containsTouch = [self containsTouchLocation:touch];
     if(containsTouch){
         CCLOG(@"touch moved for %@", string_);
@@ -67,6 +73,9 @@
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     
+    if(!visible_){
+        return;
+    }
     CCLOG(@"touch ended for button with text %@", string_);
     if(_block){
         CCLOG(@"Calling block");
