@@ -40,7 +40,7 @@
         CGSize size = [[CCDirector sharedDirector] winSize];
 #define kNumberMainMenuOptions 5
         
-        [CCMenuItemFont setFontName:@"YellowSubmarine"];
+        [CCMenuItemFont setFontName:@"AmerTypewriterITCbyBT-Medium"];
         [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(40)];
 
         // Reset Button

@@ -22,4 +22,5 @@
 #define kBottomWaveColorB 166
 
 
-int VERBOSITYFONTSIZE(int num); 
+int VERBOSITYFONTSIZE(int num);
+int VERBOSITYPOINTS(int num);

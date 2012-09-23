@@ -88,11 +88,11 @@
              kBottomWaveColorR andGreen:kBottomWaveColorG andBlue:kBottomWaveColorB];
             break;
         case kColdStreakStarted:
-            [self _tintBottomToRed:0 andGreen:0 andBlue:255];
+            [self _tintBottomToRed:135 andGreen:206 andBlue:250];
             break;
         case kHotStreakStarted:
-            //orange
-            [self _tintBottomToRed:255 andGreen:127 andBlue:0];
+            //gold
+            [self _tintBottomToRed:255 andGreen:215 andBlue:0];
             break;
         default:
             break;
@@ -246,8 +246,7 @@
         }
         case kHotStreakStarted:{
             CCLOG(@"hot streak started");
-            [self _showNewAlert:@"Hot streak!" andColor:ccORANGE];
-            
+            [self _showNewAlert:@"Hot streak!" andColor:ccc3(255,215,0)];
             break; 
         }
         case kColdStreakEnded:

@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7106126615CB2ED800610049 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7106126215CB2ED800610049 /* libTestFlight.a */; };
-		7106126715CB2ED900610049 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7106126215CB2ED800610049 /* libTestFlight.a */; };
-		7106126815CB2ED900610049 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7106126315CB2ED800610049 /* README.txt */; };
-		7106126915CB2ED900610049 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7106126315CB2ED800610049 /* README.txt */; };
-		7106126A15CB2ED900610049 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7106126415CB2ED800610049 /* release_notes.txt */; };
-		7106126B15CB2ED900610049 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7106126415CB2ED800610049 /* release_notes.txt */; };
 		7106126E15CB2F0200610049 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7106126D15CB2F0200610049 /* libz.dylib */; };
 		7106126F15CB2F0800610049 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7106126D15CB2F0200610049 /* libz.dylib */; };
 		7106127B15CB359B00610049 /* already_got_word.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7106127115CB359B00610049 /* already_got_word.wav */; };
@@ -71,6 +65,10 @@
 		7124EF3B15AD3C6100AE6542 /* CCUIViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7124EF3A15AD3C6100AE6542 /* CCUIViewWrapper.m */; };
 		712699F115D79AF4004D039E /* CCLabelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 712699F015D79AF4004D039E /* CCLabelButton.m */; };
 		712699F215D79AF4004D039E /* CCLabelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 712699F015D79AF4004D039E /* CCLabelButton.m */; };
+		7143BBA2160FA81200E1270D /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7143BBA0160FA81200E1270D /* libTestFlight.a */; };
+		7143BBA3160FA81200E1270D /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7143BBA0160FA81200E1270D /* libTestFlight.a */; };
+		7143BBAB160FAA9100E1270D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7143BBAA160FAA9100E1270D /* Default-568h@2x.png */; };
+		7143BBAC160FAA9100E1270D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7143BBAA160FAA9100E1270D /* Default-568h@2x.png */; };
 		71444E48159ADF510045EC44 /* verbosity.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 71444E47159ADF510045EC44 /* verbosity.sqlite3 */; };
 		71444E4A159ADFAE0045EC44 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 71444E49159ADFAE0045EC44 /* libsqlite3.dylib */; };
 		71444E4D159AE00C0045EC44 /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 71444E4C159AE00C0045EC44 /* Language.m */; };
@@ -516,10 +514,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7106126215CB2ED800610049 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		7106126315CB2ED800610049 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		7106126415CB2ED800610049 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
-		7106126515CB2ED800610049 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		7106126D15CB2F0200610049 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7106127115CB359B00610049 /* already_got_word.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = already_got_word.wav; path = Resources/already_got_word.wav; sourceTree = "<group>"; };
 		7106127515CB359B00610049 /* fast_hands_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fast_hands_2.wav; path = Resources/fast_hands_2.wav; sourceTree = "<group>"; };
@@ -563,6 +557,9 @@
 		7124EF3A15AD3C6100AE6542 /* CCUIViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUIViewWrapper.m; sourceTree = "<group>"; };
 		712699EF15D79AF4004D039E /* CCLabelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLabelButton.h; sourceTree = "<group>"; };
 		712699F015D79AF4004D039E /* CCLabelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLabelButton.m; sourceTree = "<group>"; };
+		7143BBA0160FA81200E1270D /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = TestFlightSDK1.1/libTestFlight.a; sourceTree = SOURCE_ROOT; };
+		7143BBA1160FA81200E1270D /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = TestFlightSDK1.1/TestFlight.h; sourceTree = SOURCE_ROOT; };
+		7143BBAA160FAA9100E1270D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		71444E47159ADF510045EC44 /* verbosity.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = verbosity.sqlite3; path = Resources/verbosity.sqlite3; sourceTree = "<group>"; };
 		71444E49159ADFAE0045EC44 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		71444E4B159AE00B0045EC44 /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Language.h; sourceTree = "<group>"; };
@@ -949,7 +946,7 @@
 				71921EEC15929D5000CD3A77 /* Foundation.framework in Frameworks */,
 				71921EEE15929D5000CD3A77 /* CoreGraphics.framework in Frameworks */,
 				71921EF015929D5000CD3A77 /* GameKit.framework in Frameworks */,
-				7106126615CB2ED800610049 /* libTestFlight.a in Frameworks */,
+				7143BBA2160FA81200E1270D /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -969,7 +966,7 @@
 				71A463C815B4C9FF001B4B31 /* Foundation.framework in Frameworks */,
 				71A463C915B4C9FF001B4B31 /* CoreGraphics.framework in Frameworks */,
 				71A463CA15B4C9FF001B4B31 /* GameKit.framework in Frameworks */,
-				7106126715CB2ED900610049 /* libTestFlight.a in Frameworks */,
+				7143BBA3160FA81200E1270D /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,14 +981,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7106126115CB2ED800610049 /* TestFlightSDK1.0 */ = {
+		7106126115CB2ED800610049 /* TestFlightSDK1.1 */ = {
 			isa = PBXGroup;
 			children = (
-				7106126215CB2ED800610049 /* libTestFlight.a */,
-				7106126315CB2ED800610049 /* README.txt */,
-				7106126415CB2ED800610049 /* release_notes.txt */,
-				7106126515CB2ED800610049 /* TestFlight.h */,
+				7143BBA0160FA81200E1270D /* libTestFlight.a */,
+				7143BBA1160FA81200E1270D /* TestFlight.h */,
 			);
+			name = TestFlightSDK1.1;
 			path = TestFlightSDK1.0;
 			sourceTree = "<group>";
 		};
@@ -1123,7 +1119,7 @@
 			isa = PBXGroup;
 			children = (
 				7106126D15CB2F0200610049 /* libz.dylib */,
-				7106126115CB2ED800610049 /* TestFlightSDK1.0 */,
+				7106126115CB2ED800610049 /* TestFlightSDK1.1 */,
 				71444E49159ADFAE0045EC44 /* libsqlite3.dylib */,
 				71921EF115929D5000CD3A77 /* Verbosity */,
 				71AECAEF15929DAB00D65EA3 /* cocos2d-library */,
@@ -1569,6 +1565,7 @@
 		71CDC8C015C487EB0050EC44 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				7143BBAA160FAA9100E1270D /* Default-568h@2x.png */,
 				71921EF315929D5000CD3A77 /* Default.png */,
 				7106129815CB376E00610049 /* Default~ipad.png */,
 				7106129915CB376E00610049 /* Default~ipad@2x.png */,
@@ -1887,8 +1884,6 @@
 				71F3AA8D15A76FA500987689 /* VerbosityGameConstants.h in Resources */,
 				71A463E715B4CCFC001B4B31 /* VerbosityLite-Info.plist in Resources */,
 				71A94BF615C4950900BF6154 /* AmerType Md BT.ttf in Resources */,
-				7106126815CB2ED900610049 /* README.txt in Resources */,
-				7106126A15CB2ED900610049 /* release_notes.txt in Resources */,
 				7106127B15CB359B00610049 /* already_got_word.wav in Resources */,
 				7106128315CB359B00610049 /* fast_hands_2.wav in Resources */,
 				7106128515CB359B00610049 /* Great_Score_1.wav in Resources */,
@@ -1965,6 +1960,7 @@
 				71E2D72815F2AAAC0007F942 /* verbosityTitle-ipad.png in Resources */,
 				71E2D72A15F2AAAC0007F942 /* verbosityTitle-ipadhd.png in Resources */,
 				71E2D72C15F2AAAC0007F942 /* verbosityTitle.png in Resources */,
+				7143BBAB160FAA9100E1270D /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1983,8 +1979,6 @@
 				71A463DC15B4C9FF001B4B31 /* VerbosityGameConstants.h in Resources */,
 				71A463EA15B4D017001B4B31 /* verbosityLite.sqlite3 in Resources */,
 				71A94BF715C4950900BF6154 /* AmerType Md BT.ttf in Resources */,
-				7106126915CB2ED900610049 /* README.txt in Resources */,
-				7106126B15CB2ED900610049 /* release_notes.txt in Resources */,
 				7106127C15CB359B00610049 /* already_got_word.wav in Resources */,
 				7106128415CB359B00610049 /* fast_hands_2.wav in Resources */,
 				7106128615CB359B00610049 /* Great_Score_1.wav in Resources */,
@@ -2061,6 +2055,7 @@
 				71E2D72915F2AAAC0007F942 /* verbosityTitle-ipad.png in Resources */,
 				71E2D72B15F2AAAC0007F942 /* verbosityTitle-ipadhd.png in Resources */,
 				71E2D72D15F2AAAC0007F942 /* verbosityTitle.png in Resources */,
+				7143BBAC160FAA9100E1270D /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2320,6 +2315,8 @@
 					arm6,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mustafa Shabib (XT6M3U7YQL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mustafa Shabib (XT6M3U7YQL)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2333,12 +2330,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.0\"",
+					"\"$(SRCROOT)/TestFlightSDK1.1\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "62E31E39-A8F9-43BF-AEC4-FE64AF13852E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "62E31E39-A8F9-43BF-AEC4-FE64AF13852E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2360,6 +2360,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.0\"",
+					"\"$(SRCROOT)/TestFlightSDK1.1\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -2381,6 +2382,7 @@
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mustafa Shabib (XT6M3U7YQL)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2395,6 +2397,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.0\"",
+					"\"$(SRCROOT)/TestFlightSDK1.1\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -2402,6 +2405,7 @@
 				);
 				PRODUCT_NAME = "Verbosity Lite";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2429,6 +2433,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.0\"",
+					"\"$(SRCROOT)/TestFlightSDK1.1\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",

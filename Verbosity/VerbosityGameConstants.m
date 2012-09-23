@@ -16,3 +16,12 @@ int VERBOSITYFONTSIZE(int num)
         return (num);
     }
 }
+
+int VERBOSITYPOINTS(int num)
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return (num*2);
+    }else{
+        return (num);
+    }
+}

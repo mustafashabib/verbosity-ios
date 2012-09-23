@@ -93,7 +93,7 @@ void SignalHandler(int sig) {
 	// set the Navigation Controller as the root view controller
 //	[window_ setRootViewController:rootViewController_];
 	[window_ addSubview:navController_.view];
-
+    [window_ setRootViewController:navController_];
 	// make main window visible
 	[window_ makeKeyAndVisible];
 
