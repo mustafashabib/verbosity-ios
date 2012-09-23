@@ -206,8 +206,13 @@
                     int current_label_x_position = start_x_position + half_max_word_width + (current_column*max_word_width);
                     int current_label_y_position = start_y_position - (current_word_in_col * VERBOSITYPOINTS(22+padding));
                     Word* word = (Word*)[[VerbosityGameState sharedState].CurrentWordsAndLetters.Words objectForKey:[sortedWords objectAtIndex:word_labels_made_count]];
-                    CCLabelTTF* current_word_label = [CCLabelTTF labelWithString:word.Value fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(22)];
-                    
+                    //CCLabelTTF* current_word_label = [CCLabelTTF labelWithString:word.Value fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(22)];
+                    CCLabelButton* current_word_label = [[CCLabelButton alloc] initWithString:word.Value andFontName:@"AmerTypewriterITCbyBT-Medium" andFontSize:fontSize andTouchesEndBlock:^{
+                           // http://www.merriam-webster.com/dictionary/cupule
+                            NSURL *url = [[ NSURL alloc ] initWithString: [NSString stringWithFormat:@"http://www.merriam-webster.com/dictionary/%@", word.Value ]];
+                            [[UIApplication sharedApplication] openURL:url];
+                                            }];
+
                     if(![[VerbosityGameState sharedState].FoundWords containsObject:word.Value]){
                         [current_word_label setColor:ccc3(65, 65, 65)];
                     }else{

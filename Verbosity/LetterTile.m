@@ -30,7 +30,7 @@ static int letterID = 0;
     _letter = letter;
     
     CCSprite* sprite = [CCSprite spriteWithFile:@"tilewhite.png"];
-    CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:letter dimensions:sprite.contentSize hAlignment:kCCTextAlignmentCenter fontName:[VerbosityGameState sharedState].Stats.CurrentLanguage.Font fontSize:VERBOSITYFONTSIZE(40)];
+    CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:[letter uppercaseString] dimensions:sprite.contentSize hAlignment:kCCTextAlignmentCenter fontName:[VerbosityGameState sharedState].Stats.CurrentLanguage.Font fontSize:VERBOSITYFONTSIZE(40)];
     
     currentLetter.color = ccc3(0, 0, 0);
     
