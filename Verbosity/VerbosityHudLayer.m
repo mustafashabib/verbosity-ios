@@ -339,8 +339,12 @@
             
             NSNumber* current_word_score = (NSNumber*)alert.Data;
             CCLOG(@"great score! score was %d", [current_word_score intValue]);
+            NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+            [numberFormatter setNumberStyle: NSNumberFormatterDecimalStyle];
+            NSString *formattedScore = [numberFormatter stringFromNumber:current_word_score];
             
-            [self _showNewAlert:[NSString stringWithFormat:@"Great score! %d points!", [current_word_score intValue]] andColor:ccc3(0, 255, 0)];
+
+            [self _showNewAlert:[NSString stringWithFormat:@"Great score! %@ points!", formattedScore] andColor:ccc3(0, 255, 0)];
             [[SimpleAudioEngine sharedEngine] playEffect:@"Great_Score_1.wav"];
             break;
         }
@@ -366,7 +370,11 @@
 -(void)update:(ccTime)delta{
     
     [_timeLabel setString:[NSString stringWithFormat:@"%d sec.", (int)[VerbosityGameState sharedState].TimeLeft]];
-    [_yourScore setString:[NSString stringWithFormat:@"score: %ld",[VerbosityGameState sharedState].Stats.Score]];
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle: NSNumberFormatterDecimalStyle];
+    NSString *formattedScore = [numberFormatter stringFromNumber:[NSNumber numberWithLong:[VerbosityGameState sharedState].Stats.Score]];
+    
+    [_yourScore setString:[NSString stringWithFormat:@"score: %@", formattedScore]];
     if([VerbosityGameState sharedState].CurrentHotStreak > 1 && [[VerbosityGameState sharedState] isGameActive]){
         [_yourStreak setColor:kScoreColor];
         [_yourStreak setVisible:YES];

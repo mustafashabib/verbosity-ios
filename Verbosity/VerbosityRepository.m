@@ -236,7 +236,7 @@ static sqlite3* _db;
     return [[WordsAndLetters alloc] initWithWords:words andLetters:letters];	
 }
 
--(void) saveStats:(GameStat*)stat{
+-(BOOL) saveStats:(GameStat*)stat{
    
     NSDate* today = [NSDate date];
     long today_in_unix_time = (long)[today timeIntervalSince1970];
@@ -258,9 +258,25 @@ static sqlite3* _db;
         }
 		sqlite3_finalize(statement);
 	}
-   	return;
+    NSString *highest_score_query = [NSString stringWithFormat:@"select score,datePlayed from gamestats order by score desc, datePlayed desc limit 1;"];
+    sqlite3_stmt *highest_score_statement;
+    
+    if(sqlite3_prepare_v2(_db, [highest_score_query UTF8String], -1, &highest_score_statement, nil) == SQLITE_OK)
+    {
+       while(sqlite3_step(highest_score_statement) == SQLITE_ROW) {
+           long score = sqlite3_column_int64(highest_score_statement, 0);
+           long date = sqlite3_column_int64(highest_score_statement, 1);
+           if(score == stat.Score && date == today_in_unix_time){
+               return YES;
+           }
+           else return NO;
+       }
+    }
+        return NO;
 
 }
+
+
 
 
 

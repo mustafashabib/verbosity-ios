@@ -40,7 +40,7 @@
 -(WordsAndLetters*) getWordsForLanguage:(int)language_id withAtLeastOneWordOfLength:(int)length;
 -(NSArray*) getLanguages;
 //todo: once extracted stats into own object then pull it back here and save it
--(void) saveStats:(GameStat*)stat;
+-(BOOL) saveStats:(GameStat*)stat;
 
 -(GameStat*) getAverageStats;
 -(GameStat*) getAverageStatsForLanguage:(int)language_id;

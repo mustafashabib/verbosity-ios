@@ -45,7 +45,7 @@
         self.isTouchEnabled=YES;
         VerbosityGameState* currentState = [VerbosityGameState sharedState];
         VerbosityRepository* repository = [VerbosityRepository context];
-        [repository saveStats:currentState.Stats];
+        BOOL set_high_score = [repository saveStats:currentState.Stats];
         CGSize winSize = [CCDirector sharedDirector].winSize;
         /*UITextView* textView = [[UITextView alloc] initWithFrame:CGRectMake(0,0,winSize.width,winSize.height)];
         
@@ -68,13 +68,25 @@
         //longest cold streak
         //add 12 labels
         CCLabelTTF* score = [CCLabelTTF labelWithString:@"Score" fontName:fontType fontSize:fontSize];
-        CCLabelTTF* scoreV = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%ld", currentState.Stats.Score] fontName:fontType fontSize:fontSize];
+        
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setNumberStyle: NSNumberFormatterDecimalStyle];
+        NSString *formattedScore = [numberFormatter stringFromNumber:[NSNumber numberWithLong:currentState.Stats.Score]];
+
+        CCLabelTTF* scoreV = [CCLabelTTF labelWithString:formattedScore fontName:fontType fontSize:fontSize];
         [score setAnchorPoint:ccp(0,1)];
         [score setPosition:ccp(5,winSize.height-30)];
         [scoreV setAnchorPoint:ccp(1,1)];
         [scoreV setPosition:ccp(winSize.width-5,winSize.height-30)];
         [scoreV setColor:ccGREEN];
-
+        if(set_high_score){
+            [score setString:@"New High Score"];
+            CCTintTo *tintToWhiteAction = [CCTintTo actionWithDuration:.25 red:255 green:255 blue:255];
+            CCTintTo *tintToGreenAction = [CCTintTo actionWithDuration:.25 red:0 green:255 blue:0];
+            [score runAction:[CCRepeatForever actionWithAction:[CCSequence actionOne:tintToWhiteAction two:tintToGreenAction]]];
+            [scoreV runAction:[CCRepeatForever actionWithAction:[CCSequence actionOne:[tintToWhiteAction copy] two:[tintToGreenAction copy]]]];
+            
+        }
         
         CCLabelTTF* possWords = [CCLabelTTF labelWithString:@"Possible Words" fontName:fontType fontSize:fontSize];
         CCLabelTTF* possWordsV = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", currentState.CurrentWordsAndLetters.Words.count] fontName:fontType fontSize:fontSize];
@@ -86,7 +98,7 @@
         
         CCLabelTTF* foundWords = [CCLabelTTF labelWithString:@"Found Words" fontName:fontType fontSize:fontSize];
         float percentTotalCorrect = currentState.FoundWords.count*100.0f/currentState.CurrentWordsAndLetters.Words.count; 
-        CCLabelTTF* foundWordsV = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d (%2.0f%% of total)", currentState.FoundWords.count, percentTotalCorrect] fontName:fontType fontSize:fontSize];
+        CCLabelTTF* foundWordsV = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d (%.0f%% of total)", currentState.FoundWords.count, percentTotalCorrect] fontName:fontType fontSize:fontSize];
         [foundWords setAnchorPoint:ccp(0,1)];
         [foundWords setPosition:ccp(5,possWords.position.y - labelSize)];
         [foundWordsV setAnchorPoint:ccp(1,1)];
@@ -106,7 +118,7 @@
         if(currentState.Stats.AttemptedWords > 0){
             percentCorrect = currentState.FoundWords.count*100.0f/currentState.Stats.AttemptedWords;
         }
-        CCLabelTTF* attemptedWordsV = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d (%2.0f%% correct)", currentState.Stats.AttemptedWords, percentCorrect] fontName:fontType fontSize:fontSize];
+        CCLabelTTF* attemptedWordsV = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d (%.0f%% correct)", currentState.Stats.AttemptedWords, percentCorrect] fontName:fontType fontSize:fontSize];
         [attemptedWords setAnchorPoint:ccp(0,1)];
         [attemptedWords setPosition:ccp(5,foundWords.position.y - labelSize)];
         [attemptedWordsV setAnchorPoint:ccp(1,1)];
@@ -135,6 +147,17 @@
         [coldStreakV setPosition:ccp(winSize.width-5,hotStreakV.position.y - labelSize)];
         [coldStreakV setColor:ccc3(135, 206, 250)];
         
+        
+        
+        CCLabelTTF* rareWords = [CCLabelTTF labelWithString:@"Rare Words Found" fontName:fontType fontSize:fontSize];
+        CCLabelTTF* rareWordsV = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", currentState.Stats.RareWordsFound] fontName:fontType fontSize:fontSize];
+        [rareWords setAnchorPoint:ccp(0,1)];
+        [rareWords setPosition:ccp(5,coldStreak.position.y - labelSize)];
+        [rareWordsV setAnchorPoint:ccp(1,1)];
+        [rareWordsV setPosition:ccp(winSize.width-5,coldStreakV.position.y - labelSize)];
+        [rareWordsV setColor:ccGREEN];
+        
+        
         CCLayer* statsPage = [CCLayer node];
         [statsPage setContentSize:CGSizeMake(winSize.width-5, winSize.height-30)];
          
@@ -155,6 +178,9 @@
         
         [statsPage addChild:coldStreak];
         [statsPage addChild:coldStreakV];
+        
+        [statsPage addChild:rareWords];
+        [statsPage addChild:rareWordsV];
         
         [self addChild:statsPage];
         
@@ -206,12 +232,13 @@
                     int current_label_x_position = start_x_position + half_max_word_width + (current_column*max_word_width);
                     int current_label_y_position = start_y_position - (current_word_in_col * VERBOSITYPOINTS(22+padding));
                     Word* word = (Word*)[[VerbosityGameState sharedState].CurrentWordsAndLetters.Words objectForKey:[sortedWords objectAtIndex:word_labels_made_count]];
-                    //CCLabelTTF* current_word_label = [CCLabelTTF labelWithString:word.Value fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(22)];
-                    CCLabelButton* current_word_label = [[CCLabelButton alloc] initWithString:word.Value andFontName:@"AmerTypewriterITCbyBT-Medium" andFontSize:fontSize andTouchesEndBlock:^{
+                    CCLabelTTF* current_word_label = [CCLabelTTF labelWithString:word.Value fontName:fontType fontSize:fontSize];
+                   /* CCLabelButton* current_word_label = [[CCLabelButton alloc] initWithString:word.Value andFontName:@"AmerTypewriterITCbyBT-Medium" andFontSize:fontSize andTouchesEndBlock:^{
                            // http://www.merriam-webster.com/dictionary/cupule
                             NSURL *url = [[ NSURL alloc ] initWithString: [NSString stringWithFormat:@"http://www.merriam-webster.com/dictionary/%@", word.Value ]];
                             [[UIApplication sharedApplication] openURL:url];
                                             }];
+                    */
 
                     if(![[VerbosityGameState sharedState].FoundWords containsObject:word.Value]){
                         [current_word_label setColor:ccc3(65, 65, 65)];

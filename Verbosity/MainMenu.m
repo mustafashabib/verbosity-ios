@@ -38,7 +38,7 @@
         
          
         CGSize size = [[CCDirector sharedDirector] winSize];
-#define kNumberMainMenuOptions 5
+#define kNumberMainMenuOptions 4
         
         [CCMenuItemFont setFontName:@"AmerTypewriterITCbyBT-Medium"];
         [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(40)];
@@ -63,18 +63,19 @@
             [[CCDirector sharedDirector] replaceScene: [VerbosityHowToPlayLayer scene]];
         }];
         
-        CCMenuItem *fb = [CCMenuItemFont itemWithString:@"Multiplayer" block:^(id sender){
+       /* CCMenuItem *fb = [CCMenuItemFont itemWithString:@"Multiplayer" block:^(id sender){
             [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
             [[CCDirector sharedDirector] replaceScene: [VerbosityFBConnectLayer scene]];
         }];
+        */
       
         
         start.anchorPoint = ccp(0,.5);
         stats.anchorPoint = ccp(0,.5);
         settings.anchorPoint = ccp(0,.5);
-        fb.anchorPoint = ccp(0,.5);
+     //   fb.anchorPoint = ccp(0,.5);
         how_to_play.anchorPoint = ccp(0,.5);
-        CCMenu *menu = [CCMenu menuWithItems: start,settings,stats,how_to_play,fb, nil];
+        CCMenu *menu = [CCMenu menuWithItems: start,settings,stats,how_to_play, nil];
         
         float padding = (size.height/[menu children].count)*.125;
         [menu alignItemsVerticallyWithPadding:padding];
