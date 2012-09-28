@@ -10,6 +10,7 @@
 #import "VerbosityGameConstants.h"
 #import "MainMenu.h"
 #import "SimpleAudioEngine.h"
+#import "VerbositySettings.h"
 
 @implementation VerbositySettingsLayer
 
@@ -34,25 +35,49 @@
 -(id) init{
     self = [super init];
     if(self){
-        [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(18)];
+        
+        float labelSize = VERBOSITYPOINTS(30);
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        float fxVolumeSaved = 1.0f;
-        if([[NSUserDefaults standardUserDefaults] objectForKey:kFXVolumeKey] != nil){
-            fxVolumeSaved = [(NSNumber*)[[NSUserDefaults standardUserDefaults] objectForKey:kFXVolumeKey] floatValue];
-        }
+        float fxVolumeSaved = [VerbositySettings sharedSettings].FXVolume;
+        BOOL showCapitalLetters = [VerbositySettings sharedSettings].ShowCapitalLetters;
+        
         CCSlider* fxVolume  =
 		[CCSlider sliderWithBackgroundFile: @"sliderBG.png"
 							     thumbFile: @"sliderThumb.png"];
-		
+        fxVolume.ignoreAnchorPointForPosition = NO;
+        
         fxVolume.value = fxVolumeSaved;
 		fxVolume.tag = kSFXSliderTag;
         [fxVolume addObserver:self forKeyPath:@"value" options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context: nil];
-        [fxVolume setPosition:ccp(winSize.width/2 + (.15*winSize.width), winSize.height/2)];
+        [fxVolume setAnchorPoint:ccp(1,.5)];
+        [fxVolume setPosition:ccp(winSize.width - 5,winSize.height-30)];
         
-        CCLabelTTF* fx_volume_label = [CCLabelTTF labelWithString:@"Volume" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(36)];
-        [fx_volume_label setAnchorPoint:ccp(1,.5)];
-        [fx_volume_label setPosition:ccp(winSize.width/2,winSize.height/2)];
+        CCLabelTTF* fx_volume_label = [CCLabelTTF labelWithString:@"Volume" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(25)];
+        [fx_volume_label setAnchorPoint:ccp(0,1)];
+        [fx_volume_label setPosition:ccp(5,winSize.height - 30)];
+        
+        CCLabelTTF* capital_letters = [CCLabelTTF labelWithString:@"Capital Letters" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(25)];
+        [capital_letters setAnchorPoint:ccp(0,1)];
+        [capital_letters setPosition:ccp(5,fx_volume_label.position.y-labelSize)];
+        [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(25)];
+        
+        CCMenuItem *capital_letters_yes = [CCMenuItemFont itemWithString:@"Yes"];
+        CCMenuItem *capital_letters_no = [CCMenuItemFont itemWithString:@"No"];
+        
+        CCMenuItemToggle *capital_letter_toggle = [CCMenuItemToggle itemWithTarget:self
+                                                                           selector:@selector(capitalLettersTapped:)
+                                                                              items:capital_letters_yes, capital_letters_no, nil];
+        
+        [capital_letter_toggle setAnchorPoint:ccp(1,1)];
+        if(!showCapitalLetters){
+            [capital_letter_toggle setSelectedIndex:1];
+        }
+        
+        CCMenu* cap_menu = [CCMenu menuWithItems:capital_letter_toggle, nil ];
+        [cap_menu setAnchorPoint:ccp(1,1)];
+        [cap_menu setPosition:ccp(winSize.width - 5,fx_volume_label.position.y-labelSize)];
+        [cap_menu alignItemsHorizontally];
         [CCMenuItemFont setFontSize:VERBOSITYFONTSIZE(18)];
         
         CCMenuItem *go_back = [CCMenuItemFont itemWithString:@"Go Back" block:^(id sender){
@@ -68,8 +93,10 @@
         [self addChild:bg z:0];
         
         [self addChild:menu];
+        [self addChild:cap_menu];
         [self addChild:fx_volume_label];
 		[self addChild:fxVolume];
+        [self addChild:capital_letters];
         
     }
     return self;
@@ -86,10 +113,22 @@
         float prevValue = [prevValueObject floatValue];
         
         CCLOG(@"Setting sfx volume to %f from %f", value, prevValue);
-        [[SimpleAudioEngine sharedEngine] setEffectsVolume:value];
+       /* [[SimpleAudioEngine sharedEngine] setEffectsVolume:value];
         [[NSUserDefaults standardUserDefaults] setFloat:value forKey:kFXVolumeKey];
+        */
+        [VerbositySettings sharedSettings].FXVolume = value;
         [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
     }
+}
+
+-(void)capitalLettersTapped: (id) sender{
+    BOOL oldValue = [VerbositySettings sharedSettings].ShowCapitalLetters;
+    BOOL newValue = !oldValue;
+    [VerbositySettings sharedSettings].ShowCapitalLetters = newValue;
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
+    
+    CCLOG(@"Setting cap letters option to %@", newValue ? @"YES" : @"NO");
 }
 
 @end

@@ -35,7 +35,7 @@
     self = [super init];
     if(self){
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-       
+        CGSize constrainSize = CGSizeMake(winSize.width*.95, winSize.height*.95);
                 
         CCSprite* bg = [CCSprite spriteWithFile:@"DarkGrayBackground.jpg"];
         [bg setAnchorPoint:ccp(0,0)];
@@ -49,12 +49,12 @@
         NSString *fontType = @"AmerTypewriterITCbyBT-Medium";
         
         // Create the text
-        NSString *text = @"Make as many words as you can before time runs out by touching the letters.\n\nSubmit your word attempt by touching the screen with two fingers at the same time.\n\nSwipe to the left or right to cancel your attempt.\n\nShake your device or swipe downwards to shuffle your letters.\n\nBuild up your score by getting on hot streaks and by finding rare words!";
+        NSString *text = @"Make as many words as you can before time runs out by touching the letters.\n\nSubmit your word by touching the screen with two fingers at the same time or by touching beneath the word you want to submit.\n\nSwipe to the left or right to cancel your attempt.\n\nShake your device or swipe downwards to shuffle your letters.\n\nBuild up your score by getting on hot streaks and by finding rare words!";
         
         
         
          CGSize actualSize = [text sizeWithFont:[UIFont fontWithName:fontType size:fontSize]
-                              constrainedToSize:winSize
+                              constrainedToSize:constrainSize
                                   lineBreakMode:UILineBreakModeWordWrap];
         
         // Use the actual width and height needed for our text to create a container

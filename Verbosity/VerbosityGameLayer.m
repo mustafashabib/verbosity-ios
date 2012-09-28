@@ -61,6 +61,14 @@
 	return scene;
 }
 
+-(void)onEnter{
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+    [super onEnter];
+}
+-(BOOL)containsTouchLocation:(UITouch*)touch{
+    CGPoint touchPoint = [self convertTouchToNodeSpace:touch];
+    return (touchPoint.y < _letter_slot_y_position);//only touches below the letter slots count
+}
 
 -(id) init
 {
@@ -68,6 +76,8 @@
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init])) {
         
+        _letter_slot_y_position = 0;
+        _gesture_active = NO;
         _start_game = NO;
         CCLabelTTF* loading = [CCLabelTTF labelWithString:@"Finding Letters..." fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(48)];
         CGSize winSize = [CCDirector sharedDirector].winSize;
@@ -101,6 +111,7 @@
                 tapGestureRecognizer.numberOfTouchesRequired = 2; //touch once with two fingers
                 tapGestureRecognizer.delegate = self;
                 
+                       
                 /*add shake gesture handler*/
                 [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1/60];
                 _shake_once = false;
@@ -174,6 +185,7 @@
         lt.position =  ccp(x, winSize.height*.75);
         
         ls.position = ccp(x, winSize.height*.75 - tile_size.height*1.25);
+        _letter_slot_y_position = winSize.height*.75 - tile_size.height*1.25 - .5*tile_size.height;
         [_letter_positions addObject:[NSValue valueWithCGPoint:lt.position]];
         
         [lt setStartPosition:lt.position];
@@ -216,6 +228,7 @@
 
 - (void)handleCancelWordAttemptGestureRecognizer:(UISwipeGestureRecognizer*)aGestureRecognizer
 {
+    _gesture_active = YES;
     if([VerbosityGameState sharedState].CurrentGameState != kGameStateReady){
         return;
     }
@@ -231,12 +244,15 @@
     }
     
     [[VerbosityGameState sharedState] clearWordAttempt];
+    _gesture_active = NO;
 }
 
 - (void) handleTapGestureRecognizer:(UITapGestureRecognizer*)sender{
     if([VerbosityGameState sharedState].CurrentGameState != kGameStateReady){
         return;
     }
+    
+    _gesture_active = YES;
     if (sender.state == UIGestureRecognizerStateEnded && [[VerbosityGameState sharedState].CurrentWordAttempt length] > 1)
       { 
            BOOL is_valid = [[VerbosityGameState sharedState] submitWordAttempt];
@@ -260,8 +276,63 @@
           
                    
           [[VerbosityGameState sharedState] clearWordAttempt];
+          _gesture_active = NO;
       }
 }
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    return !_gesture_active;
+}
+
+- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    
+    // If it weren't for the TouchDispatcher, you would need to keep a reference
+    // to the touch from touchBegan and check that the current touch is the same
+    // as that one.
+    // Actually, it would be even more complicated since in the Cocos dispatcher
+    // you get NSSets instead of 1 UITouch, so you'd need to loop through the set
+    // in each touchXXX method.
+    
+    return;
+    
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if([VerbosityGameState sharedState].CurrentGameState != kGameStateReady){
+        return;
+    }
+
+       
+    if ([[VerbosityGameState sharedState].CurrentWordAttempt length] > 1
+        && [self containsTouchLocation:touch])
+    {
+        BOOL is_valid = [[VerbosityGameState sharedState] submitWordAttempt];
+        CCLOG(@"Got tap gesture (one finger tapped below letters)");
+        for(int i =0; i < [VerbosityGameState sharedState].Stats.CurrentLanguage.MaximumWordLength; i++){
+            int current_tag = kLetterTileTagStart + i;
+            LetterTile* current_letter_tile = (LetterTile*)[self getChildByTag:current_tag];
+            [current_letter_tile resetState];
+        }
+        
+        if(is_valid){
+            //YES
+            
+            CCLOG(@"YES! Found word with score");
+            
+            
+        }else{
+            //NO
+            CCLOG(@"NO! Lost word.");
+        }
+        
+        
+        [[VerbosityGameState sharedState] clearWordAttempt];
+    }
+}
+
 
 -(void) shakeLetters{
     if([VerbosityGameState sharedState].CurrentGameState != kGameStateReady){

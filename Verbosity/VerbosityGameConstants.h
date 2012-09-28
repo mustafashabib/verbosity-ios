@@ -8,6 +8,7 @@
 #define kBackgroundSpriteBottomTag  234343433
 #define kSFXSliderTag  3434342
 #define kFXVolumeKey @"FXVol"
+#define kShowCapsKey @"ShowCaps"
 #define kGameLayerData @"GameLayer"
 #define kGameStateReady 1
 #define kGameStateLoading 2

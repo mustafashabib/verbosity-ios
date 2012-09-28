@@ -506,6 +506,8 @@
 		71E2D72D15F2AAAC0007F942 /* verbosityTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E2D6BD15F2AAAC0007F942 /* verbosityTitle.png */; };
 		71E937AD1597FC34003D60EA /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E937AC1597FC34003D60EA /* Word.m */; };
 		71E937B41599490A003D60EA /* VerbosityGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E937B31599490A003D60EA /* VerbosityGameLayer.m */; };
+		71ECC7981615347600D146AA /* VerbositySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECC7971615347600D146AA /* VerbositySettings.m */; };
+		71ECC7991615347600D146AA /* VerbositySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECC7971615347600D146AA /* VerbositySettings.m */; };
 		71F3AA8D15A76FA500987689 /* VerbosityGameConstants.h in Resources */ = {isa = PBXBuildFile; fileRef = 71F3AA8C15A76FA500987689 /* VerbosityGameConstants.h */; };
 		71F3AA9415A7721000987689 /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9315A7721000987689 /* NSMutableArray+Queue.m */; };
 		71F3AA9715A772D100987689 /* VerbosityAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9615A772D100987689 /* VerbosityAlert.m */; };
@@ -918,6 +920,8 @@
 		71E937AC1597FC34003D60EA /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		71E937B215994909003D60EA /* VerbosityGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityGameLayer.h; sourceTree = "<group>"; };
 		71E937B31599490A003D60EA /* VerbosityGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityGameLayer.m; sourceTree = "<group>"; };
+		71ECC7961615347600D146AA /* VerbositySettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbositySettings.h; sourceTree = "<group>"; };
+		71ECC7971615347600D146AA /* VerbositySettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbositySettings.m; sourceTree = "<group>"; };
 		71F3AA8C15A76FA500987689 /* VerbosityGameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityGameConstants.h; sourceTree = "<group>"; };
 		71F3AA9215A7721000987689 /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
 		71F3AA9315A7721000987689 /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
@@ -1111,6 +1115,8 @@
 				712699F015D79AF4004D039E /* CCLabelButton.m */,
 				71C9B26015F402F0002D6D1D /* LookupWordManager.h */,
 				71C9B26115F402F1002D6D1D /* LookupWordManager.m */,
+				71ECC7961615347600D146AA /* VerbositySettings.h */,
+				71ECC7971615347600D146AA /* VerbositySettings.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -2103,6 +2109,7 @@
 				71C9B26215F402F1002D6D1D /* LookupWordManager.m in Sources */,
 				71C9B26C15F40BB6002D6D1D /* JSONKit.m in Sources */,
 				716CFC0315F41C3F001B23C7 /* DefineWordLayer.m in Sources */,
+				71ECC7981615347600D146AA /* VerbositySettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2147,6 +2154,7 @@
 				71C9B26315F402F1002D6D1D /* LookupWordManager.m in Sources */,
 				71C9B26D15F40BB6002D6D1D /* JSONKit.m in Sources */,
 				716CFC0415F41C3F001B23C7 /* DefineWordLayer.m in Sources */,
+				71ECC7991615347600D146AA /* VerbositySettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

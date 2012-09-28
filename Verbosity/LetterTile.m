@@ -12,6 +12,7 @@
 #import "VerbosityGameConstants.h"
 #import "NSMutableArray+Stack.h"
 #import "VerbosityGameLayer.h"
+#import "VerbositySettings.h"
 
 static int letterID = 0;
 @implementation LetterTile
@@ -30,7 +31,8 @@ static int letterID = 0;
     _letter = letter;
     
     CCSprite* sprite = [CCSprite spriteWithFile:@"tilewhite.png"];
-    CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:[letter uppercaseString] dimensions:sprite.contentSize hAlignment:kCCTextAlignmentCenter fontName:[VerbosityGameState sharedState].Stats.CurrentLanguage.Font fontSize:VERBOSITYFONTSIZE(36)];
+    NSString* letterString = [VerbositySettings sharedSettings].ShowCapitalLetters ? [letter uppercaseString] : letter;
+    CCLabelTTF *currentLetter = [CCLabelTTF labelWithString:letterString dimensions:sprite.contentSize hAlignment:kCCTextAlignmentCenter fontName:[VerbosityGameState sharedState].Stats.CurrentLanguage.Font fontSize:VERBOSITYFONTSIZE(36)];
     
     currentLetter.color = ccc3(0, 0, 0);
     

@@ -18,6 +18,8 @@
     BOOL _shake_once;
     BOOL _start_game;
     CCArray* _letter_positions;
+    float _letter_slot_y_position;
+    BOOL _gesture_active;
     
 }
 // returns a CCScene that contains the HelloWorldLayer as the only child

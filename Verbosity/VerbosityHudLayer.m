@@ -404,7 +404,7 @@
     CCLayerColor* dark_overlay = [[CCLayerColor alloc] initWithColor:ccc4(0, 0, 0, 128)];
     [self addChild:dark_overlay z:NSIntegerMax-1];
     CGSize winSize = [CCDirector sharedDirector].winSize;
-    
+    [_yourStreak setVisible:NO];
     CCLabelTTF *end_game = [CCLabelTTF labelWithString:@"Time's Up!" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(40)];
     end_game.position = ccp(winSize.width/2, winSize.height/2);
     end_game.anchorPoint = ccp(.5,.5);

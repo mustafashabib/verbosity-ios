@@ -16,6 +16,7 @@
 #import "SimpleAudioEngine.h"
 #import "PauseGameLayer.h"
 #import "VerbosityGameConstants.h"
+#import "VerbositySettings.h"
 
 @implementation AppController
 
@@ -122,11 +123,8 @@ void SignalHandler(int sig) {
     [CCMenuItemFont setFontName:@"AmerTypewriterITCbyBT-Medium"];
     
     //set volume
-    float fxVolume = 1.0f;
-    if([[NSUserDefaults standardUserDefaults] objectForKey:kFXVolumeKey] != nil){
-        fxVolume = [(NSNumber*)[[NSUserDefaults standardUserDefaults] objectForKey:kFXVolumeKey] floatValue];
-    }
     
+    float fxVolume = [VerbositySettings sharedSettings].FXVolume;
     [[SimpleAudioEngine sharedEngine] setEffectsVolume:fxVolume];
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
