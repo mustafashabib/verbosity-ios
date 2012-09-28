@@ -20,6 +20,8 @@
 #import "AppDelegate.h"
 #import "DefineWordLayer.h"
 #import "LookupWordManager.h"
+#import "social/Social.h"
+#import "accounts/Accounts.h"
 
 @implementation GameOverLayer
 +(CCScene *) scene
@@ -38,6 +40,8 @@
 -(id)init{
     self = [super init];
     if(self){
+        _viewController = [[UIViewController alloc] init];
+        
         CCSprite* bg = [CCSprite spriteWithFile:@"DarkGrayBackground.jpg"];
         [bg setAnchorPoint:ccp(0,0)];
         [self addChild:bg z:0];
@@ -157,10 +161,80 @@
         [rareWordsV setPosition:ccp(winSize.width-5,coldStreakV.position.y - labelSize)];
         [rareWordsV setColor:ccGREEN];
         
-        
+       
         CCLayer* statsPage = [CCLayer node];
         [statsPage setContentSize:CGSizeMake(winSize.width-5, winSize.height-30)];
-         
+        CGPoint next_label_pos = ccp(5,rareWords.position.y - labelSize);
+        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
+            CCLabelButton* sharefb = [[CCLabelButton alloc] initWithString:@"Share on Facebook" andFontName:fontType andFontSize:fontSize andTouchesEndBlock:^{
+                //todo share on fb logic
+                SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+                SLComposeViewControllerCompletionHandler myBlock = ^(SLComposeViewControllerResult result){
+                    if (result == SLComposeViewControllerResultCancelled)
+                    {
+                        
+                        CCLOG(@"Cancelled");
+                    }
+                    else
+                    {
+                        CCLOG(@"Done");
+                    }
+                     [_viewController dismissViewControllerAnimated:YES completion:nil];
+                };
+                controller.completionHandler =myBlock;
+                NSString* message_text = @"Prove you're an erudite wordsmith prodigy and play Verbosity on your iPhone, iPad, or iPod Touch!";
+                if(currentState.Stats.TotalWordsFound > 0){
+                    message_text = [NSString stringWithFormat:@"Did you know that %@ was a word? I did - and it earned me big points in Verbosity! Prove you're an erudite wordsmith prodigy, too, and play Verbosity on your iPhone, iPad, or iPod Touch! Try and beat my score of %@!", currentState.RarestWordFound, formattedScore];
+                }
+                [controller setInitialText:message_text];
+                [controller addURL:[NSURL URLWithString:@"http://itunes.com/app/Verbosity"]];
+                
+                               
+                [[[CCDirector sharedDirector] view] addSubview:_viewController.view];
+                
+                [_viewController presentViewController:controller animated:YES completion:nil];;
+            }];
+            [sharefb setAnchorPoint:ccp(0,1)];
+            [sharefb setPosition:next_label_pos];
+            next_label_pos = ccp(5,sharefb.position.y - labelSize);
+            [statsPage addChild:sharefb];
+        }
+        if([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
+            
+            CCLabelButton* sharetwit = [[CCLabelButton alloc] initWithString:@"Share on Twitter" andFontName:fontType andFontSize:fontSize andTouchesEndBlock:^{
+                //todo share on tiwtter logic
+                SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+                SLComposeViewControllerCompletionHandler myBlock = ^(SLComposeViewControllerResult result){
+                    if (result == SLComposeViewControllerResultCancelled)
+                    {
+                        
+                        CCLOG(@"Cancelled");
+                    }
+                    else
+                    {
+                        CCLOG(@"Done");
+                    }
+                    [_viewController dismissViewControllerAnimated:YES completion:nil];
+                };
+                controller.completionHandler =myBlock;
+                NSString* message_text = @"Prove you're an erudite wordsmith prodigy and play Verbosity on your iPhone, iPad, or iPod Touch!";
+                if(currentState.Stats.TotalWordsFound > 0){
+                    message_text = [NSString stringWithFormat:@"Did you know that %@ was a word? Prove you're an erudite wordsmith prodigy, too, and beat my score of %@ on Verbosity!", currentState.RarestWordFound, formattedScore];
+                }
+                [controller setInitialText:message_text];
+                [controller addURL:[NSURL URLWithString:@"http://itunes.com/app/Verbosity"]];
+                
+                
+                [[[CCDirector sharedDirector] view] addSubview:_viewController.view];
+                
+                [_viewController presentViewController:controller animated:YES completion:nil];;
+
+            }];
+            [sharetwit setAnchorPoint:ccp(0,1)];
+            [sharetwit setPosition:next_label_pos];
+            [statsPage addChild:sharetwit];
+        }
+        
         [statsPage addChild:score];
         [statsPage addChild:scoreV];
         

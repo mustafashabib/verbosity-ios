@@ -10,7 +10,9 @@
 #import "cocos2d.h"
 
 @interface GameOverLayer : CCLayer
-
+{
+    UIViewController *_viewController;
+}
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 

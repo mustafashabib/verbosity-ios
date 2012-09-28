@@ -508,6 +508,10 @@
 		71E937B41599490A003D60EA /* VerbosityGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E937B31599490A003D60EA /* VerbosityGameLayer.m */; };
 		71ECC7981615347600D146AA /* VerbositySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECC7971615347600D146AA /* VerbositySettings.m */; };
 		71ECC7991615347600D146AA /* VerbositySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECC7971615347600D146AA /* VerbositySettings.m */; };
+		71ECC79D16154CC900D146AA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECC79B16154CC900D146AA /* Accounts.framework */; };
+		71ECC79E16154CC900D146AA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECC79C16154CC900D146AA /* Social.framework */; };
+		71ECC79F16154CD400D146AA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECC79B16154CC900D146AA /* Accounts.framework */; };
+		71ECC7A016154CD400D146AA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECC79C16154CC900D146AA /* Social.framework */; };
 		71F3AA8D15A76FA500987689 /* VerbosityGameConstants.h in Resources */ = {isa = PBXBuildFile; fileRef = 71F3AA8C15A76FA500987689 /* VerbosityGameConstants.h */; };
 		71F3AA9415A7721000987689 /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9315A7721000987689 /* NSMutableArray+Queue.m */; };
 		71F3AA9715A772D100987689 /* VerbosityAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9615A772D100987689 /* VerbosityAlert.m */; };
@@ -922,6 +926,8 @@
 		71E937B31599490A003D60EA /* VerbosityGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbosityGameLayer.m; sourceTree = "<group>"; };
 		71ECC7961615347600D146AA /* VerbositySettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbositySettings.h; sourceTree = "<group>"; };
 		71ECC7971615347600D146AA /* VerbositySettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbositySettings.m; sourceTree = "<group>"; };
+		71ECC79B16154CC900D146AA /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		71ECC79C16154CC900D146AA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		71F3AA8C15A76FA500987689 /* VerbosityGameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityGameConstants.h; sourceTree = "<group>"; };
 		71F3AA9215A7721000987689 /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
 		71F3AA9315A7721000987689 /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
@@ -938,6 +944,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71ECC79D16154CC900D146AA /* Accounts.framework in Frameworks */,
+				71ECC79E16154CC900D146AA /* Social.framework in Frameworks */,
 				7106126E15CB2F0200610049 /* libz.dylib in Frameworks */,
 				71444E4A159ADFAE0045EC44 /* libsqlite3.dylib in Frameworks */,
 				71AECAF815929DE900D65EA3 /* libcocos2d-library.a in Frameworks */,
@@ -958,6 +966,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71ECC79F16154CD400D146AA /* Accounts.framework in Frameworks */,
+				71ECC7A016154CD400D146AA /* Social.framework in Frameworks */,
 				7106126F15CB2F0800610049 /* libz.dylib in Frameworks */,
 				71A463C015B4C9FF001B4B31 /* libsqlite3.dylib in Frameworks */,
 				71A463C115B4C9FF001B4B31 /* libcocos2d-library.a in Frameworks */,
@@ -1124,6 +1134,8 @@
 		71921ED015929D5000CD3A77 = {
 			isa = PBXGroup;
 			children = (
+				71ECC79B16154CC900D146AA /* Accounts.framework */,
+				71ECC79C16154CC900D146AA /* Social.framework */,
 				7106126D15CB2F0200610049 /* libz.dylib */,
 				7106126115CB2ED800610049 /* TestFlightSDK1.1 */,
 				71444E49159ADFAE0045EC44 /* libsqlite3.dylib */,

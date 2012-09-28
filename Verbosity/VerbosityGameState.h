@@ -28,6 +28,8 @@
     NSMutableArray* _selected_letters;
     int _current_game_state;
     BOOL _is_active;
+    NSString* _rarest_word_found;
+    int _rarest_word_found_rarity;
 }
 
 @property(nonatomic) GameStat* Stats;
@@ -41,6 +43,8 @@
 @property(nonatomic) int CurrentColdStreak;
 @property(nonatomic) int CurrentGameState;
 @property(nonatomic) BOOL IsActive;
+@property(nonatomic) NSString* RarestWordFound;
+@property(nonatomic) int RarestWordFoundRarity;
 
 + (VerbosityGameState *)sharedState;
 - (void) update:(float)delta;

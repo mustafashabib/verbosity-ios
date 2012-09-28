@@ -28,9 +28,13 @@ static VerbosityGameState *sharedState = nil;
 @synthesize SelectedLetters = _selected_letters;
 @synthesize CurrentGameState = _current_game_state;
 @synthesize Stats = _stats;
+@synthesize RarestWordFound = _rarest_word_found;
+@synthesize RarestWordFoundRarity = _rarest_word_found_rarity;
 
 - (VerbosityGameState*) init{
     if(self = [super init]){
+        _rarest_word_found = @"";
+        _rarest_word_found_rarity = INT_MAX;
         _is_active = YES;
         _current_game_state = kGameStateLoading;
         [[VerbosityAlertManager sharedAlertManager] resetAlerts];
@@ -73,7 +77,9 @@ static VerbosityGameState *sharedState = nil;
     _start_time = kGameTime;
     _word_attempt_start_time = kGameTime;
     _found_words=[[NSMutableSet alloc] init];
-    
+    _rarest_word_found = @"";
+    _rarest_word_found_rarity = INT_MAX;
+
     _current_words_and_letters = [[VerbosityRepository context] getWordsForLanguage:_stats.CurrentLanguage.ID withAtLeastOneWordOfLength:_stats.CurrentLanguage.MaximumWordLength];
     
     _selected_letters = [[NSMutableArray alloc] init];
@@ -178,6 +184,12 @@ static VerbosityGameState *sharedState = nil;
             _stats.RareWordsFound++;
             VerbosityAlert* rare_word_found_alert = [[VerbosityAlert alloc] initWithType:kFoundRareWord andData:_current_word_attempt];
             [[VerbosityAlertManager sharedAlertManager] addAlert:rare_word_found_alert];            
+        }
+        if(matching_word.Popularity <= _rarest_word_found_rarity){
+            if([_current_word_attempt length] > [_rarest_word_found length]){
+                _rarest_word_found_rarity = matching_word.Popularity ;
+                _rarest_word_found = _current_word_attempt;
+            }
         }
         
         if(length ==_stats.CurrentLanguage.MaximumWordLength){
