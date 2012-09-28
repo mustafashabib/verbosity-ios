@@ -19,11 +19,13 @@
 	CCScene *scene = [CCScene node];
 	
   	// 'layer' is an autorelease object.
-	VerbosityPreLoadLayer *layer = [VerbosityPreLoadLayer node];
-    CCSprite* bg = [CCSprite spriteWithFile:@"bg.png"];
-    bg.anchorPoint = ccp(0,0);
-    [layer addChild:bg];
+	
     CGSize winSize = [[CCDirector sharedDirector] winSize];
+    VerbosityPreLoadLayer *layer = [VerbosityPreLoadLayer node];
+    CCSprite* bg = [CCSprite spriteWithFile:@"bg.png"];
+    bg.anchorPoint = ccp(.5,.5);
+    [bg setPosition:ccp(winSize.width/2,winSize.height/2)];
+    [layer addChild:bg];
     CCLabelTTF* loading_label = [CCLabelTTF labelWithString:@"Loading..." fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(28)];
     loading_label.color = ccGRAY;
     loading_label.position = ccp(winSize.width,0);

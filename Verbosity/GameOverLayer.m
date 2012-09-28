@@ -81,9 +81,9 @@
 
         CCLabelTTF* scoreV = [CCLabelTTF labelWithString:formattedScore fontName:fontType fontSize:fontSize];
         [score setAnchorPoint:ccp(0,1)];
-        [score setPosition:ccp(5,winSize.height-30)];
+        [score setPosition:ccp(5,winSize.height-VERBOSITYPOINTS(30))];
         [scoreV setAnchorPoint:ccp(1,1)];
-        [scoreV setPosition:ccp(winSize.width-5,winSize.height-30)];
+        [scoreV setPosition:ccp(winSize.width-5,winSize.height-VERBOSITYPOINTS(30))];
         [scoreV setColor:ccGREEN];
         if(set_high_score){
             [score setString:@"New High Score"];
@@ -284,15 +284,21 @@
         //create as many layers as necessary to show all the words
         //we know that we can fit winSize.height/([labelSize height] + padding) words vertically on the screen at once.
         //so we need totalWords/wordsOnScreen layers
-        int padding = VERBOSITYPOINTS(8);
+        
         
         CCLabelTTF* fake_label = [CCLabelTTF labelWithString:@"W" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(22)];
         
-       int max_word_width =fake_label.contentSize.width*currentState.Stats.CurrentLanguage.MaximumWordLength;
-        float half_max_word_width = max_word_width*.5f;
-        int num_columns = (winSize.width/(max_word_width)) -1;
+        int max_word_width =fake_label.contentSize.width*currentState.Stats.CurrentLanguage.MaximumWordLength;
+       
+        int num_columns = 3;
+        int num_padding = num_columns+1;
         
-        int total_words_per_column = (winSize.height-30)/(fake_label.contentSize.height+padding);
+        int h_padding = (winSize.width- (num_columns*max_word_width))/num_padding;
+        int v_padding = VERBOSITYPOINTS(8);
+        
+        float half_max_word_width = max_word_width*.5f;
+        
+        int total_words_per_column = (winSize.height-30)/(fake_label.contentSize.height+v_padding);
         int total_words_per_layer = total_words_per_column*num_columns;
         int layers_required =ceil((double)count/total_words_per_layer);//ceiling to get the last bit
         NSMutableArray* layers_array = [[NSMutableArray alloc] init];
@@ -303,8 +309,8 @@
         for(int current_layer_idx = 0; current_layer_idx < layers_required; current_layer_idx++){
             CCLayer* current_layer = [layers_array objectAtIndex:current_layer_idx];
            
-            int start_y_position = winSize.height - 30;//first position under menu
-            int start_x_position = padding;
+            int start_y_position = winSize.height - VERBOSITYPOINTS(30);//first position under menu
+            int start_x_position = h_padding;
             
             for(int current_column = 0; current_column < num_columns; current_column++){
                 for(int current_word_in_col =0; current_word_in_col < total_words_per_column; current_word_in_col++){
@@ -313,7 +319,7 @@
                     }
                     
                     int current_label_x_position = start_x_position + half_max_word_width + (current_column*max_word_width);
-                    int current_label_y_position = start_y_position - (current_word_in_col * VERBOSITYPOINTS(22+padding));
+                    int current_label_y_position = start_y_position - (current_word_in_col * (VERBOSITYPOINTS(22)+v_padding));
                     Word* word = (Word*)[[VerbosityGameState sharedState].CurrentWordsAndLetters.Words objectForKey:[sortedWords objectAtIndex:word_labels_made_count]];
                     CCLabelTTF* current_word_label = [CCLabelTTF labelWithString:word.Value fontName:fontType fontSize:fontSize];
                    /* CCLabelButton* current_word_label = [[CCLabelButton alloc] initWithString:word.Value andFontName:@"AmerTypewriterITCbyBT-Medium" andFontSize:fontSize andTouchesEndBlock:^{
@@ -438,8 +444,8 @@
         
         CCMenu *menu = [CCMenu menuWithItems: show_stats, show_words, reset, main_menu, nil];
         [menu setAnchorPoint:ccp(.5,1)];
-        [menu setPosition:ccp(winSize.width/2,winSize.height-10)];
-        [menu alignItemsHorizontallyWithPadding:30];
+        [menu setPosition:ccp(winSize.width/2,winSize.height-VERBOSITYPOINTS(10))];
+        [menu alignItemsHorizontallyWithPadding:VERBOSITYPOINTS(30)];
         
         CCLayerColor* bg_layer = [CCLayerColor layerWithColor:ccc4(64,64,64, 128)];
         bg_layer.contentSize = CGSizeMake(menu.contentSize.width, VERBOSITYPOINTS(24));
