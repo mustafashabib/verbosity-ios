@@ -22,6 +22,7 @@
 #import "LookupWordManager.h"
 #import "social/Social.h"
 #import "accounts/Accounts.h"
+#import "FlurryAnalytics.h"
 
 @implementation GameOverLayer
 +(CCScene *) scene
@@ -40,6 +41,7 @@
 -(id)init{
     self = [super init];
     if(self){
+        [FlurryAnalytics logEvent:@"game completed"];
         _viewController = [[UIViewController alloc] init];
         
         CCSprite* bg = [CCSprite spriteWithFile:@"DarkGrayBackground.jpg"];
@@ -174,10 +176,12 @@
                     {
                         
                         CCLOG(@"Cancelled");
+                        [FlurryAnalytics logEvent:@"Cacnelled Share on FB"];
                     }
                     else
                     {
                         CCLOG(@"Done");
+                         [FlurryAnalytics logEvent:@"Shared on FB"];
                     }
                      [_viewController dismissViewControllerAnimated:YES completion:nil];
                 };
@@ -209,10 +213,14 @@
                     {
                         
                         CCLOG(@"Cancelled");
+                        
+                        [FlurryAnalytics logEvent:@"Cancelled share on Twitter"];
                     }
                     else
                     {
                         CCLOG(@"Done");
+                        
+                        [FlurryAnalytics logEvent:@"Shared on Twitter"];
                     }
                     [_viewController dismissViewControllerAnimated:YES completion:nil];
                 };
@@ -281,8 +289,9 @@
         CCLabelTTF* fake_label = [CCLabelTTF labelWithString:@"W" fontName:@"AmerTypewriterITCbyBT-Medium" fontSize:VERBOSITYFONTSIZE(22)];
         
        int max_word_width =fake_label.contentSize.width*currentState.Stats.CurrentLanguage.MaximumWordLength;
-       int num_columns = winSize.width/(max_word_width);
         float half_max_word_width = max_word_width*.5f;
+        int num_columns = (winSize.width/(max_word_width)) -1;
+        
         int total_words_per_column = (winSize.height-30)/(fake_label.contentSize.height+padding);
         int total_words_per_layer = total_words_per_column*num_columns;
         int layers_required =ceil((double)count/total_words_per_layer);//ceiling to get the last bit
@@ -401,22 +410,26 @@
         [CCMenuItemFont setFontName:@"AmerTypewriterITCbyBT-Medium"];
         
         CCMenuItemLabel *show_stats = [CCMenuItemFont itemWithString:@"Stats" block:^(id sender){
+            [FlurryAnalytics logEvent:@"showing stats"];
             [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
             [scroll_layer setVisible:NO];
             [statsPage setVisible:YES];
             
         }];
         CCMenuItemLabel *show_words = [CCMenuItemFont itemWithString:@"Words" block:^(id sender){
+            [FlurryAnalytics logEvent:@"showing words"];
             [[SimpleAudioEngine sharedEngine] playEffect:@"Letter_click.wav"];
             [scroll_layer setVisible:YES];
             [statsPage setVisible:NO];
         }];
         // Reset Button
         CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Play Again" block:^(id sender){
+            [FlurryAnalytics logEvent:@"play again"];
             [[SimpleAudioEngine sharedEngine] playEffect:@"Great_Score_1.wav"];
             [[CCDirector sharedDirector] replaceScene: [VerbosityGameLayer scene]];
         }];
         CCMenuItemLabel *main_menu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
+            [FlurryAnalytics logEvent:@"go back to main menu from game over"];
             [[SimpleAudioEngine sharedEngine] playEffect:@"swipe_erase.wav"];
             
             [[CCDirector sharedDirector] replaceScene: [MainMenu scene]];

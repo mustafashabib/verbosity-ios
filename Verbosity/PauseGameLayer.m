@@ -11,6 +11,7 @@
 #import "MainMenu.h"
 #import "VerbosityGameState.h"
 #import "VerbosityGameConstants.h"
+#import "FlurryAnalytics.h"
 
 @implementation PauseGameLayer
 +(CCScene *) scene
@@ -29,6 +30,7 @@
 -(id)init{
     self = [super init];
     if(self){
+        [FlurryAnalytics logEvent:@"pausing"];
         CGSize size = [[CCDirector sharedDirector] winSize];
         
         CCSprite* bg = [CCSprite spriteWithFile:@"DarkGrayBackground.jpg"];

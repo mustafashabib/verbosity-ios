@@ -12,7 +12,7 @@
 #import "VerbosityAlertManager.h"
 #import "VerbosityAlert.h"
 #import "NSMutableArray+Stack.h"
-
+#import "FlurryAnalytics.h"
 static VerbosityGameState *sharedState = nil;
 
 
@@ -144,9 +144,14 @@ static VerbosityGameState *sharedState = nil;
 // will return positive number (score of last word) if succeeded
 - (BOOL) submitWordAttempt{
     _stats.AttemptedWords++;
+    [FlurryAnalytics logEvent:@"word attempt"];
+    
     Word* matching_word = (Word*) [self.CurrentWordsAndLetters.Words objectForKey:_current_word_attempt];
    
     if(![_found_words containsObject:_current_word_attempt] && matching_word != nil){
+        NSDictionary* word_attempt_value = [NSDictionary dictionaryWithObjectsAndKeys:_current_word_attempt, @"word", nil];
+        [FlurryAnalytics logEvent:@"word success" withParameters:word_attempt_value];
+        
         [_found_words addObject:_current_word_attempt];
         _stats.TotalWordsFound++;
         _current_hot_streak++;

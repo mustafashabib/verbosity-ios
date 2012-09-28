@@ -10,6 +10,7 @@
 #import "MainMenu.h"
 #import "SimpleAudioEngine.h"
 #import "VerbosityGameConstants.h"
+#import "FlurryAnalytics.h"
 
 @implementation VerbosityHowToPlayLayer
 
@@ -34,6 +35,7 @@
 -(id)init{
     self = [super init];
     if(self){
+        [FlurryAnalytics logEvent:@"HowToPlay"];
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         CGSize constrainSize = CGSizeMake(winSize.width*.95, winSize.height*.95);
                 

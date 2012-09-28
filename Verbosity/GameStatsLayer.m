@@ -16,6 +16,7 @@
 #import "CCLabelButton.h"
 #import "SimpleAudioEngine.h"
 #import "VerbosityGameLayer.h"
+#import "FlurryAnalytics.h"
 
 @implementation GameStatsLayer
 +(CCScene *) scene
@@ -34,6 +35,7 @@
 -(id)init{
     self = [super init];
     if(self){
+        [FlurryAnalytics logEvent:@"historical stats"];
         CCSprite* bg = [CCSprite spriteWithFile:@"DarkGrayBackground.jpg"];
         [bg setAnchorPoint:ccp(0,0)];
         [self addChild:bg z:0];

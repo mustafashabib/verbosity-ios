@@ -17,7 +17,7 @@
 #import "NSMutableArray+Shuffling.h"
 #import "VerbosityGameConstants.h"
 #import "NSMutableArray+Stack.h"
-
+#import "FlurryAnalytics.h"
 
 @implementation VerbosityGameLayer
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
@@ -75,7 +75,7 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init])) {
-        
+         [FlurryAnalytics logEvent:@"GameStart"];
         _letter_slot_y_position = 0;
         _gesture_active = NO;
         _start_game = NO;

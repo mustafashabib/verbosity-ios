@@ -518,6 +518,8 @@
 		71ECC7C11615694500D146AA /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 71ECC7BE1615694400D146AA /* Default-Portrait@2x~ipad.png */; };
 		71ECC7C21615694500D146AA /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 71ECC7BF1615694500D146AA /* Default-Portrait~ipad.png */; };
 		71ECC7C31615694500D146AA /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 71ECC7BF1615694500D146AA /* Default-Portrait~ipad.png */; };
+		71ECC7C716164D6200D146AA /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECC7C616164D6200D146AA /* libFlurryAnalytics.a */; };
+		71ECC7C816164D6200D146AA /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECC7C616164D6200D146AA /* libFlurryAnalytics.a */; };
 		71F3AA8D15A76FA500987689 /* VerbosityGameConstants.h in Resources */ = {isa = PBXBuildFile; fileRef = 71F3AA8C15A76FA500987689 /* VerbosityGameConstants.h */; };
 		71F3AA9415A7721000987689 /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9315A7721000987689 /* NSMutableArray+Queue.m */; };
 		71F3AA9715A772D100987689 /* VerbosityAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3AA9615A772D100987689 /* VerbosityAlert.m */; };
@@ -937,6 +939,8 @@
 		71ECC7BB161568F300D146AA /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "Resources/Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		71ECC7BE1615694400D146AA /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "Resources/Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		71ECC7BF1615694500D146AA /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "Resources/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		71ECC7C516164D6200D146AA /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		71ECC7C616164D6200D146AA /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		71F3AA8C15A76FA500987689 /* VerbosityGameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbosityGameConstants.h; sourceTree = "<group>"; };
 		71F3AA9215A7721000987689 /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
 		71F3AA9315A7721000987689 /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
@@ -968,6 +972,7 @@
 				71921EEE15929D5000CD3A77 /* CoreGraphics.framework in Frameworks */,
 				71921EF015929D5000CD3A77 /* GameKit.framework in Frameworks */,
 				7143BBA2160FA81200E1270D /* libTestFlight.a in Frameworks */,
+				71ECC7C716164D6200D146AA /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -990,6 +995,7 @@
 				71A463C915B4C9FF001B4B31 /* CoreGraphics.framework in Frameworks */,
 				71A463CA15B4C9FF001B4B31 /* GameKit.framework in Frameworks */,
 				7143BBA3160FA81200E1270D /* libTestFlight.a in Frameworks */,
+				71ECC7C816164D6200D146AA /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,6 +1149,7 @@
 		71921ED015929D5000CD3A77 = {
 			isa = PBXGroup;
 			children = (
+				71ECC7C416164D6100D146AA /* FlurryAnalytics */,
 				71ECC79B16154CC900D146AA /* Accounts.framework */,
 				71ECC79C16154CC900D146AA /* Social.framework */,
 				7106126D15CB2F0200610049 /* libz.dylib */,
@@ -1677,6 +1684,15 @@
 				71444E47159ADF510045EC44 /* verbosity.sqlite3 */,
 			);
 			name = database;
+			sourceTree = "<group>";
+		};
+		71ECC7C416164D6100D146AA /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				71ECC7C516164D6200D146AA /* FlurryAnalytics.h */,
+				71ECC7C616164D6200D146AA /* libFlurryAnalytics.a */,
+			);
+			path = FlurryAnalytics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2356,12 +2372,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mustafa Shabib (XT6M3U7YQL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mustafa Shabib (XT6M3U7YQL)";
 				COPY_PHASE_STRIP = NO;
+				EXCLUDED_SOURCE_FILE_NAMES = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Verbosity/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
 					"COCOS2D_DEBUG=1",
+					"TESTFLIGHT=1",
 				);
 				HEADER_SEARCH_PATHS = "\"Verbosity/libs/kazmath/include\"";
 				INFOPLIST_FILE = Verbosity/Resources/Info.plist;
@@ -2369,6 +2387,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.0\"",
 					"\"$(SRCROOT)/TestFlightSDK1.1\"",
+					"\"$(SRCROOT)/FlurryAnalytics\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -2391,6 +2410,7 @@
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = libTestFlight.a;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Verbosity/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"Verbosity/libs/kazmath/include\"";
@@ -2399,6 +2419,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.0\"",
 					"\"$(SRCROOT)/TestFlightSDK1.1\"",
+					"\"$(SRCROOT)/FlurryAnalytics\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -2422,6 +2443,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mustafa Shabib (XT6M3U7YQL)";
 				COPY_PHASE_STRIP = NO;
+				EXCLUDED_SOURCE_FILE_NAMES = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Verbosity/Prefix.pch;
@@ -2429,6 +2451,7 @@
 					DEBUG,
 					"COCOS2D_DEBUG=1",
 					IS_LITE_VERSION,
+					"TESTFLIGHT=1",
 				);
 				HEADER_SEARCH_PATHS = "\"Verbosity/libs/kazmath/include\"";
 				INFOPLIST_FILE = "Verbosity/Resources/VerbosityLite-Info.plist";
@@ -2436,6 +2459,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.0\"",
 					"\"$(SRCROOT)/TestFlightSDK1.1\"",
+					"\"$(SRCROOT)/FlurryAnalytics\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -2459,6 +2483,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = libTestFlight.a;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Verbosity/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2472,6 +2497,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.0\"",
 					"\"$(SRCROOT)/TestFlightSDK1.1\"",
+					"\"$(SRCROOT)/FlurryAnalytics\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lz",

@@ -11,6 +11,7 @@
 #import "MainMenu.h"
 #import "SimpleAudioEngine.h"
 #import "VerbositySettings.h"
+#import "FlurryAnalytics.h"
 
 @implementation VerbositySettingsLayer
 
@@ -35,7 +36,7 @@
 -(id) init{
     self = [super init];
     if(self){
-        
+         [FlurryAnalytics logEvent:@"Settings"];
         float labelSize = VERBOSITYPOINTS(30);
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];

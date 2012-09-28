@@ -12,11 +12,14 @@
 #import "VerbosityPreLoadLayer.h"
 #import "VerbosityGameState.h"
 #import "VerbosityGameLayer.h"
+#ifdef TESTFLIGHT
 #import "TestFlight.h"
+#endif
 #import "SimpleAudioEngine.h"
 #import "PauseGameLayer.h"
 #import "VerbosityGameConstants.h"
 #import "VerbositySettings.h"
+#import "FlurryAnalytics.h"
 
 @implementation AppController
 
@@ -48,8 +51,10 @@ void SignalHandler(int sig) {
     sigaction(SIGABRT, &newSignalAction, NULL);
     sigaction(SIGILL, &newSignalAction, NULL);
     sigaction(SIGBUS, &newSignalAction, NULL);
-    
+#ifdef TESTFLIGHT
     [TestFlight takeOff:@"0720a5d7fbaa84c532f261d15814e864_MTEwODk5MjAxMi0wNy0xNiAyMDo1NjoyNy4yNjQ2MDQ"];
+#endif
+    [FlurryAnalytics startSession:@"QKHG5T54M5K7KBK5NJMJ"];
 	// Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
