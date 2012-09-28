@@ -184,7 +184,7 @@
                 controller.completionHandler =myBlock;
                 NSString* message_text = @"Prove you're an erudite wordsmith prodigy and play Verbosity on your iPhone, iPad, or iPod Touch!";
                 if(currentState.Stats.TotalWordsFound > 0){
-                    message_text = [NSString stringWithFormat:@"Did you know that %@ was a word? I did - and it earned me big points in Verbosity! Prove you're an erudite wordsmith prodigy, too, and play Verbosity on your iPhone, iPad, or iPod Touch! Try and beat my score of %@!", currentState.RarestWordFound, formattedScore];
+                    message_text = [NSString stringWithFormat:@"Did you know that %@ was a word? Prove you're an erudite wordsmith prodigy, too, and beat my score of %@ on Verbosity!", currentState.RarestWordFound, formattedScore];
                 }
                 [controller setInitialText:message_text];
                 [controller addURL:[NSURL URLWithString:@"http://itunes.com/app/Verbosity"]];
@@ -219,7 +219,7 @@
                 controller.completionHandler =myBlock;
                 NSString* message_text = @"Prove you're an erudite wordsmith prodigy and play Verbosity on your iPhone, iPad, or iPod Touch!";
                 if(currentState.Stats.TotalWordsFound > 0){
-                    message_text = [NSString stringWithFormat:@"Did you know that %@ was a word? Prove you're an erudite wordsmith prodigy, too, and beat my score of %@ on Verbosity!", currentState.RarestWordFound, formattedScore];
+                    message_text = [NSString stringWithFormat:@"Prove you're an erudite wordsmith prodigy and beat my score of %@ on Verbosity! http://bit.ly/OsSnzF", formattedScore];
                 }
                 [controller setInitialText:message_text];
                 [controller addURL:[NSURL URLWithString:@"http://itunes.com/app/Verbosity"]];
