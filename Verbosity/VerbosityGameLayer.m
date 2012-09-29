@@ -282,7 +282,7 @@
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    return !_gesture_active;
+    return [self containsTouchLocation:touch];
 }
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
