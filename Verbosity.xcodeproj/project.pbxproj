@@ -504,8 +504,8 @@
 		71E937B41599490A003D60EA /* VerbosityGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E937B31599490A003D60EA /* VerbosityGameLayer.m */; };
 		71ECC7981615347600D146AA /* VerbositySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECC7971615347600D146AA /* VerbositySettings.m */; };
 		71ECC7991615347600D146AA /* VerbositySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECC7971615347600D146AA /* VerbositySettings.m */; };
-		71ECC79D16154CC900D146AA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECC79B16154CC900D146AA /* Accounts.framework */; };
-		71ECC79E16154CC900D146AA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECC79C16154CC900D146AA /* Social.framework */; };
+		71ECC79D16154CC900D146AA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECC79B16154CC900D146AA /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		71ECC79E16154CC900D146AA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECC79C16154CC900D146AA /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		71ECC79F16154CD400D146AA /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECC79B16154CC900D146AA /* Accounts.framework */; };
 		71ECC7A016154CD400D146AA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECC79C16154CC900D146AA /* Social.framework */; };
 		71ECC7B3161566E000D146AA /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71ECC7B2161566DF00D146AA /* Icon-72@2x.png */; };

@@ -396,6 +396,9 @@ enum
 
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    if(!visible_)
+        return NO;
+    
 	if( scrollTouch_ == nil ) {
 		scrollTouch_ = touch;
 	} else {

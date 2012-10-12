@@ -167,6 +167,7 @@
         CCLayer* statsPage = [CCLayer node];
         [statsPage setContentSize:CGSizeMake(winSize.width-5, winSize.height-30)];
         CGPoint next_label_pos = ccp(5,rareWords.position.y - labelSize);
+        if(NSClassFromString(@"SLComposeViewController") != nil) {
         if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
             CCLabelButton* sharefb = [[CCLabelButton alloc] initWithString:@"Share on Facebook" andFontName:fontType andFontSize:fontSize andTouchesEndBlock:^{
                 //todo share on fb logic
@@ -241,6 +242,7 @@
             [sharetwit setAnchorPoint:ccp(0,1)];
             [sharetwit setPosition:next_label_pos];
             [statsPage addChild:sharetwit];
+        }
         }
         
         [statsPage addChild:score];
