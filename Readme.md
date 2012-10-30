@@ -6,15 +6,9 @@ A simple word game for the iOS. Make as many words as possible. Uses cocos- 2.0 
 ### TO DOs
 
 #### High Priority
-* Graphics/Polish
-* sound
-* settings
-* share on facebook
-
-#### Mid Priority
 * multiplayer 
-	* hand on top of hand baseball bat
-	* same game, asynch.
+    * same game, asynch.
+  	* hand on top of hand baseball bat
 
 #### Low priority (not initial release)
 * buy language
