@@ -34,4 +34,4 @@ multiplayer plan
 	- go to step 7
 - update remote game in db to show completion
 - async check db for active games and push notify when new games added, push notify when games ended
-- show historical games and records between you and friends
+- show historical games and records between you and friends 
