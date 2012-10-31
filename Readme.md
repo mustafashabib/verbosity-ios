@@ -14,7 +14,8 @@ A simple word game for the iOS. Make as many words as possible. Uses cocos- 2.0 
 * buy language
 * refresh language in case they re-install on another device
 ----
-multiplayer plan
+
+#### Multiplayer plan
 
 - facebook connect sdk
 - create app on fb
