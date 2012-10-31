@@ -35,3 +35,7 @@ multiplayer plan
 - update remote game in db to show completion
 - async check db for active games and push notify when new games added, push notify when games ended
 - show historical games and records between you and friends 
+
+#### Bug Tracking
+
+<https://betelnutgames.mydonedone.com/issuetracker/projects/6272>
